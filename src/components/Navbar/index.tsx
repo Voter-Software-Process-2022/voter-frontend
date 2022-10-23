@@ -1,53 +1,44 @@
 import React from "react";
-import { Link } from 'react-router-dom'
-import "./Navbar.css";
+import { Link } from "react-router-dom";
+import { IoPersonSharp } from "react-icons/io5";
 
-const Navbar = () => {
-  return (
-    <div className="navbar">
-      <div className="top-navbar">
-        <div className="top-navbar-left">
-          <div className="top-navbar-logo">
-            <img src="../src/assets/images/gov-logo.png" />
-          </div>
-          <div className="top-navbar-text">
-            <div className="top-navbar-text1">รัฐบาลไทย</div>
-            <div className="top-navbar-text2">Royal Thai Government</div>
-          </div>
-          <ul className="menu-list">
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <div className="vote-dropdown">
-                <a className="vote-dropbtn">Vote</a>
-                <div className="vote-dropdown-content">
-                  <a href="#">Vote 1</a>
-                  <a href="#">Vote 2</a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href="#">Info</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-          </ul>
-        </div>
-        <div className="top-navbar-right">
-          <ul>
-            <li>
-              <Link to='/register'>Sign Up</Link>
-            </li>
-            <li>
-              <a href="#">Sign In</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
+const NAVBAR_LIST = ["Home", "Vote", "Information", "About"];
+
+const Navbar: React.FC = () => {
+	return (
+		<div className="w-full flex items-center justify-between py-3 px-12 bg-navbar">
+			<div className="flex">
+				<div className="flex items-center">
+					<img src="../src/assets/images/gov-logo.png" className="w-16" />
+					<div className="flex flex-col mx-4 font-thai">
+						<span className="text-2xl">รัฐบาลไทย</span>
+						<span>Royal Thai Government</span>
+					</div>
+				</div>
+				<div className="flex items-center text-lg font-semibold ml-4">
+					{NAVBAR_LIST.map(topic => (
+						<span className="mx-1 px-2 py-1 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-lg">
+							{topic}
+						</span>
+					))}
+				</div>
+			</div>
+			<div className="flex items-center h-[40px] bg-[#ffffff17] rounded-lg">
+				<Link to="/register">
+					<div className="flex items-center px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-l-lg ">
+						<IoPersonSharp className="mr-2" />
+						<span>Sign up</span>
+					</div>
+				</Link>
+				<div className="w-[0.5px] bg-white h-[70%]"></div>
+				<Link to="/login">
+					<div className="px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-r-lg">
+						<span>Sign in</span>
+					</div>
+				</Link>
+			</div>
+		</div>
+	);
 };
 
 export default Navbar;
