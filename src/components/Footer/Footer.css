@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-evenly;
     height: 30vh;
+    padding: 0 5rem;
 }
 
 .footer-section1 {
