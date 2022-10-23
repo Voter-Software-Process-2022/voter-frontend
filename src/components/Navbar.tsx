@@ -13,12 +13,18 @@ const Navbar = () => {
             <div className="top-navbar-text1">รัฐบาลไทย</div>
             <div className="top-navbar-text2">Royal Thai Government</div>
           </div>
-          <ul>
+          <ul className="menu-list">
             <li>
               <a href="#">Home</a>
             </li>
             <li>
-              <a href="#">Vote</a>
+              <div className="vote-dropdown">
+                <a className="vote-dropbtn">Vote</a>
+                <div className="vote-dropdown-content">
+                  <a href="#">Vote 1</a>
+                  <a href="#">Vote 2</a>
+                </div>
+              </div>
             </li>
             <li>
               <a href="#">Info</a>
