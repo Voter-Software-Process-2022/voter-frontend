@@ -10,12 +10,36 @@
     text-align: center;
     /* justify-content: flex-start; */
 
+
 }
 
 .vote-container-left {
+    padding-top: 40px;
     background-color: white;
+    filter: grayscale(60%);
+    /* background-image: url("https://www.eef.or.th/wp-content/uploads/2022/05/%E0%B8%8A%E0%B8%B1%E0%B8%8A%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4banner-768x511.jpg"); */
+
+    align-items: flex-end;
+
+}
+
+.vote-container-left p {
+    padding-top: 40px;
+    background-color: white;
+    font-weight: 700;
+    align-items: flex-end;
 }
 
 .vote-container-right {
+    padding-top: 40px;
     background-color: #f5f5f5;
+    /* background-image: url("https://www.pearson.com/us/content/dam/one-dot-com/one-dot-com/us/en/images/american-gov-GettyImages-157424270-1000x550.jpg"); */
+
+}
+
+.vote-container-right p {
+    padding-top: 40px;
+    background-color: #f5f5f5;
+
+    font-weight: 700;
 }
