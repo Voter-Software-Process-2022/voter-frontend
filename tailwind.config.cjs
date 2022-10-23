@@ -29,7 +29,11 @@ module.exports = {
 			fuchsia: colors.fuchsia,
 			pink: colors.pink,
 			rose: colors.rose,
+			navbar: "#191d3d",
 			video: "#042443",
+		},
+		fontFamily: {
+			thai: ["Noto Sans Thai", "sans-serif"],
 		},
 		extend: {},
 	},
