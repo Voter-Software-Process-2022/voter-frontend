@@ -1,21 +1,18 @@
 import React from "react";
-
-import "./Home.css";
 import { Navbar, Video } from "../../components";
 
-const Home = () => {
+const Home: React.FC = () => {
 	return (
-		<div className="home-page">
+		<div className="w-full">
 			<Navbar />
-			<div className="video-player">
-				<Video></Video>
-				<div className="center-logo">
+			<Video>
+				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80">
 					<img src="../src/assets/images/center-logo.png" />
-					<a href="#" className="arrow-down">
-						<i className="fa-solid fa-chevron-down fa-2xl"></i>
-					</a>
 				</div>
-			</div>
+				<a href="#" className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-2xl">
+					<i className="fa-solid fa-chevron-down fa-2xl"></i>
+				</a>
+			</Video>
 		</div>
 	);
 };
