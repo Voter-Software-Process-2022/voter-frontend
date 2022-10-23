@@ -1,12 +1,16 @@
 import React from "react";
 import bangkokVideo from "../../assets/videos/bangkok-video1.mp4";
-import "./Video.css";
-const Video = () => {
-  return (
-    <div className="overlay">
-      <video src={bangkokVideo} autoPlay loop muted></video>
-    </div>
-  );
+import { VideoProps } from "../../interfaces/components/video";
+
+const Video: React.FC<VideoProps> = ({ children }) => {
+	return (
+		<div className="relative">
+			<div className="bg-video">
+				<video src={bangkokVideo} autoPlay loop muted></video>
+				{children}
+			</div>
+		</div>
+	);
 };
 
 export default Video;
