@@ -1,67 +1,94 @@
-.navbar {
-    top: 0;
-    width: 100%;
-    background-color: salmon;
-    font-size: 24px;
-    box-sizing: border-box; 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100&display=swap');
 
+.navbar {
+  top: 0;
+  width: 100%;
+  background-color: salmon;
+  font-size: 18px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 .top-navbar {
-    color: white;
-    width: 100%;
-    height: auto;
-    background-color: rgb(25,29,61);
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    /* font-size:2rem; */
-    box-sizing: border-box;
-    overflow: visible;
-    
+  color: white;
+  width: 100%;
+  height: auto;
+  background-color: rgb(25, 29, 61);
+  /* padding: 12px; */
+  display: flex;
+  justify-content: space-between;
+  /* font-size:2rem; */
+  box-sizing: border-box;
+  overflow: visible;
+  align-items: center;
+
 }
 
-.top-navbar-right {
-    /* justify-content: flex-end;
+/* .top-navbar-right {
+    justify-content: flex-end;
     display: inline-flex;
-    flex: 1 1 0%; */
-}
+    flex: 1 1 0%;
+} */
 
 .top-navbar-left {
-    display: flex;
-  
+  display: flex;
+  align-items: center;
 }
 
-.top-navbar-logo{
+.top-navbar-logo {
+  margin-left: 2rem;
   padding-top: 5px;
 }
 
+.top-navbar-logo img {
+  width: 70px;
+}
+
+.top-navbar-text {
+  margin-left:10px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.top-navbar-text1 {
+  display: flex;
+  font-size: 30px;
+  margin-bottom: 0.5rem;
+
+}
+.top-navbar-text2 {
+  font-size: 15px;
+}
+
+/* 
 .top-navbar ul {
   text-align: right;
-}
+} */
 
 /* .top-navbar li a{
   color: black;
   float: right;
 } */
-
-.bottom-navbar {                        
-    width: auto;
-    padding: 16px;
-    background-color: #335568;  
+.top-navbar-right{
+  margin-right:20px;
+}
+.bottom-navbar {
+  width: auto;
+  padding: 16px;
+  background-color: #335568;
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
 }
 
 li {
   float: left;
 }
-  
+
 li a {
   display: block;
   color: white;
@@ -69,7 +96,7 @@ li a {
   text-decoration: none;
   padding: 5px 16px;
 }
-  
+
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: white;

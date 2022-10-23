@@ -7,7 +7,12 @@ const Navbar = () => {
       <div className='top-navbar'>
         <div className='top-navbar-left'>
           <div className='top-navbar-logo'>
-          Royal Thai Government
+            <img src='../src/images/gov-logo.png'/>
+            </div>
+            <div className="top-navbar-text">
+              <div className="top-navbar-text1">รัฐบาลไทย</div>
+              <div className="top-navbar-text2">Royal Thai Government</div>
+          
           </div>
           <ul>
           <li><a href="#">Home</a></li>
