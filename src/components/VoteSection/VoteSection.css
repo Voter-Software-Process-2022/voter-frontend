@@ -1,0 +1,21 @@
+.vote-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: black;
+    max-width: 100%;
+    max-height: 100%;
+    text-align: start;
+    height: 70vh;
+    color: black;
+    text-align: center;
+    /* justify-content: flex-start; */
+
+}
+
+.vote-container-left {
+    background-color: white;
+}
+
+.vote-container-right {
+    background-color: #f5f5f5;
+}

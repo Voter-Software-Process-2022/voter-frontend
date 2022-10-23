@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./Home.css";
-import { Navbar, Video } from "../components";
+import { Footer, Navbar, Video, VoteSection } from "../components";
 
 const Home = () => {
   return (
@@ -16,6 +16,8 @@ const Home = () => {
           </a>
         </div>
       </div>
+      <VoteSection></VoteSection>
+      <Footer />
     </div>
   );
 };
