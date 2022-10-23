@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Video from "../components/Video";
+
 import "./Home.css";
+import { Navbar, Video } from "../components";
 
 const Home = () => {
   return (
@@ -11,6 +11,9 @@ const Home = () => {
         <Video></Video>
         <div className="center-logo">
           <img src="../src/assets/images/center-logo.png" />
+          <a href="#" className="arrow-down">
+            <i className="fa-solid fa-chevron-down fa-2xl"></i>
+          </a>
         </div>
       </div>
     </div>

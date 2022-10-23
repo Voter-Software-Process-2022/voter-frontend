@@ -1,5 +1,5 @@
 import React from "react";
-import bangkokVideo from "../assets/videos/bangkok-video1.mp4";
+import bangkokVideo from "../../assets/videos/bangkok-video1.mp4";
 import "./Video.css";
 const Video = () => {
   return (
