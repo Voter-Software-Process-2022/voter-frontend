@@ -11,7 +11,7 @@ const Home = () => {
         <Video></Video>
         <div className="center-logo">
           <img src="../src/assets/images/center-logo.png" />
-          <a href="#" className="arrow-down">
+          <a href="#vote" className="arrow-down">
             <i className="fa-solid fa-chevron-down fa-2xl"></i>
           </a>
         </div>
