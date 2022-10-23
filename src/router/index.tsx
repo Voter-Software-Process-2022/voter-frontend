@@ -1,7 +1,5 @@
 import {
-  Route,
   useRoutes,
-  Link,
 } from "react-router-dom";
 import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
