@@ -6,7 +6,15 @@ const Navbar = () => {
     <div className='navbar'>
       <div className='top-navbar'>
         <div className='top-navbar-left'>
+          <div className='top-navbar-logo'>
           Royal Thai Government
+          </div>
+          <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Vote</a></li>
+          <li><a href="#">Info</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
         </div>
         <div className='top-navbar-right'>
           <ul>
@@ -15,14 +23,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className='bottom-navbar'>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Vote</a></li>
-          <li><a href="#">Info</a></li>
-          <li><a href="#">About</a></li>
-        </ul>
-      </div>
+
     </div>
   )
 }

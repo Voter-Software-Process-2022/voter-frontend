@@ -2,38 +2,53 @@
     top: 0;
     width: 100%;
     background-color: salmon;
-    padding: 6px 100px;
     font-size: 24px;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+
 }
 
 .top-navbar {
-    color: black;
-    width: auto;
-    background-color: white;
+    color: white;
+    width: 100%;
+    height: auto;
+    background-color: rgb(25,29,61);
     padding: 16px;
     display: flex;
+    justify-content: space-between;
+    /* font-size:2rem; */
+    box-sizing: border-box;
+    overflow: visible;
+    
 }
 
 .top-navbar-right {
-    justify-content: flex-end;
+    /* justify-content: flex-end;
     display: inline-flex;
-    flex: 1 1 0%;
+    flex: 1 1 0%; */
+}
+
+.top-navbar-left {
+    display: flex;
+  
+}
+
+.top-navbar-logo{
+  padding-top: 5px;
 }
 
 .top-navbar ul {
   text-align: right;
 }
 
-.top-navbar li a{
+/* .top-navbar li a{
   color: black;
   float: right;
-}
+} */
 
-.bottom-navbar {
+.bottom-navbar {                        
     width: auto;
     padding: 16px;
-    background-color: #335568;
+    background-color: #335568;  
 }
 
 ul {
@@ -52,10 +67,11 @@ li a {
   color: white;
   text-align: center;
   text-decoration: none;
-  padding: 0 16px;
+  padding: 5px 16px;
 }
   
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-  background-color: rgb(255, 237, 158);
+  background-color: white;
+  color: Black;
 }
