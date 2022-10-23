@@ -79,7 +79,7 @@
 }
 
 .vote-dropdown-content {
-  border: white 1px solid;
+  /* border: white 1px solid; */
   display: none;
   position: absolute;
   background-color: rgb(25, 29, 61);
