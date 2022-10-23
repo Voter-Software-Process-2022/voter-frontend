@@ -7,7 +7,12 @@ const Home = () => {
   return (
     <div className="home-page">
       <Navbar />
-      <Video></Video>
+      <div className="video-player">
+        <Video></Video>
+        <div className="center-logo">
+          <img src="../src/assets/images/center-logo.png" />
+        </div>
+      </div>
     </div>
   );
 };
