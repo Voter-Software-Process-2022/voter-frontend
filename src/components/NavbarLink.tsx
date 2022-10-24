@@ -29,7 +29,7 @@ const NavbarLink: React.FC<MenuList> = ({ topic, subTopic }) => {
                 key={index}
                 className='p-4 w-64 border-r-4 border-[#f5f5f5] bg-[#f5f5f5] hover:bg-[#d9d9d9] text-slate-800 hover:border-r-4 hover:border-[#632ce4]'
               >
-                <span>{subTopic}</span>
+                <span className='text-base'>{subTopic}</span>
               </div>
             ))}
         </div>
