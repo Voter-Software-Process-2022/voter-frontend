@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { IoPersonSharp } from 'react-icons/io5'
-import { HiOutlineBars3BottomRight, HiOutlineXMark } from 'react-icons/hi2'
-import { NavbarProps } from '../../interfaces/components/navbar'
+import { VscListSelection, VscClose } from 'react-icons/vsc'
+import { NavbarProps } from './../interfaces/components/navbar'
 
 const NAVBAR_LIST = ['Home', 'Vote', 'Information', 'About']
 
 const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
   return (
-    <div className='w-full flex items-center justify-between py-3 px-12 bg-navbar'>
+    <div className='w-full flex items-center justify-between py-3 px-6 sm:px-12 bg-navbar h-[88px]'>
       <div className='flex'>
         <div className='flex items-center'>
           <img src='../src/assets/images/gov-logo.png' className='w-16' />
-          <div className='flex flex-col mx-4 font-thai'>
+          <div className='hidden flex-col mx-4 font-thai xs:flex'>
             <span className='text-2xl'>รัฐบาลไทย</span>
             <span>Royal Thai Government</span>
           </div>
@@ -30,13 +30,13 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
       </div>
       <div className='flex items-center'>
         {!isOpenSidebar ? (
-          <HiOutlineBars3BottomRight
-            className='text-3xl lg:hidden cursor-pointer'
+          <VscListSelection
+            className='text-3xl lg:hidden cursor-pointer rotate-180'
             onClick={() => setIsOpenSidebar(true)}
           />
         ) : (
-          <HiOutlineXMark
-            className='text-3xl lg:hidden cursor-pointer'
+          <VscClose
+            className='text-4xl lg:hidden cursor-pointer'
             onClick={() => setIsOpenSidebar(false)}
           />
         )}
