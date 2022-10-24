@@ -1,3 +1,3 @@
 export interface VideoProps {
-	children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[]
 }
