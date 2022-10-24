@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import { IoPersonSharp } from 'react-icons/io5'
 import { VscListSelection, VscClose } from 'react-icons/vsc'
 import { NavbarProps } from './../interfaces/components/navbar'
-
-const NAVBAR_LIST = ['Home', 'Vote', 'Information', 'About']
+import NavbarLink from './NavbarLink'
+import { MENU_LIST } from '../config/menu'
 
 const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
   return (
@@ -18,13 +18,12 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
           </div>
         </div>
         <div className='hidden items-center text-lg font-semibold ml-4 lg:flex'>
-          {NAVBAR_LIST.map((topic, index) => (
-            <span
-              className='mx-1 px-2 py-1 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-lg'
+          {MENU_LIST.map((list, index) => (
+            <NavbarLink
+              topic={list.topic}
+              subTopic={list.subTopic}
               key={index}
-            >
-              {topic}
-            </span>
+            />
           ))}
         </div>
       </div>
