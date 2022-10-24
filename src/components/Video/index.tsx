@@ -4,11 +4,9 @@ import { VideoProps } from '../../interfaces/components/video'
 
 const Video: React.FC<VideoProps> = ({ children }) => {
   return (
-    <div className='relative'>
-      <div className='bg-video'>
-        <video src={bangkokVideo} autoPlay loop muted></video>
-        {children}
-      </div>
+    <div className='bg-video'>
+      <video src={bangkokVideo} autoPlay loop muted></video>
+      {children}
     </div>
   )
 }
