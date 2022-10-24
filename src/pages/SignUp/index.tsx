@@ -1,11 +1,18 @@
 import React from "react";
+import { IoChevronBackOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const SignUp: React.FC = () => {
 	return (
 		<div className="bg-grey-lighter min-h-screen flex flex-col">
 			<div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
 				<form className="bg-white px-6 py-8 rounded-lg shadow-md text-black w-full">
-					<h1 className="mb-8 text-3xl text-center">Sign Up</h1>
+					<div className="mb-8 flex flex-row text-3xl">
+						<Link to="/">
+							<IoChevronBackOutline className="border border-gray-300 rounded-md"/>
+						</Link>
+						<h1 className="text-center">Sign Up</h1>
+					</div>
 					<input
 						type="text"
 						className="block bg-gray-100 border border-grey-light w-full p-3 rounded-md mb-4"
