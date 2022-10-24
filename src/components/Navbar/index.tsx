@@ -16,8 +16,8 @@ const Navbar: React.FC = () => {
           </div>
         </div>
         <div className='flex items-center text-lg font-semibold ml-4'>
-          {NAVBAR_LIST.map((topic) => (
-            <span className='mx-1 px-2 py-1 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-lg'>
+          {NAVBAR_LIST.map((topic, index) => (
+            <span className='mx-1 px-2 py-1 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-lg' key={index}>
               {topic}
             </span>
           ))}

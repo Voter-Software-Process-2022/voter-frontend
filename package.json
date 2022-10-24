@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint": "eslint --color --ext \"src/**/*.{ts,tsx}\" \"src/**/**/*.{ts,tsx}\"",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
