@@ -10,7 +10,7 @@
 $ npm install
 ```
 
-### 2. Serve locally
+### 2. Run locally
 
 ```bash
 $ npm run dev
