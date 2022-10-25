@@ -142,22 +142,24 @@ const SignUp: React.FC = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          <div className='text-sm text-grey-dark my-4'>
+          <div className='text-sm text-grey-dark my-4 flex items-center'>
             <Checkbox checked={checked} onChange={onCheckHandler} />
-            You agree to the {}
-            <a
-              className='no-underline border-b border-grey-dark text-grey-dark'
-              href='#'
-            >
-              Terms of Service
-            </a>{' '}
-            {} and {}
-            <a
-              className='no-underline border-b border-grey-dark text-grey-dark'
-              href='#'
-            >
-              Privacy Policy
-            </a>
+            <span>
+              You agree to the
+              <a
+                className='no-underline border-b border-grey-dark text-grey-dark'
+                href='#'
+              >
+                {' Terms of Service '}
+              </a>
+              and
+              <a
+                className='no-underline border-b border-grey-dark text-grey-dark'
+                href='#'
+              >
+                {' Privacy Policy '}
+              </a>
+            </span>
           </div>
           <button
             type='submit'
