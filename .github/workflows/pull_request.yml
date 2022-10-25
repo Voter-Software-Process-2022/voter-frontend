@@ -32,7 +32,7 @@ jobs:
         run: echo "url=$(vercel --token=${{ env.VERCEL_ACCESS_TOKEN }})" >> $GITHUB_OUTPUT
       - name: Notify update in PR
         uses: thollander/actions-comment-pull-request@v1
-        if: success() && github.event.action == 'opened'
+        if: success()
         with:
           message: |
             New beta version for this Pull Request has been released
