@@ -2,7 +2,7 @@ name: Pull Request CI
 
 on:
   pull_request:
-    types: [opened, synchronize, closed]
+    types: [opened, synchronize, reopened]
     branches:
       - main
 
@@ -13,6 +13,7 @@ concurrency:
 env:
   VERCEL_ACCESS_TOKEN: ${{ secrets.VERCEL_ACCESS_TOKEN }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
 
 jobs:
   tests:
@@ -24,20 +25,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: Checkout
-      - uses: snaplet/vercel-action@v2
-        id: vercel-deploy
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Deploy Beta
+        id: deploy
+        run: echo "url=$(vercel --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
       - name: Notify update in PR
         uses: thollander/actions-comment-pull-request@v1
         if: success() && github.event.action == 'opened'
         with:
           message: |
             New beta version for this Pull Request has been released
-            Service URL: ${{ steps.vercel-deploy.outputs.deployment-url.description }}
+            Service URL: ${{ steps.deploy.outputs.url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  delete:
-    if: ${{ github.event.action == 'closed' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: snaplet/vercel-action@v2
-        with:
-          delete: true
