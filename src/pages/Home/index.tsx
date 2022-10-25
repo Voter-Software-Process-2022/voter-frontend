@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Navbar, Sidebar, Video } from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
+import MiddleLogo from './../../assets/images/center-logo.png'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
 
   return (
-    <div className='w-full'>
+    <div className='w-full overflow-x-hidden'>
       <Navbar
         isOpenSidebar={isOpenSidebar}
         setIsOpenSidebar={setIsOpenSidebar}
@@ -14,7 +15,7 @@ const Home: React.FC = () => {
       <div className='relative'>
         <Video>
           <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[auto] sm:w-80'>
-            <img src='../src/assets/images/center-logo.png' />
+            <img src={MiddleLogo} />
           </div>
           <a
             href='#'

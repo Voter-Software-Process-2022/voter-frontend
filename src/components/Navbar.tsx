@@ -4,6 +4,7 @@ import { IoPersonSharp } from 'react-icons/io5'
 import { VscListSelection, VscClose } from 'react-icons/vsc'
 import { NavbarProps } from './../interfaces/components/navbar'
 import NavbarLink from './NavbarLink'
+import Logo from './../assets/images/gov-logo.png'
 import { MENU_LIST } from '../config/menu'
 
 const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
@@ -11,7 +12,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
     <div className='w-full flex items-center justify-between py-3 px-6 sm:px-12 bg-navbar h-[88px]'>
       <div className='flex'>
         <div className='flex items-center'>
-          <img src='../src/assets/images/gov-logo.png' className='w-16' />
+          <img src={Logo} className='w-16' />
           <div className='hidden flex-col mx-4 font-thai xs:flex'>
             <span className='text-2xl'>รัฐบาลไทย</span>
             <span>Royal Thai Government</span>
