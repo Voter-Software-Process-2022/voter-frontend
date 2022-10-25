@@ -16,7 +16,7 @@ env:
 
 jobs:
   tests:
-    uses: ./.github/workflows/tests.yml
+    uses: ./.github/workflows/test.yml
   deploy:
     if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
     runs-on: ubuntu-latest
