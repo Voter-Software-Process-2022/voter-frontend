@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
-import { MenuList } from '../interfaces/menu'
+import type { MenuList } from '../interfaces/menu'
 
 const NavbarLink: React.FC<MenuList> = ({
   topic,
@@ -33,7 +33,7 @@ const NavbarLink: React.FC<MenuList> = ({
       >
         <span className='select-none'>{topic}</span>
         <div
-          className='absolute left-0 top-12 z-10 rounded-sm overflow-hidden'
+          className='top-12 absolute left-0 z-10 overflow-hidden rounded-sm'
           ref={wrapperRef}
         >
           {subnav &&

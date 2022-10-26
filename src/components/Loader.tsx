@@ -45,8 +45,8 @@ const loadingCircleTransition = {
 const Loader: React.FC = () => {
   return (
     <div>
-      <div className='fixed  w-full min-h-screen z-50 bg-black opacity-30' />
-      <div className='flex fixed w-full justify-center items-center h-screen'>
+      <div className='opacity-30 fixed z-50 w-full min-h-screen bg-black' />
+      <div className='fixed flex items-center justify-center w-full h-screen'>
         <motion.div
           style={loadingContainer}
           variants={loadingContainerVariants}
@@ -73,5 +73,4 @@ const Loader: React.FC = () => {
     </div>
   )
 }
-
 export default Loader

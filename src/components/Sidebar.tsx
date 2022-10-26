@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { SidebarProps } from '../interfaces/components/sidebar'
+import type { SidebarProps } from '../interfaces/components/sidebar'
 import SidebarLink from './SidebarLink'
 import { IoPersonSharp } from 'react-icons/io5'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className='mb-8'>
         <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
           <div className='flex items-center mx-8'>
-            <IoPersonSharp className='text-lg mr-4' />
+            <IoPersonSharp className='mr-4 text-lg' />
             <span className='text-slate-300 text-xl font-medium'>
               Sign In / Sign Up
             </span>

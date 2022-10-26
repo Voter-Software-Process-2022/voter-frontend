@@ -7,7 +7,6 @@ extends:
   - eslint:recommended
   - plugin:react/recommended
   - plugin:@typescript-eslint/recommended
-  - plugin:jsx-a11y/recommended
   - prettier
 globals:
   JSX: readonly
@@ -32,7 +31,6 @@ rules:
   '@typescript-eslint/prefer-as-const': warn
   '@typescript-eslint/no-var-requires': off
   no-alert: error
-  no-console: error
   no-dupe-keys: error
   no-duplicate-imports: error
   no-unused-private-class-members: error

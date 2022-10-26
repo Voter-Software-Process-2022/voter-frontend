@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineCaretDown } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
-import { MenuList } from '../interfaces/menu'
+import type { MenuList } from '../interfaces/menu'
 
 const SidebarLink: React.FC<MenuList> = ({
   topic,
