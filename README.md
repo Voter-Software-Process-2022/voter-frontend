@@ -7,11 +7,17 @@
 ### 1. Install dependency
 
 ```bash
-$ npm install
+yarn install
 ```
 
 ### 2. Run locally
 
 ```bash
-$ npm run dev
+yarn dev
+```
+
+### 3. Build production
+
+```bash
+yarn build
 ```
