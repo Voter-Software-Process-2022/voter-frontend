@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Loader } from './components'
 import Router from './router'
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>

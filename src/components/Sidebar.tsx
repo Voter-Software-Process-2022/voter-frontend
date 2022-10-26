@@ -16,7 +16,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <div
       className={`w-[350px] h-[calc(100vh-88px)] bg-navbar absolute top-0 duration-500 ${
         isOpenSidebar ? 'right-0' : '-right-[350px]'
-      } flex flex-col justify-between`}
+      } flex flex-col justify-between lg:hidden`}
       ref={wrapperRef}
     >
       <div className='flex flex-col'>
