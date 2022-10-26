@@ -11,8 +11,9 @@
     "lint": "eslint . --ext .ts,.tsx,.js,jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,jsx --fix",
     "typecheck": "tsc --noEmit",
-    "prettier": "prettier --write \"**/*.+(json|yml|css|md|mdx)\"",
-    "clean": "rimraf node_modules yarn.lock package-lock.json dist"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "clean": "rimraf node_modules yarn.lock package-lock.json dist",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -62,6 +63,7 @@
     "rimraf": "^3.0.2",
     "serve": "^14.0.1",
     "tailwindcss": "^3.2.1",
-    "vite": "^3.1.0"
+    "vite": "^3.1.0",
+    "husky": "^8.0.0"
   }
 }
