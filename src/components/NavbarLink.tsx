@@ -31,7 +31,9 @@ const NavbarLink: React.FC<MenuList> = ({
         }`}
         onClick={showSubnav}
       >
-        <span className='select-none'>{topic}</span>
+        <span data-testid='navbar-topic' className='select-none'>
+          {topic}
+        </span>
         <div
           className='top-12 absolute left-0 z-10 overflow-hidden rounded-sm'
           ref={wrapperRef}
