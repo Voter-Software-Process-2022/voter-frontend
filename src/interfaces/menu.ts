@@ -1,4 +1,9 @@
 export interface MenuList {
   topic: string
-  subTopic: string[]
+  subTopic: {
+    topic: string
+    path: string
+  }[]
+  hasSubTopic: boolean
+  path?: string
 }

@@ -24,6 +24,8 @@ const Sidebar: React.FC<SidebarProps> = ({
           <SidebarLink
             topic={list.topic}
             subTopic={list.subTopic}
+            hasSubTopic={list.hasSubTopic}
+            path={list.path}
             key={index}
           />
         ))}

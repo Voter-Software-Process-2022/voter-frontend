@@ -23,6 +23,8 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
             <NavbarLink
               topic={list.topic}
               subTopic={list.subTopic}
+              hasSubTopic={list.hasSubTopic}
+              path={list.path}
               key={index}
             />
           ))}

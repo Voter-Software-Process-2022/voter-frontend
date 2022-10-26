@@ -1,11 +1,24 @@
 import React, { useState } from 'react'
 import { AiOutlineCaretDown } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
 import { MenuList } from '../interfaces/menu'
 
-const SidebarLink: React.FC<MenuList> = ({ topic, subTopic }) => {
+const SidebarLink: React.FC<MenuList> = ({
+  topic,
+  subTopic,
+  hasSubTopic,
+  path,
+}) => {
   const [subnav, setSubnav] = useState(false)
+  const navigate = useNavigate()
 
-  const showSubnav = () => setSubnav(!subnav)
+  const showSubnav = () => {
+    if (!hasSubTopic && path) {
+      navigate(path)
+    } else {
+      setSubnav(!subnav)
+    }
+  }
 
   return (
     <React.Fragment>
@@ -15,7 +28,7 @@ const SidebarLink: React.FC<MenuList> = ({ topic, subTopic }) => {
       >
         <div className='flex items-center justify-between mx-8'>
           <span className='text-slate-300 text-xl font-medium'>{topic}</span>
-          {subTopic.length !== 0 && (
+          {hasSubTopic && (
             <AiOutlineCaretDown
               className={`duration-300 ${subnav ? '-rotate-180' : ''}`}
             />
@@ -23,14 +36,15 @@ const SidebarLink: React.FC<MenuList> = ({ topic, subTopic }) => {
         </div>
       </div>
       {subnav &&
-        subTopic.map((subTopic: string, index: number) => (
+        subTopic.map((subTopic, index) => (
           <div
             key={index}
             className='bg-[#23263b] py-4 hover:bg-[#632ce4] cursor-pointer'
+            onClick={() => navigate(subTopic.path)}
           >
             <div className='flex items-center justify-between mx-12'>
               <span className='text-slate-300 text-lg font-medium'>
-                {subTopic}
+                {subTopic.topic}
               </span>
             </div>
           </div>
