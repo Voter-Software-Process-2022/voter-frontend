@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, RefObject } from 'react'
 
 export default function useOutsideAlerter(
-  ref: React.RefObject<HTMLInputElement>,
+  ref: RefObject<HTMLInputElement>,
   setAction: (action: boolean) => void,
 ) {
   useEffect(() => {
