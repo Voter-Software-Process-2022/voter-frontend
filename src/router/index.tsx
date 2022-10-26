@@ -1,12 +1,6 @@
 import { useRoutes } from 'react-router-dom'
-import { Home, SignUp } from '../pages'
+import routes from './routes'
 
 export default function Router() {
-  return useRoutes([
-    {
-      path: '/',
-      element: <Home />,
-    },
-    { path: '/register', element: <SignUp /> },
-  ])
+  return useRoutes(routes)
 }
