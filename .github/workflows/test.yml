@@ -4,8 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  lint:
-    name: Lint Test
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to the repository
@@ -21,21 +21,6 @@ jobs:
 
       - name: Perform Lint Test
         run: npm run lint
-
-  unit-test:
-    name: Unit Test
-    runs-on: ubuntu-lastest
-    steps:
-      - name: Checkout to the repository
-        uses: actions/checkout@v2
-
-      - name: Set up NodeJS environment
-        uses: actions/setup-node@v2
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Install Dependency
-        run: npm install
 
       - name: Execute Unit Tests
         run: npm run test
