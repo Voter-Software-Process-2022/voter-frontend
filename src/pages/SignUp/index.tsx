@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { useState, type FormEvent } from 'react'
 import { IoChevronBackOutline } from 'react-icons/io5'
 import * as AiIcon from 'react-icons/ai'
 import { Link } from 'react-router-dom'
@@ -63,7 +63,7 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <div className='bg-navbar min-h-screen flex flex-col'>
+    <div className='bg-navbar flex flex-col min-h-screen'>
       <ToastContainer
         position='bottom-right'
         autoClose={5000}
@@ -76,21 +76,21 @@ const SignUp: React.FC = () => {
         pauseOnHover
         theme='light'
       />
-      <div className='container max-w-lg mx-auto flex-1 flex flex-col items-center justify-center px-2'>
+      <div className='container flex flex-col items-center justify-center flex-1 max-w-lg px-2 mx-auto'>
         <form
           onSubmit={onSubmitHandler}
-          className='bg-white px-6 py-8 rounded-lg shadow-md text-black w-full'
+          className='w-full px-6 py-8 text-black bg-white rounded-lg shadow-md'
         >
-          <div className='mb-8 flex flex-row text-3xl items-center justify-center relative'>
+          <div className='relative flex flex-row items-center justify-center mb-8 text-3xl'>
             <Link to='/'>
-              <IoChevronBackOutline className='border border-gray-300 rounded-md absolute left-0 top-1/2 -translate-y-1/2' />
+              <IoChevronBackOutline className='top-1/2 absolute left-0 -translate-y-1/2 border border-gray-300 rounded-md' />
             </Link>
-            <h1 className='text-center font-bold'>Sign Up</h1>
+            <h1 className='font-bold text-center'>Sign Up</h1>
           </div>
           <input
             type='text'
             maxLength={13}
-            className='block bg-gray-100 border border-grey-light w-full p-3 rounded-md mb-4'
+            className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
             placeholder='Citizen ID'
             value={citizen}
             onChange={(e) => setCitizen(e.target.value)}
@@ -98,23 +98,23 @@ const SignUp: React.FC = () => {
           <div className='flex items-center mb-4'>
             <input
               type='text'
-              className='block bg-gray-100 border border-grey-light p-3 rounded-md w-16 sm:w-28'
+              className='border-grey-light sm:w-28 block w-16 p-3 bg-gray-100 border rounded-md'
               placeholder='Laser ID'
               value={laser1}
               onChange={(e) => setLaser1(e.target.value.toUpperCase())}
             />
-            <AiIcon.AiOutlineMinus className='mx-2 text-md' />
+            <AiIcon.AiOutlineMinus className='text-md mx-2' />
             <input
               type='text'
-              className='block bg-gray-100 border border-grey-light w-full p-3 rounded-md flex-1'
+              className='border-grey-light flex-1 block w-full p-3 bg-gray-100 border rounded-md'
               placeholder='Laser ID'
               value={laser2}
               onChange={(e) => setLaser2(e.target.value)}
             />
-            <AiIcon.AiOutlineMinus className='mx-2 text-md' />
+            <AiIcon.AiOutlineMinus className='text-md mx-2' />
             <input
               type='text'
-              className='block bg-gray-100 border border-grey-light p-3 rounded-md w-16 sm:w-28'
+              className='border-grey-light sm:w-28 block w-16 p-3 bg-gray-100 border rounded-md'
               placeholder='Laser ID'
               value={laser3}
               onChange={(e) => setLaser3(e.target.value)}
@@ -122,40 +122,40 @@ const SignUp: React.FC = () => {
           </div>
           <input
             type='email'
-            className='block bg-gray-100 border border-grey-light w-full p-3 rounded-md mb-4'
+            className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
             placeholder='Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type='password'
-            className='block bg-gray-100 border border-grey-light w-full p-3 rounded-md mb-4'
+            className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
             placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type='password'
-            className='block bg-gray-100 border border-grey-light w-full p-3 rounded-md mb-4'
+            className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
             placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          <div className='text-sm text-grey-dark my-4 flex items-center'>
+          <div className='text-grey-dark flex items-center my-4 text-sm'>
             <Checkbox checked={checked} onChange={onCheckHandler} />
             <span>
               You agree to the
               <a
-                className='no-underline border-b border-grey-dark text-grey-dark'
-                href='#'
+                className='border-grey-dark text-grey-dark no-underline border-b'
+                href='/'
               >
                 {' Terms of Service '}
               </a>
               and
               <a
-                className='no-underline border-b border-grey-dark text-grey-dark'
-                href='#'
+                className='border-grey-dark text-grey-dark no-underline border-b'
+                href='/'
               >
                 {' Privacy Policy '}
               </a>
@@ -163,7 +163,7 @@ const SignUp: React.FC = () => {
           </div>
           <button
             type='submit'
-            className='w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none'
+            className='hover:bg-green-600 focus:outline-none w-full py-3 text-center text-white bg-green-500 rounded'
           >
             Create Account
           </button>
@@ -171,7 +171,7 @@ const SignUp: React.FC = () => {
         <div className='text-grey-dark mt-6'>
           Already have an account? {}
           <a
-            className='no-underline border-b border-blue text-blue'
+            className='border-blue text-blue no-underline border-b'
             href='/login'
           >
             Log in

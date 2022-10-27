@@ -1,10 +1,14 @@
+import { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { Loader } from './components'
 import Router from './router'
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
-      <Router />
+      <Suspense fallback={<Loader />}>
+        <Router />
+      </Suspense>
     </BrowserRouter>
   )
 }

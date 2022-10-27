@@ -4,21 +4,23 @@ on:
   workflow_call:
 
 jobs:
-  lint:
-    name: Lint Test
+  Test-Coverage:
+    name: Tests and Coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to the repository
         uses: actions/checkout@v2
-
       - name: Set up NodeJS environment
         uses: actions/setup-node@v2
         with:
           node-version-file: '.nvmrc'
-
       - name: Install Dependency
         run: npm install
-
       - name: Perform Lint Test
         run: npm run lint
-
+      - name: Execute Unit Tests
+        run: npm run test
+      - name: Run Test Coverage
+        run: npm run test:coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3

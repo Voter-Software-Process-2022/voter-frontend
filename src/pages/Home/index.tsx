@@ -19,7 +19,7 @@ const Home: React.FC = () => {
           </div>
           <a
             href='#'
-            className='absolute bottom-8 left-1/2 transform -translate-x-1/2'
+            className='bottom-8 left-1/2 absolute transform -translate-x-1/2'
           >
             <FaChevronDown className='text-3xl' />
           </a>

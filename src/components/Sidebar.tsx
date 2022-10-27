@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { SidebarProps } from '../interfaces/components/sidebar'
+import type { SidebarProps } from '../interfaces/components/sidebar'
 import SidebarLink from './SidebarLink'
 import { IoPersonSharp } from 'react-icons/io5'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
@@ -16,7 +16,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <div
       className={`w-[350px] h-[calc(100vh-88px)] bg-navbar absolute top-0 duration-500 ${
         isOpenSidebar ? 'right-0' : '-right-[350px]'
-      } flex flex-col justify-between`}
+      } flex flex-col justify-between lg:hidden`}
       ref={wrapperRef}
     >
       <div className='flex flex-col'>
@@ -24,6 +24,8 @@ const Sidebar: React.FC<SidebarProps> = ({
           <SidebarLink
             topic={list.topic}
             subTopic={list.subTopic}
+            hasSubTopic={list.hasSubTopic}
+            path={list.path}
             key={index}
           />
         ))}
@@ -31,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className='mb-8'>
         <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
           <div className='flex items-center mx-8'>
-            <IoPersonSharp className='text-lg mr-4' />
+            <IoPersonSharp className='mr-4 text-lg' />
             <span className='text-slate-300 text-xl font-medium'>
               Sign In / Sign Up
             </span>
