@@ -1,6 +1,7 @@
 # Voter Frontend
 
 ![Tests](https://github.com/Voter-Software-Process-2022/voter-frontend/actions/workflows/test.yml/badge.svg)
+[![codecov](https://codecov.io/github/Voter-Software-Process-2022/voter-frontend/branch/setup/test/graph/badge.svg?token=FQ9GWCAOW1)](https://codecov.io/github/Voter-Software-Process-2022/voter-frontend)
 
 ## 📦 Build Steps
 
