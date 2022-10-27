@@ -4,8 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  tests:
-    name: Tests
+  Test-Coverage:
+    name: Tests and Coverage
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to the repository
@@ -24,3 +24,5 @@ jobs:
         run: npm run test:coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
