@@ -20,7 +20,7 @@ jobs:
         run: npm run lint
       - name: Execute Unit Tests
         run: npm run test
-      - name: Run test coverage
+      - name: Run Test Coverage
         run: npm run test:coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
