@@ -34,6 +34,7 @@ module.exports = {
     },
     fontFamily: {
       thai: ['Noto Sans Thai', 'sans-serif'],
+      chraka: ['Chakra Petch', 'sans-serif'],
     },
     screens: {
       xs: '400px',
