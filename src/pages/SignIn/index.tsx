@@ -68,15 +68,20 @@ const SignIn: React.FC = () => {
           >
             Sign In
           </button>
+          <div className='relative flex flex-row items-center justify-end mt-4 text-slate-500 underline'>
+            <Link to='/password/reset'>
+              <span>Forgot password ?</span>
+            </Link>
+          </div>
         </form>
         <div className='text-grey-dark mt-6'>
           {'Does not have any account? '}
-          <a
+          <Link
             className='border-blue text-blue no-underline border-b'
-            href='/register'
+            to='/register'
           >
             Register
-          </a>
+          </Link>
         </div>
       </div>
     </div>
