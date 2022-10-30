@@ -4,6 +4,7 @@ import SidebarLink from './SidebarLink'
 import { IoPersonSharp } from 'react-icons/io5'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import { MENU_LIST } from '../config/menu'
+import { Link } from 'react-router-dom'
 
 const Sidebar: React.FC<SidebarProps> = ({
   isOpenSidebar,
@@ -14,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className={`w-[350px] h-[calc(100vh-88px)] bg-navbar absolute top-0 duration-500 ${
+      className={`fixed w-[350px] h-[calc(100vh-88px)] bg-navbar top-[88px] duration-500 ${
         isOpenSidebar ? 'right-0' : '-right-[350px]'
       } flex flex-col justify-between lg:hidden`}
       ref={wrapperRef}
@@ -34,9 +35,11 @@ const Sidebar: React.FC<SidebarProps> = ({
         <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
           <div className='flex items-center mx-8'>
             <IoPersonSharp className='mr-4 text-lg' />
-            <span className='text-slate-300 text-xl font-medium'>
-              Sign In / Sign Up
-            </span>
+            <Link to='/login'>
+              <span className='text-slate-300 text-xl font-medium'>
+                Sign In / Sign Up
+              </span>
+            </Link>
           </div>
         </div>
       </div>

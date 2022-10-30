@@ -2,8 +2,9 @@ import React, { useState, type FormEvent } from 'react'
 import { IoChevronBackOutline } from 'react-icons/io5'
 import * as AiIcon from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import Checkbox from '@mui/material/Checkbox'
+import { alertErrorMessage } from '../../utils/alert'
 
 const SignUp: React.FC = () => {
   const [citizen, setCitizen] = useState<string>('')
@@ -43,19 +44,6 @@ const SignUp: React.FC = () => {
       confirmPassword,
     }
     console.log(data)
-  }
-
-  const alertErrorMessage = (message: string) => {
-    toast.error(message, {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    })
   }
 
   const onCheckHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,12 +119,14 @@ const SignUp: React.FC = () => {
             type='password'
             className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
             placeholder='Password'
+            minLength={6}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type='password'
             className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
+            minLength={6}
             placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -169,14 +159,13 @@ const SignUp: React.FC = () => {
           </button>
         </form>
         <div className='text-grey-dark mt-6'>
-          Already have an account? {}
+          {'Already have an account? '}
           <a
             className='border-blue text-blue no-underline border-b'
             href='/login'
           >
             Log in
           </a>
-          .
         </div>
       </div>
     </div>
