@@ -36,7 +36,7 @@ rules:
   no-unused-private-class-members: error
   prettier/prettier:
     - warn
-    - {}
+    - endOfLine: auto
     - properties:
         usePrettierrc: true
   react-hooks/rules-of-hooks: error

@@ -31,6 +31,7 @@ module.exports = {
       rose: colors.rose,
       navbar: '#191d3d',
       video: '#042443',
+      whitesmoke: '#f5f5f5',
     },
     fontFamily: {
       thai: ['Noto Sans Thai', 'sans-serif'],
