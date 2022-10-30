@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { CookieInformation, Navbar, Sidebar, Video } from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
+import { Button } from '@mui/material'
+import RuleModal from '../../components/RuleModal'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
+  const [isOpenRuleModal, setIsOpenRuleModal] = React.useState(false)
 
   return (
     <div className='w-full overflow-x-hidden'>
@@ -29,6 +32,11 @@ const Home: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
+      <Button onClick={() => setIsOpenRuleModal(true)}>Open modal</Button>
+      <RuleModal
+        isOpenRuleModal={isOpenRuleModal}
+        setIsOpenRuleModal={setIsOpenRuleModal}
+      />
       <CookieInformation />
     </div>
   )
