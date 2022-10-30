@@ -1,4 +1,4 @@
-export const thai = {
+export const thaiRule = {
   penaltyAndPunishment: {
     p1: 'Do not take/capture pictures of ballot that can see the voting marks in the polling, if Disobedience, you will get imprisonment for not more than 1 year or a fine of not more than 20,000 baht, or both according to “Section 135”',
     p2: 'Do not show/share the pictures that have been already voted, if Disobedience, you will get imprisonment for not more than 1 year or a fine of not more than 20,000 baht, or both according to “Section 135”',
@@ -7,7 +7,7 @@ export const thai = {
   },
 }
 
-export const english = {
+export const englishRule = {
   penaltyAndPunishment: {
     p1: 'ห้ามถ่ายภาพบัตรเลือกตั้ง เพื่อให้เห็นเครื่องหมายลงคะแนนในคูหาเลือกตั้ง หากฝ่าฝืนจะผิดกฎหมายตาม "มาตรา 135" ระวางโทษจำคุกไม่เกิน 1 ปี หรือ ปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ',
     p2: 'อย่านำบัตรเลือกตั้งที่ออกเสียงลงคะแนนแล้ว แสดงต่อผู้อื่น หากฝ่าฝืนจะผิดกฎหมายตาม "มาตรา 135" ระวางโทษจำคุกไม่เกิน 1 ปี หรือ ปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ',
