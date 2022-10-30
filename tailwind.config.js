@@ -44,6 +44,11 @@ module.exports = {
       xl: '1280px',
       '2xl': '1536px',
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'th-flag': 'url("src/assets/images/flag-th.png")',
+        'us-flag': 'url("src/assets/images/flag-us.png")',
+      },
+    },
   },
 }
