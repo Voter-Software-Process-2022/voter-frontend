@@ -171,7 +171,9 @@ const SignUp: React.FC = () => {
           <button
             type='submit'
             disabled={!checked}
-            className={`${checked ? 'hover:bg-green-600 bg-green-500':  'bg-slate-300'} focus:outline-none w-full py-3 text-center text-white rounded`}
+            className={`${
+              checked ? 'hover:bg-green-600 bg-green-500' : 'bg-slate-300'
+            } focus:outline-none w-full py-3 text-center text-white rounded`}
           >
             Create Account
           </button>
