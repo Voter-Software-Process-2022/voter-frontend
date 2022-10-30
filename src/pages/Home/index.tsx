@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Navbar, Sidebar, Video } from '../../components'
+import { CookieInformation, Navbar, Sidebar, Video } from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
 
@@ -29,6 +29,7 @@ const Home: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
+      <CookieInformation />
     </div>
   )
 }
