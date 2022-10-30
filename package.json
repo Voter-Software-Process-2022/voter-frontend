@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .ts,.tsx,.js,jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,jsx --fix",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write '**/*.+(json|yml|css|md|mdx)' 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "format": "prettier --write \"**/*.+(json|yml|css|md|mdx)\" \"src/**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
     "clean": "rimraf node_modules yarn.lock package-lock.json dist",
     "prepare": "husky install"
   },
