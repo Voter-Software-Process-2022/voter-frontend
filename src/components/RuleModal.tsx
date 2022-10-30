@@ -36,7 +36,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
           </Typography>
         </Box>
         <Link to='#'>
-          <button className='hover:bg-green-600 hover:text-white focus:outline-none w-full py-3 text-center text-green-500 border border-green-400 bg-white rounded'>
+          <button className='hover:bg-green-600 hover:text-white focus:outline-none p-3 text-center text-green-500 border border-green-400 bg-white rounded'>
             Next
           </button>
         </Link>

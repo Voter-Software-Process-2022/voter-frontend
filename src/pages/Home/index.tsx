@@ -31,7 +31,12 @@ const Home: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
-      <button onClick={() => setIsOpenRuleModal(true)}>Open modal</button>
+      <button
+        onClick={() => setIsOpenRuleModal(true)}
+        className='hover:bg-gray-700 focus:outline-none p-3 text-center text-white bg-gray-600 rounded'
+      >
+        Open modal
+      </button>
       <RuleModal
         isOpenRuleModal={isOpenRuleModal}
         setIsOpenRuleModal={setIsOpenRuleModal}
