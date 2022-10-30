@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import type { SidebarProps } from '../interfaces/components/sidebar'
 import SidebarLink from './SidebarLink'
 import { IoPersonSharp } from 'react-icons/io5'
+import { FaSignInAlt } from 'react-icons/fa'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import { MENU_LIST } from '../config/menu'
 import { Link } from 'react-router-dom'
@@ -37,7 +38,17 @@ const Sidebar: React.FC<SidebarProps> = ({
             <IoPersonSharp className='mr-4 text-lg' />
             <Link to='/login'>
               <span className='text-slate-300 text-xl font-medium'>
-                Sign In / Sign Up
+                Sign In
+              </span>
+            </Link>
+          </div>
+        </div>
+        <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
+          <div className='flex items-center mx-8'>
+            <FaSignInAlt className='mr-4 text-lg' />
+            <Link to='/register'>
+              <span className='text-slate-300 text-xl font-medium'>
+                Sign Up
               </span>
             </Link>
           </div>
