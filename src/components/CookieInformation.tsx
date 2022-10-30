@@ -3,18 +3,18 @@ import { sessionGet, sessionSet } from '../utils/storage'
 import { delay } from '../utils/time'
 
 const CookieInformation = () => {
-  const [isAccepted, setIsAccpected] = useState<boolean | null>(false)
+  const [isAccepted, setIsAccepted] = useState<boolean | null>(false)
   const [isClicked, setIsClicked] = useState<boolean>(false)
 
   useEffect(() => {
     const isAcceptedFromSession = sessionGet('acceptedCookie')
-    setIsAccpected(isAcceptedFromSession)
+    setIsAccepted(isAcceptedFromSession)
   }, [])
 
   const handleClick = async () => {
     setIsClicked(true)
     await delay(700)
-    setIsAccpected(true)
+    setIsAccepted(true)
     sessionSet('acceptedCookie', true)
   }
 
