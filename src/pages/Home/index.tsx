@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Navbar, Sidebar, Video } from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
+import VoteSection from '../../components/VoteSection'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -29,6 +30,7 @@ const Home: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
+      <VoteSection></VoteSection>
     </div>
   )
 }
