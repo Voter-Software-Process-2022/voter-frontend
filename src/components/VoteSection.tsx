@@ -9,9 +9,9 @@ const VoteSection: React.FC = () => {
             Vote For MPs
           </h1>
           <p className='w-[60%] m-auto mt-[3rem]  lg:flex'>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
+            {`Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s`}
           </p>
           <p className='w-[60%] m-auto mt-[3rem] hidden  lg:flex'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -30,8 +30,8 @@ const VoteSection: React.FC = () => {
           </h1>
           <p className='w-[60%] m-auto mt-[3rem]  lg:flex'>
             Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
+            industry. Lorem Ipsum has been the industry standard dummy text ever
+            since the 1500s
           </p>
           <p className='w-[60%] m-auto mt-[3rem] hidden  lg:flex'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
