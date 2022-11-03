@@ -1,9 +1,13 @@
 import React, { useState, type FormEvent } from 'react'
 import { IoChevronBackOutline } from 'react-icons/io5'
 import * as AiIcon from 'react-icons/ai'
+import * as VSCIcon from 'react-icons/vsc'
 import { Link } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import Checkbox from '@mui/material/Checkbox'
+import { alertErrorMessage } from '../../utils/alert'
+import useSSNFields from '../../hooks/useSSNFields'
+import { LaserInfo } from '../../components'
 
 const SignUp: React.FC = () => {
   const [citizen, setCitizen] = useState<string>('')
@@ -14,6 +18,8 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [checked, setChecked] = useState<boolean>(false)
+  const [isHoverInfo, setIsHoverInfo] = useState<boolean>(false)
+  const { handleChangeFocusInput } = useSSNFields()
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault()
@@ -43,19 +49,6 @@ const SignUp: React.FC = () => {
       confirmPassword,
     }
     console.log(data)
-  }
-
-  const alertErrorMessage = (message: string) => {
-    toast.error(message, {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    })
   }
 
   const onCheckHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,30 +88,42 @@ const SignUp: React.FC = () => {
             value={citizen}
             onChange={(e) => setCitizen(e.target.value)}
           />
-          <div className='flex items-center mb-4'>
+          <div className='flex items-center mb-4 relative'>
             <input
               type='text'
               className='border-grey-light sm:w-28 block w-16 p-3 bg-gray-100 border rounded-md'
               placeholder='Laser ID'
+              name='ssn-1'
+              maxLength={3}
               value={laser1}
-              onChange={(e) => setLaser1(e.target.value.toUpperCase())}
+              onChange={(e) => handleChangeFocusInput(e, setLaser1)}
             />
-            <AiIcon.AiOutlineMinus className='text-md mx-2' />
+            <AiIcon.AiOutlineMinus className='text-xs mx-2' />
             <input
               type='text'
               className='border-grey-light flex-1 block w-full p-3 bg-gray-100 border rounded-md'
               placeholder='Laser ID'
+              name='ssn-2'
+              maxLength={7}
               value={laser2}
-              onChange={(e) => setLaser2(e.target.value)}
+              onChange={(e) => handleChangeFocusInput(e, setLaser2)}
             />
-            <AiIcon.AiOutlineMinus className='text-md mx-2' />
+            <AiIcon.AiOutlineMinus className='text-xs mx-2' />
             <input
               type='text'
               className='border-grey-light sm:w-28 block w-16 p-3 bg-gray-100 border rounded-md'
               placeholder='Laser ID'
+              name='ssn-3'
+              maxLength={2}
               value={laser3}
-              onChange={(e) => setLaser3(e.target.value)}
+              onChange={(e) => handleChangeFocusInput(e, setLaser3)}
             />
+            <VSCIcon.VscInfo
+              onMouseOver={() => setIsHoverInfo(true)}
+              onMouseLeave={() => setIsHoverInfo(false)}
+              className='hidden sm:block text-slate-400 ml-2 text-lg cursor-pointer'
+            />
+            <LaserInfo isOpen={isHoverInfo} />
           </div>
           <input
             type='email'
@@ -131,12 +136,14 @@ const SignUp: React.FC = () => {
             type='password'
             className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
             placeholder='Password'
+            minLength={6}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type='password'
             className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
+            minLength={6}
             placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -163,20 +170,22 @@ const SignUp: React.FC = () => {
           </div>
           <button
             type='submit'
-            className='hover:bg-green-600 focus:outline-none w-full py-3 text-center text-white bg-green-500 rounded'
+            disabled={!checked}
+            className={`${
+              checked ? 'hover:bg-green-600 bg-green-500' : 'bg-slate-300'
+            } focus:outline-none w-full py-3 text-center text-white rounded`}
           >
             Create Account
           </button>
         </form>
         <div className='text-grey-dark mt-6'>
-          Already have an account? {}
+          {'Already have an account? '}
           <a
             className='border-blue text-blue no-underline border-b'
             href='/login'
           >
             Log in
           </a>
-          .
         </div>
       </div>
     </div>
