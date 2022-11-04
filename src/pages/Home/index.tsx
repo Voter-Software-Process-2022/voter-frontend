@@ -4,6 +4,7 @@ import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
 import VoteSection from '../../components/VoteSection'
 import FooterSection from '../../components/FooterSection'
+import LowerInfo from '../../components/LowerInfo'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -32,6 +33,7 @@ const Home: React.FC = () => {
         />
       </div>
       <VoteSection />
+      <LowerInfo />
       <FooterSection />
       <CookieInformation />
     </div>
