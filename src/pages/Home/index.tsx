@@ -6,6 +6,7 @@ import UpperInfo from '../../components/UpperInfo'
 import FooterSection from '../../components/FooterSection'
 import LowerInfo from '../../components/LowerInfo'
 import SubscribeSection from '../../components/SubscribeSection'
+import MiddleInfo from '../../components/MiddleInfo'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -34,6 +35,7 @@ const Home: React.FC = () => {
         />
       </div>
       <UpperInfo />
+      <MiddleInfo />
       <LowerInfo />
       <SubscribeSection />
       <FooterSection />

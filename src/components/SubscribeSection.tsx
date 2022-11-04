@@ -2,7 +2,7 @@ import React from 'react'
 
 const SubscribeSection = () => {
   return (
-    <div className='w-full  bg-[#3E6D9C]  bg-no-repeat'>
+    <div className='w-full bg-gradient-to-br from-sky-300 to-blue-800  bg-no-repeat'>
       <div className=' p-10  py-20  flex  flex-col  flex-wrap  justify-center  content-center'>
         <div className=' m-0  p-0  text-3xl  text-white  antialiased  text-center'>
           Get Our Updates
@@ -17,7 +17,7 @@ const SubscribeSection = () => {
             placeholder='john@mail.com'
           />
           <button
-            className=' p-2  w-1/3  bg-indigo-400  rounded-r-lg  text-white hover: bg-[indigo-300]'
+            className=' p-2  w-1/3  bg-indigo-400  rounded-r-lg  text-white hover: '
             type='button'
           >
             Subscribe
