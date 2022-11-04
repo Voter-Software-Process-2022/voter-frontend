@@ -5,6 +5,7 @@ import MiddleLogo from './../../assets/images/center-logo.png'
 import UpperInfo from '../../components/UpperInfo'
 import FooterSection from '../../components/FooterSection'
 import LowerInfo from '../../components/LowerInfo'
+import SubscribeSection from '../../components/SubscribeSection'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -34,6 +35,7 @@ const Home: React.FC = () => {
       </div>
       <UpperInfo />
       <LowerInfo />
+      <SubscribeSection />
       <FooterSection />
       <CookieInformation />
     </div>

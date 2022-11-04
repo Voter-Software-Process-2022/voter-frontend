@@ -3,8 +3,8 @@ import React from 'react'
 const UpperInfo: React.FC = () => {
   return (
     <div>
-      <div className='h-[50vh] lg:h-[75vh] flex justify-around text-black  '>
-        <div className='w-[100%] bg-white text-center'>
+      <div className='h-[50vh] lg:h-[75vh]  flex justify-around text-black  '>
+        <div className='w-[100%] bg-white text-center xl:pt-[2rem]'>
           <h1 className='text-[1.25rem] pt-4 md:text-[1.5rem] lg:text-[2rem] md:mt-5 font-bold'>
             Detail 1
           </h1>
@@ -24,7 +24,7 @@ const UpperInfo: React.FC = () => {
             See Details
           </button> */}
         </div>
-        <div className='w-[100%] bg-stone-300 text-center'>
+        <div className='w-[100%] bg-stone-300 text-center xl:pt-[2rem]'>
           <h1 className='text-[1.25rem] pt-4 md:text-[1.5rem] lg:text-[2rem] md:mt-5 font-bold'>
             Detail 2
           </h1>
