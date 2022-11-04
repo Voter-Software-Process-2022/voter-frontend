@@ -2,7 +2,10 @@ import React from 'react'
 import Vote from './../assets/images/vote.jpg'
 const LowerInfo = () => {
   return (
-    <div className='h-[60vh] lg:h-[80vh] flex justify-around text-black   bg-[white] border-t-2 border-[gray]'>
+    <div
+      id='vote-section'
+      className='h-[60vh] lg:h-[80vh] flex justify-around text-black   bg-[white] border-t-2 border-[gray]'
+    >
       <div className='self-center ml-[7rem]'>
         <div className='flex flex-col '>
           <h1 className='text-[2rem] pt-4 md:text-[2.5rem] lg:text-[4rem] md:mt-5 font-bold'>

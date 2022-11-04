@@ -21,7 +21,7 @@ const Home: React.FC = () => {
             <img src={MiddleLogo} />
           </div>
           <a
-            href='#'
+            href='#vote-section'
             className='bottom-8 left-1/2 absolute transform -translate-x-1/2'
           >
             <FaChevronDown className='text-3xl' />
