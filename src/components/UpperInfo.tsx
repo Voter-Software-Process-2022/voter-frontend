@@ -1,11 +1,11 @@
 import React from 'react'
 
-const VoteSection: React.FC = () => {
+const UpperInfo: React.FC = () => {
   return (
     <div>
       <div className='h-[50vh] lg:h-[75vh] flex justify-around text-black  '>
         <div className='w-[100%] bg-white text-center'>
-          <h1 className='text-[1rem] pt-4 md:text-[1.5rem] lg:text-[2rem] md:mt-5 font-bold'>
+          <h1 className='text-[1.25rem] pt-4 md:text-[1.5rem] lg:text-[2rem] md:mt-5 font-bold'>
             Detail 1
           </h1>
           <p className='w-[60%] m-auto mt-[3rem]  lg:flex'>
@@ -25,7 +25,7 @@ const VoteSection: React.FC = () => {
           </button> */}
         </div>
         <div className='w-[100%] bg-stone-300 text-center'>
-          <h1 className='text-[1rem] pt-4 md:text-[1.5rem] lg:text-[2rem] md:mt-5 font-bold'>
+          <h1 className='text-[1.25rem] pt-4 md:text-[1.5rem] lg:text-[2rem] md:mt-5 font-bold'>
             Detail 2
           </h1>
           <p className='w-[60%] m-auto mt-[3rem]  lg:flex'>
@@ -49,4 +49,4 @@ const VoteSection: React.FC = () => {
   )
 }
 
-export default VoteSection
+export default UpperInfo

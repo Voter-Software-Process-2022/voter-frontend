@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CookieInformation, Navbar, Sidebar, Video } from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
-import VoteSection from '../../components/VoteSection'
+import UpperInfo from '../../components/UpperInfo'
 import FooterSection from '../../components/FooterSection'
 import LowerInfo from '../../components/LowerInfo'
 
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
-      <VoteSection />
+      <UpperInfo />
       <LowerInfo />
       <FooterSection />
       <CookieInformation />
