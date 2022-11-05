@@ -4,7 +4,7 @@ const LowerInfo = () => {
   return (
     <div
       id='vote-section'
-      className='h-[60vh] lg:h-[80vh] flex justify-around text-black   bg-[white] border-t-2 border-[gray]'
+      className='h-[60vh] lg:h-[80vh] xl:h-[100vh] flex justify-around text-black   bg-[white] border-t-2 border-[gray]'
     >
       <div className='self-center ml-[7rem]'>
         <div className='flex flex-col '>
