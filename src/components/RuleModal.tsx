@@ -78,17 +78,19 @@ const RuleModal: React.FC<RuleModalProps> = ({
             ))}
           </div>
         </Box>
-        <div className='flex justify-end'>
-          <Checkbox checked={checked} onChange={onCheckHandler} />
-          {selectedRule.penaltyAndPunishment.agree}
+        <div className='flex justify-center'>
+          <p className='mt-[0.8rem]  grow text-center'>
+            <Checkbox checked={checked} onChange={onCheckHandler} />
+            {selectedRule.penaltyAndPunishment.agree}
+          </p>
           <Link to='#'>
             <button
               disabled={!checked}
               className={`${
                 checked
-                  ? 'hover:bg-green-600 text-green-500 border-green-400 hover:text-white'
-                  : 'bg-slate-300 text-white'
-              } focus:outline-none p-3 text-center border bg-white rounded`}
+                  ? 'hover:bg-green-600 text-green-500 border-green-400 hover:text-white ml-[auto]'
+                  : 'bg-slate-300 text-white ml-[auto]'
+              } focus:outline-none p-3 text-center border bg-white rounded mt-2 `}
             >
               Next
             </button>
