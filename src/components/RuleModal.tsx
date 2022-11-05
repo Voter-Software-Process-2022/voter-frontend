@@ -80,8 +80,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
         </Box>
         <div className='flex justify-end'>
           <Checkbox checked={checked} onChange={onCheckHandler} />
-          You have to agree with this rules before you can go to the voting
-          section
+          {selectedRule.penaltyAndPunishment.agree}
           <Link to='#'>
             <button
               disabled={!checked}
