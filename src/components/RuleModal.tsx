@@ -8,12 +8,14 @@ import { Link } from 'react-router-dom'
 import { Stack } from '@mui/system'
 import LanguageSwitcher from './LanguageSwitcher'
 import { thaiRule, englishRule } from '../config/rulesWords'
+import { Checkbox } from '@mui/material'
 
 const RuleModal: React.FC<RuleModalProps> = ({
   isOpenRuleModal,
   setIsOpenRuleModal,
 }) => {
-  const [isThaiLanguage, setIsThaiLanguage] = useState(true)
+  const [isThaiLanguage, setIsThaiLanguage] = useState<boolean>(true)
+  const [checked, setChecked] = useState<boolean>(false)
   const selectedRule = isThaiLanguage ? thaiRule : englishRule
   const listInnerRef = useRef()
 
@@ -25,6 +27,10 @@ const RuleModal: React.FC<RuleModalProps> = ({
         console.log('Reached bottom')
       }
     }
+  }
+
+  const onCheckHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked)
   }
 
   return (
@@ -73,8 +79,18 @@ const RuleModal: React.FC<RuleModalProps> = ({
           </div>
         </Box>
         <div className='flex justify-end'>
+          <Checkbox checked={checked} onChange={onCheckHandler} />
+          You have to agree with this rules before you can go to the voting
+          section
           <Link to='#'>
-            <button className='hover:bg-green-600 hover:text-white focus:outline-none p-3 text-center text-green-500 border border-green-400 bg-white rounded'>
+            <button
+              disabled={!checked}
+              className={`${
+                checked
+                  ? 'hover:bg-green-600 text-green-500 border-green-400 hover:text-white'
+                  : 'bg-slate-300 text-white'
+              } focus:outline-none p-3 text-center border bg-white rounded`}
+            >
               Next
             </button>
           </Link>
