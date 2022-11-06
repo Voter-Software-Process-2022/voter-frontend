@@ -17,7 +17,7 @@ const BallotShow: React.FC<BallotShowProps> = ({
   }
 
   return (
-    <div>
+    <div className='group relative border border-white rounded-xl p-4'>
       <LanguageSwitcher isOpen={isThaiLanguage} setIsOpen={setIsThaiLanguage} />
       <p>{`${selectedRule.ballotId}: ${ballotId}`}</p>
       <table>
