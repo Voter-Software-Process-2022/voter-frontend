@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
 import LanguageSwitcher from './LanguageSwitcher'
 import { thaiBallot, englishBallot } from '../config/ballotWords'
+import type { BallotShowProps } from '../interfaces/components/ballotShow'
 
-interface BallotProps {
-  ballotId: number
-  amountOfCandidates: number
-  voteForCandidateNumber: number
-}
-
-const BallotShow: React.FC<BallotProps> = ({
+const BallotShow: React.FC<BallotShowProps> = ({
   ballotId,
   amountOfCandidates,
   voteForCandidateNumber,

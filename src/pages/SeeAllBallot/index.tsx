@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import { Navbar, Sidebar } from '../../components'
-
-import FooterSection from '../../components/FooterSection'
-import BallotShow from '../../components/BallotShow'
+import { Navbar, Sidebar, FooterSection, BallotShow } from '../../components'
 
 const SeeAllBallot: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
