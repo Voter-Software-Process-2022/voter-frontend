@@ -13,8 +13,8 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
       <div className='flex'>
         <div className='flex items-center'>
           <img src={Logo} className='w-16' alt='logo' />
-          <div className='font-thai xs:flex flex-col hidden mx-4'>
-            <span className='text-2xl'>รัฐบาลไทย</span>
+          <div className='font-chraka xs:flex flex-col hidden mx-4'>
+            <span className='text-2xl '>รัฐบาลไทย</span>
             <span>Royal Thai Government</span>
           </div>
         </div>

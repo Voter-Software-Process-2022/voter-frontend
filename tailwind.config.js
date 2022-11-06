@@ -29,12 +29,14 @@ module.exports = {
       fuchsia: colors.fuchsia,
       pink: colors.pink,
       rose: colors.rose,
-      navbar: '#191d3d',
+      navbar: '#3850ba',
+      navbar2: '#191d3d',
       video: '#042443',
       whitesmoke: '#f5f5f5',
     },
     fontFamily: {
       thai: ['Noto Sans Thai', 'sans-serif'],
+      chraka: ['Chakra Petch', 'sans-serif'],
     },
     screens: {
       xs: '400px',

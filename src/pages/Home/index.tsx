@@ -2,7 +2,14 @@ import React, { useState } from 'react'
 import { CookieInformation, Navbar, Sidebar, Video } from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
+
+import UpperInfo from '../../components/UpperInfo'
+import FooterSection from '../../components/FooterSection'
+import LowerInfo from '../../components/LowerInfo'
+import SubscribeSection from '../../components/SubscribeSection'
+import MiddleInfo from '../../components/MiddleInfo'
 import RuleModal from '../../components/RuleModal'
+
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -20,7 +27,7 @@ const Home: React.FC = () => {
             <img src={MiddleLogo} />
           </div>
           <a
-            href='#'
+            href='#vote-section'
             className='bottom-8 left-1/2 absolute transform -translate-x-1/2'
           >
             <FaChevronDown className='text-3xl' />
@@ -31,6 +38,11 @@ const Home: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
+      <UpperInfo />
+      <MiddleInfo />
+      <LowerInfo />
+      <SubscribeSection />
+      <FooterSection />
       <button
         onClick={() => setIsOpenRuleModal(true)}
         className='hover:bg-gray-700 focus:outline-none p-3 text-center text-white bg-gray-600 rounded'
