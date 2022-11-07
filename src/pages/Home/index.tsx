@@ -10,7 +10,6 @@ import SubscribeSection from '../../components/SubscribeSection'
 import MiddleInfo from '../../components/MiddleInfo'
 import RuleModal from '../../components/RuleModal'
 
-
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
   const [isOpenRuleModal, setIsOpenRuleModal] = React.useState(false)

@@ -3,7 +3,6 @@ import { sessionGet, sessionSet } from '../utils/storage'
 import { delay } from '../utils/time'
 
 const CookieInformation = () => {
-
   const [isAccepted, setIsAccepted] = useState<boolean | null>(false)
 
   const [isClicked, setIsClicked] = useState<boolean>(false)
