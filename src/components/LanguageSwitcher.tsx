@@ -1,9 +1,5 @@
 import React from 'react'
-
-interface LanguageSwitcherProps {
-  isOpen: boolean
-  setIsOpen: (value: boolean) => void
-}
+import type { LanguageSwitcherProps } from '../interfaces/components/languageSwitcher'
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   isOpen,

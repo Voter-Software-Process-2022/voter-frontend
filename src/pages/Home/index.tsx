@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
-import { CookieInformation, Navbar, Sidebar, Video } from '../../components'
+import {
+  CookieInformation,
+  Navbar,
+  Sidebar,
+  Video,
+  UpperInfo,
+  FooterSection,
+  LowerInfo,
+  SubscribeSection,
+  MiddleInfo,
+  RuleModal,
+} from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
+
 
 import UpperInfo from '../../components/UpperInfo'
 import FooterSection from '../../components/FooterSection'
@@ -9,6 +21,7 @@ import LowerInfo from '../../components/LowerInfo'
 import SubscribeSection from '../../components/SubscribeSection'
 import MiddleInfo from '../../components/MiddleInfo'
 import RuleModal from '../../components/RuleModal'
+
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
