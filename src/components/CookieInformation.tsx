@@ -29,6 +29,7 @@ const CookieInformation = () => {
       className={`w-screen xs:w-[405px] fixed bg-whitesmoke text-zinc-800 left-1/2 -translate-x-1/2 py-3 px-6 rounded-t-md duration-700
         ${!isAccepted && isClicked ? 'bottom-[-405px]' : 'bottom-0'}
       `}
+      data-testid='cookie-information'
     >
       <div className='relative w-max'>
         <h1 className='text-3xl font-bold'>We uses cookies</h1>
