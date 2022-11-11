@@ -14,7 +14,6 @@ import {
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
 
-
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
   const [isOpenRuleModal, setIsOpenRuleModal] = React.useState(false)
