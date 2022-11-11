@@ -39,6 +39,7 @@ module.exports = {
       chraka: ['Chakra Petch', 'sans-serif'],
     },
     screens: {
+      xxs: '375px ',
       xs: '400px',
       sm: '640px',
       md: '768px',
