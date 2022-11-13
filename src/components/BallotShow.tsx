@@ -17,10 +17,13 @@ const BallotShow: React.FC<BallotShowProps> = ({
   }
 
   return (
-    <div className='group relative border border-white rounded-xl p-4'>
+    <div
+      className='group relative border border-white rounded-xl p-4'
+      data-testid='ballot-show'
+    >
       <LanguageSwitcher isOpen={isThaiLanguage} setIsOpen={setIsThaiLanguage} />
-      <p>{`${selectedRule.ballotId}: ${ballotId}`}</p>
-      <table>
+      <p data-testid='ballot-id'>{`${selectedRule.ballotId}: ${ballotId}`}</p>
+      <table data-testid='table'>
         <tr>
           <th>{selectedRule.candidateNumber}</th>
           <th>{selectedRule.checkbox}</th>
