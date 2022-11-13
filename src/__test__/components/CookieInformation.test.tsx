@@ -15,12 +15,10 @@ describe('CookieInformation', () => {
 
     const cookieInformation = screen.getByTestId('cookie-information')
     expect(cookieInformation).toBeDefined()
-    expect(
-      cookieInformation.getElementsByTagName('button')[0].textContent,
-    ).toBe('I understood')
-    expect(cookieInformation.getElementsByTagName('a')[0].textContent).toBe(
-      'Learn more',
-    )
+    const understoodButton = screen.getByText('I understood')
+    expect(understoodButton).toBeDefined()
+    const learnMoreButton = screen.getByText('Learn more')
+    expect(learnMoreButton).toBeDefined()
   })
 
   test('click on "I understood" button', () => {
@@ -32,15 +30,14 @@ describe('CookieInformation', () => {
 
     const cookieInformation = screen.getByTestId('cookie-information')
     expect(cookieInformation).toBeDefined()
-    const understoodButton = cookieInformation.getElementsByTagName('button')[0]
-    expect(understoodButton.textContent).toBe('I understood')
-    expect(cookieInformation.getElementsByTagName('a')[0].textContent).toBe(
-      'Learn more',
-    )
+    const understoodButton = screen.getByText('I understood')
+    expect(understoodButton).toBeDefined()
+    const learnMoreButton = screen.getByText('Learn more')
+    expect(learnMoreButton).toBeDefined()
 
     fireEvent.click(understoodButton)
 
-    // expect(screen.getByTestId('cookie-information')).not.toBeInTheDocument();
+    // expect(screen.getByTestId('cookie-information')).not.toBeVisible();
   })
 
   test('click on "Learn more" button', () => {
@@ -53,11 +50,10 @@ describe('CookieInformation', () => {
 
     const cookieInformation = screen.getByTestId('cookie-information')
     expect(cookieInformation).toBeDefined()
-    const learnMoreButton = cookieInformation.getElementsByTagName('a')[0]
-    expect(
-      cookieInformation.getElementsByTagName('button')[0].textContent,
-    ).toBe('I understood')
-    expect(learnMoreButton.textContent).toBe('Learn more')
+    const understoodButton = screen.getByText('I understood')
+    expect(understoodButton).toBeDefined()
+    const learnMoreButton = screen.getByText('Learn more')
+    expect(learnMoreButton).toBeDefined()
 
     fireEvent.click(learnMoreButton)
 
