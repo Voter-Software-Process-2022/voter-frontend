@@ -8,6 +8,7 @@ const FooterSection: React.FC = () => {
         <a
           href='https://github.com/Voter-Software-Process-2022'
           className='flex items-center mb-4 sm:mb-0'
+          data-testid='royal-thai-government'
         >
           <img src={Logo} className='mr-3 h-8' alt='Government Logo' />
           <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
