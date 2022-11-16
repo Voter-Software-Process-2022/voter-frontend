@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import type { SidebarProps } from '../interfaces/components/sidebar'
 import SidebarLink from './SidebarLink'
 import { IoPersonSharp } from 'react-icons/io5'
-import { FaSignInAlt } from 'react-icons/fa'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import { MENU_LIST } from '../config/menu'
 import { Link } from 'react-router-dom'
@@ -16,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className={`fixed w-[350px] h-[calc(100vh-88px)] bg-navbar top-[88px] duration-500 ${
+      className={`fixed w-[350px] h-[calc(100vh-88px)] bg-gray-800 top-[88px] duration-500 ${
         isOpenSidebar ? 'right-0' : '-right-[350px]'
       } flex flex-col justify-between lg:hidden`}
       ref={wrapperRef}
@@ -33,17 +32,17 @@ const Sidebar: React.FC<SidebarProps> = ({
         ))}
       </div>
       <div className='mb-8'>
-        <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
-          <div className='flex items-center mx-8'>
-            <IoPersonSharp className='mr-4 text-lg' />
-            <Link to='/login'>
+        <Link to='/login'>
+          <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
+            <div className='flex items-center mx-8'>
+              <IoPersonSharp className='mr-4 text-lg' />
               <span className='text-slate-300 text-xl font-medium'>
                 Sign In
               </span>
-            </Link>
+            </div>
           </div>
-        </div>
-        <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
+        </Link>
+        {/* <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
           <div className='flex items-center mx-8'>
             <FaSignInAlt className='mr-4 text-lg' />
             <Link to='/register'>
@@ -52,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               </span>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

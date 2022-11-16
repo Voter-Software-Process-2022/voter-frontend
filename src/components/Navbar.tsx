@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IoPersonSharp } from 'react-icons/io5'
 import { VscListSelection, VscClose } from 'react-icons/vsc'
@@ -8,8 +8,26 @@ import Logo from './../assets/images/gov-logo.png'
 import { MENU_LIST } from '../config/menu'
 
 const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isHomepage, setIsHomepage] = useState(false)
+
+  useEffect(() => {
+    setIsHomepage(window.location.pathname === '/')
+  }, [])
+
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true)
+    return () => window.onscroll === null
+  }
+
   return (
-    <div className='w-full flex items-center justify-between py-3 px-6 sm:px-12 bg-navbar h-[88px]'>
+    <div
+      className={`w-full flex items-center justify-between py-3 px-6 sm:px-12h-[88px] top-0 z-10 ${
+        isHomepage ? 'fixed' : 'static'
+      } ${
+        !isScrolled ? 'bg-gray-800 lg:bg-transparent' : 'bg-gray-800 shadow-2xl'
+      }`}
+    >
       <div className='flex'>
         <div className='flex items-center'>
           <img src={Logo} className='w-16' alt='logo' />
@@ -43,18 +61,18 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
           />
         )}
         <div className='hidden lg:flex items-center h-[40px] bg-[#ffffff17] rounded-lg'>
-          <Link to='/register'>
-            <div className='flex items-center px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-l-lg '>
-              <IoPersonSharp className='mr-2' />
-              <span>Sign up</span>
-            </div>
-          </Link>
-          <div className='w-[0.5px] bg-white h-[70%]'></div>
           <Link to='/login'>
-            <div className='px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-r-lg'>
-              <span>Sign in</span>
+            <div className='flex items-center px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-lg '>
+              <IoPersonSharp className='mr-2' />
+              <span>Sign In</span>
             </div>
           </Link>
+          {/* <div className='w-[0.5px] bg-white h-[70%]'></div>
+          <Link to='/register'>
+            <div className='px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-r-lg'>
+              <span>Sign </span>
+            </div>
+          </Link> */}
         </div>
       </div>
     </div>
