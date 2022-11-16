@@ -1,5 +1,7 @@
 import React from 'react'
 import type { LanguageSwitcherProps } from '../interfaces/components/languageSwitcher'
+import USFlag from './../assets/images/flag-us.png'
+import THFlag from './../assets/images/flag-th.png'
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   isOpen,
@@ -12,10 +14,19 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       className='relative w-11 h-6 bg-slate-200 rounded-2xl cursor-pointer'
       onClick={onToggleHandler}
     >
-      <div
-        className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-cover border border-slate-600 duration-150
-        ${isOpen ? 'left-[22px] bg-th-flag' : 'left-[2px] bg-us-flag'}`}
-      ></div>
+      {isOpen ? (
+        <img
+          src={THFlag}
+          alt='language'
+          className='absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-cover border border-slate-600 duration-150 left-[22px] select-none'
+        />
+      ) : (
+        <img
+          src={USFlag}
+          alt='language'
+          className='absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-cover border border-slate-600 duration-150 left-[2px] select-none'
+        />
+      )}
     </div>
   )
 }
