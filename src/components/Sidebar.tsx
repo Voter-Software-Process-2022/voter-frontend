@@ -15,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className={`fixed w-[350px] h-[calc(100vh-88px)] bg-gray-800 top-[88px] duration-500 ${
+      className={`fixed w-[350px] h-[calc(100vh-88px)] bg-gray-900 top-[88px] duration-500 ${
         isOpenSidebar ? 'right-0' : '-right-[350px]'
       } flex flex-col justify-between lg:hidden`}
       ref={wrapperRef}
