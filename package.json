@@ -13,12 +13,14 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.+(json|yml|css|md|mdx)\" \"src/**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
     "clean": "rimraf node_modules yarn.lock package-lock.json dist",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gen-client": "openapi-generator-cli generate -g typescript-axios -o src/generated -i http://localhost:8000/docs.json --additional-properties=disallowAdditionalPropertiesIfNotPresent=false,supportsES6=true --enable-post-process-file"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.10",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "framer-motion": "^7.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
