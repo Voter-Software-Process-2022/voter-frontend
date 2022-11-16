@@ -9,14 +9,12 @@ import {
   LowerInfo,
   SubscribeSection,
   MiddleInfo,
-  RuleModal,
 } from '../../components'
 import { FaChevronDown } from 'react-icons/fa'
 import MiddleLogo from './../../assets/images/center-logo.png'
 
 const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
-  const [isOpenRuleModal, setIsOpenRuleModal] = React.useState(false)
 
   return (
     <div className='w-full overflow-x-hidden'>
@@ -46,16 +44,6 @@ const Home: React.FC = () => {
       <LowerInfo />
       <SubscribeSection />
       <FooterSection />
-      <button
-        onClick={() => setIsOpenRuleModal(true)}
-        className='hover:bg-gray-700 focus:outline-none p-3 text-center text-white bg-gray-600 rounded'
-      >
-        Open modal
-      </button>
-      <RuleModal
-        isOpenRuleModal={isOpenRuleModal}
-        setIsOpenRuleModal={setIsOpenRuleModal}
-      />
       <CookieInformation />
     </div>
   )
