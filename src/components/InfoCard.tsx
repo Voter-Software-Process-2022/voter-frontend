@@ -1,5 +1,5 @@
 import React from 'react'
-import { InfoList } from '../interfaces/infolist'
+import type { InfoList } from '../interfaces/infolist'
 
 const InfoCard: React.FC<InfoList> = ({ id, name, description }) => {
   return (
