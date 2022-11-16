@@ -3,27 +3,35 @@ import { IoChevronBackOutline } from 'react-icons/io5'
 import { ToastContainer } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { alertErrorMessage } from '../../utils/alert'
+import useSSNFields from '../../hooks/useSSNFields'
+import * as AiIcon from 'react-icons/ai'
+import * as VSCIcon from 'react-icons/vsc'
+import { LaserInfo } from '../../components'
 
 const SignIn: React.FC = () => {
-  const [email, setEmail] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [citizen, setCitizen] = useState<string>('')
+  const [laser1, setLaser1] = useState<string>('')
+  const [laser2, setLaser2] = useState<string>('')
+  const [laser3, setLaser3] = useState<string>('')
+  const { handleChangeFocusInput } = useSSNFields()
+  const [isHoverInfo, setIsHoverInfo] = useState<boolean>(false)
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault()
-    if (!email || !password) {
+    if (!citizen || !laser1 || !laser2 || !laser3) {
       alertErrorMessage('Fields must not be empty')
       return
     }
 
     const data = {
-      email,
-      password,
+      citizen,
+      laserId: `${laser1}-${laser2}-${laser3}`,
     }
     console.log(data)
   }
 
   return (
-    <div className='bg-navbar flex flex-col min-h-screen'>
+    <div className='bg-gray-800 flex flex-col min-h-screen'>
       <ToastContainer
         position='bottom-right'
         autoClose={5000}
@@ -47,42 +55,65 @@ const SignIn: React.FC = () => {
             </Link>
             <h1 className='font-bold text-center'>Sign In</h1>
           </div>
+          <label htmlFor='citizen' className='text-lg'>
+            Citizen ID
+          </label>
           <input
-            type='email'
-            className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id='citizen'
+            type='text'
+            maxLength={13}
+            className='border border-gray-300 block w-full p-3 mt-2 mb-4 bg-gray-100 rounded-md focus:outline-none focus:border-gray-400'
+            placeholder='eg. 1200349992429'
+            value={citizen}
+            onChange={(e) => setCitizen(e.target.value)}
           />
-          <input
-            type='password'
-            className='border-grey-light block w-full p-3 mb-4 bg-gray-100 border rounded-md'
-            placeholder='Password'
-            minLength={6}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <label htmlFor='laser' className='text-lg'>
+            Laser ID
+          </label>
+          <div className='flex items-center mt-2 mb-4 relative'>
+            <input
+              type='text'
+              className='border border-gray-300  sm:w-28 block w-16 p-3 bg-gray-100 rounded-md focus:outline-none focus:border-gray-400'
+              name='ssn-1'
+              maxLength={3}
+              placeholder={'eg. RP7'}
+              value={laser1}
+              onChange={(e) => handleChangeFocusInput(e, setLaser1)}
+            />
+            <AiIcon.AiOutlineMinus className='text-xs mx-2' />
+            <input
+              type='text'
+              className='border border-gray-300  flex-1 block w-full p-3 bg-gray-100 rounded-md focus:outline-none focus:border-gray-400'
+              name='ssn-2'
+              maxLength={7}
+              placeholder={'eg. 1234567'}
+              value={laser2}
+              onChange={(e) => handleChangeFocusInput(e, setLaser2)}
+            />
+            <AiIcon.AiOutlineMinus className='text-xs mx-2' />
+            <input
+              type='text'
+              className='border border-gray-300  sm:w-28 block w-16 p-3 bg-gray-100 rounded-md focus:outline-none focus:border-gray-400'
+              name='ssn-3'
+              maxLength={2}
+              placeholder={'eg. 89'}
+              value={laser3}
+              onChange={(e) => handleChangeFocusInput(e, setLaser3)}
+            />
+            <VSCIcon.VscInfo
+              onMouseOver={() => setIsHoverInfo(true)}
+              onMouseLeave={() => setIsHoverInfo(false)}
+              className='hidden sm:block text-slate-400 ml-2 text-lg cursor-pointer'
+            />
+            <LaserInfo isOpen={isHoverInfo} />
+          </div>
           <button
             type='submit'
             className='hover:bg-green-600 focus:outline-none w-full py-3 text-center text-white bg-green-500 rounded'
           >
             Sign In
           </button>
-          <div className='relative flex flex-row items-center justify-end mt-4 text-slate-500 underline'>
-            <Link to='/password/reset'>
-              <span>Forgot password ?</span>
-            </Link>
-          </div>
         </form>
-        <div className='text-grey-dark mt-6'>
-          {'Does not have any account? '}
-          <Link
-            className='border-blue text-blue no-underline border-b'
-            to='/register'
-          >
-            Register
-          </Link>
-        </div>
       </div>
     </div>
   )
