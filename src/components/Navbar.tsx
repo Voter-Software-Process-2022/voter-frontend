@@ -13,10 +13,14 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
 
   useEffect(() => {
     setIsHomepage(window.location.pathname === '/')
+    setIsScrolled(window.location.pathname !== '/')
   }, [])
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true)
+    if (window.location.pathname !== '/') {
+      setIsScrolled(true)
+    }
     return () => window.onscroll === null
   }
 
