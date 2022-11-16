@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-export default axios.create({
-  governmentURL: '',
-  ecURL: '',
+export const government = axios.create({
+  baseURL: '',
+})
+
+export const ec = axios.create({
+  baseURL: '',
 })
