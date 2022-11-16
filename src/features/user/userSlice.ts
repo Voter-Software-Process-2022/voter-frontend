@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { RootState } from '../../app/store'
-import { government } from '../../client'
+import client from '../../client'
 import type { IUser, IUserData, IUserLogin } from '../../interfaces/user'
 
 const initialState: IUser = {
@@ -12,7 +12,7 @@ const initialState: IUser = {
 export const fetchLogin = createAsyncThunk(
   'user/fetchLogin',
   async ({ citizenId, laserId }: IUserLogin) => {
-    const { data } = await government.post<IUserData>('/login', {
+    const { data } = await client.post<IUserData>('/api/login', {
       citizenId: citizenId,
       laserId: laserId,
     })

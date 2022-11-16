@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-export const government = axios.create({
-  baseURL: '',
-})
-
-export const ec = axios.create({
-  baseURL: '',
+export default axios.create({
+  baseURL: 'https://api.yak3bd.pro',
 })
