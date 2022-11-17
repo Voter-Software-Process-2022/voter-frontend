@@ -1,13 +1,14 @@
 import React, { useState, type FormEvent } from 'react'
 import { IoChevronBackOutline } from 'react-icons/io5'
 import { ToastContainer } from 'react-toastify'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { alertErrorMessage } from '../../utils/alert'
 import useSSNFields from '../../hooks/useSSNFields'
 import * as AiIcon from 'react-icons/ai'
 import * as VSCIcon from 'react-icons/vsc'
 import { LaserInfo } from '../../components'
-import { LoginUserInputV2 } from '../../generated'
+import { useAppDispatch } from '../../app/hooks'
+import { fetchLogin } from '../../features/user/userSlice'
 
 const SignIn: React.FC = () => {
   const [citizen, setCitizen] = useState<string>('')
@@ -16,6 +17,8 @@ const SignIn: React.FC = () => {
   const [laser3, setLaser3] = useState<string>('')
   const { handleChangeFocusInput } = useSSNFields()
   const [isHoverInfo, setIsHoverInfo] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault()
@@ -24,11 +27,12 @@ const SignIn: React.FC = () => {
       return
     }
 
-    const data: LoginUserInputV2 = {
+    const data = {
       citizenId: citizen,
       laserId: `${laser1}${laser2}${laser3}`,
     }
-    console.log(data)
+    dispatch(fetchLogin(data))
+    navigate('/')
   }
 
   return (
@@ -111,6 +115,7 @@ const SignIn: React.FC = () => {
           <button
             type='submit'
             className='hover:bg-green-600 focus:outline-none w-full py-3 text-center text-white bg-green-500 rounded'
+            onClick={onSubmitHandler}
           >
             Sign In
           </button>
