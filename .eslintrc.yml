@@ -32,7 +32,7 @@ rules:
   '@typescript-eslint/no-var-requires': off
   no-alert: error
   no-dupe-keys: error
-  no-duplicate-imports: error
+  no-duplicate-imports: off
   no-unused-private-class-members: error
   prettier/prettier:
     - warn

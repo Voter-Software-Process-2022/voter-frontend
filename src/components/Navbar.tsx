@@ -13,10 +13,14 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
 
   useEffect(() => {
     setIsHomepage(window.location.pathname === '/')
+    setIsScrolled(window.location.pathname !== '/')
   }, [])
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true)
+    if (window.location.pathname !== '/') {
+      setIsScrolled(true)
+    }
     return () => window.onscroll === null
   }
 
@@ -25,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
       className={`w-full flex items-center justify-between py-3 px-6 sm:px-12h-[88px] top-0 z-10 ${
         isHomepage ? 'fixed' : 'static'
       } ${
-        !isScrolled ? 'bg-gray-800 lg:bg-transparent' : 'bg-gray-800 shadow-2xl'
+        !isScrolled ? 'bg-gray-900 lg:bg-transparent' : 'bg-gray-900 shadow-2xl'
       }`}
     >
       <div className='flex'>
