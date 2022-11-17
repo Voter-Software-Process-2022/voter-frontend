@@ -7,6 +7,7 @@ import useSSNFields from '../../hooks/useSSNFields'
 import * as AiIcon from 'react-icons/ai'
 import * as VSCIcon from 'react-icons/vsc'
 import { LaserInfo } from '../../components'
+import { LoginUserInputV2 } from '../../generated'
 
 const SignIn: React.FC = () => {
   const [citizen, setCitizen] = useState<string>('')
@@ -23,9 +24,9 @@ const SignIn: React.FC = () => {
       return
     }
 
-    const data = {
-      citizen,
-      laserId: `${laser1}-${laser2}-${laser3}`,
+    const data: LoginUserInputV2 = {
+      citizenId: citizen,
+      laserId: `${laser1}${laser2}${laser3}`,
     }
     console.log(data)
   }
