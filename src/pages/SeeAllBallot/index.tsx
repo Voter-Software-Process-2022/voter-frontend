@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { BALLOT_LIST } from '../../config/mockBallot'
-import { Navbar, Sidebar, FooterSection, BallotShow } from '../../components'
+import { Navbar, Sidebar, BallotShow } from '../../components'
 
 const SeeAllBallot: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
 
   return (
-    <div className='w-full overflow-x-hidden'>
+    <div className='w-full overflow-x-hidden min-h-screen'>
       <Navbar
         isOpenSidebar={isOpenSidebar}
         setIsOpenSidebar={setIsOpenSidebar}
@@ -29,7 +29,6 @@ const SeeAllBallot: React.FC = () => {
           ))}
         </div>
       </div>
-      <FooterSection />
     </div>
   )
 }

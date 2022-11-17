@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Navbar, Sidebar, FooterSection, TopicCard } from '../../components'
+import { Navbar, Sidebar, TopicCard } from '../../components'
 import { TOPIC_LIST } from '../../config/mockTopics'
 
 const Topics = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
 
   return (
-    <div className='w-full overflow-x-hidden bg-white'>
+    <div className='w-full overflow-x-hidden bg-white min-h-screen'>
       <Navbar
         isOpenSidebar={isOpenSidebar}
         setIsOpenSidebar={setIsOpenSidebar}
@@ -28,7 +28,6 @@ const Topics = () => {
           ))}
         </div>
       </div>
-      <FooterSection />
     </div>
   )
 }
