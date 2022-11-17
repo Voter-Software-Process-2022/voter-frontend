@@ -1,8 +1,12 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import Cookies from 'js-cookie'
 import type { RootState } from '../../app/store'
-import client from '../../client'
-import type { IUser, IUserData, IUserLogin } from '../../interfaces/user'
+import type { LoginUserInputV2, LoginUserResponseV2 } from '../../generated'
+import { AuthApi } from '../../generated'
+import type { IUser } from '../../interfaces/user'
+
+const authApi = new AuthApi()
 
 const initialState: IUser = {
   isAuthenticated: false,
@@ -11,11 +15,12 @@ const initialState: IUser = {
 
 export const fetchLogin = createAsyncThunk(
   'user/fetchLogin',
-  async ({ citizenId, laserId }: IUserLogin) => {
-    const { data } = await client.post<IUserData>('/api/login', {
+  async ({ citizenId, laserId }: LoginUserInputV2) => {
+    const loginUserInput = {
       citizenId: citizenId,
       laserId: laserId,
-    })
+    }
+    const { data } = await authApi.authLoginV2Post(loginUserInput)
     return data
   },
 )
@@ -31,9 +36,10 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       fetchLogin.fulfilled,
-      (state, action: PayloadAction<IUserData>) => {
+      (state, action: PayloadAction<LoginUserResponseV2>) => {
+        const { token } = action.payload
         state.isAuthenticated = true
-        state.authUser = action.payload
+        if (token) Cookies.set('token', token)
       },
     )
   },
