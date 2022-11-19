@@ -29,9 +29,9 @@ const Topics = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
-      <div className='flex flex-col justify-center mx-auto max-w-4xl py-16 px-8 sm:py-24 sm:px-6 lg:min-w-[56rem] lg:max-w-7xl lg:px-8'>
-        <SearchBar onChangeHandler={searchHandler} />
-        <div className='mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
+      <div className='flex flex-col justify-center mx-auto max-w-4xl py-16 px-8 sm:py-12 sm:px-6 lg:min-w-[56rem] lg:max-w-7xl lg:px-8'>
+        <SearchBar onChangeHandler={searchHandler} placeholderWord={'Search'} />
+        <div className='mt-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
           {selectedTopicList.map((topic) => (
             <TopicCard
               key={topic.topicId}
