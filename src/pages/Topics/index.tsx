@@ -9,16 +9,11 @@ const Topics = () => {
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterWord(e.target.value)
-    console.log(
-      TOPIC_LIST[0].topicName
-        .toLowerCase()
-        .includes(e.target.value.toLowerCase()),
-    )
   }
 
-  const filteredTopicList = TOPIC_LIST.filter((topic) => {
-    topic.topicName.toLowerCase().includes(filterWord.toLowerCase())
-  })
+  const filteredTopicList = TOPIC_LIST.filter((topic) =>
+    topic.topicName.toLowerCase().includes(filterWord.toLowerCase()),
+  )
 
   const selectedTopicList = filterWord === '' ? TOPIC_LIST : filteredTopicList
 
