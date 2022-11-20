@@ -11,16 +11,20 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onChangeHandler,
 }) => {
   return (
-    <div className='flex pt-2 relative mx-auto text-gray-600'>
-      <div className='flex-col border-2 px-5 py-2 border-gray-300 bg-white rounded-full'>
-        <IoSearch />
-        <input
-          className='bg-white h-10 rounded-lg text-sm focus:outline-none'
-          type='search'
-          name='search'
-          placeholder={placeholderWord}
-          onChange={onChangeHandler}
-        />
+    <div className='pt-2 relative mx-auto text-gray-600'>
+      <div className='flex flex-row border-2 px-5 border-gray-300 bg-white rounded-full'>
+        <div className='mr-3 self-center'>
+          <IoSearch />
+        </div>
+        <div>
+          <input
+            className='bg-white h-10 w-56 rounded-lg text-sm focus:outline-none'
+            type='search'
+            name='search'
+            placeholder={placeholderWord}
+            onChange={onChangeHandler}
+          />
+        </div>
       </div>
     </div>
   )

@@ -21,7 +21,7 @@ const SeeAllBallot: React.FC = () => {
     ballot.ballotId.toString().includes(filterNumber.toLowerCase()),
   )
 
-  const selectedRule = isThaiLanguage
+  const selectedSearch = isThaiLanguage
     ? thaiSearchPlaceholder
     : englishSearchPlaceholder
 
@@ -40,18 +40,20 @@ const SeeAllBallot: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
       </div>
-      <div className='mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8'>
-        <div>
-          <LanguageSwitcher
-            isOpen={isThaiLanguage}
-            setIsOpen={setIsThaiLanguage}
-          />
+      <div className='mx-auto max-w-2xl py-16 px-8 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8'>
+        <div className='flex flex-row'>
           <SearchBar
             onChangeHandler={searchHandler}
-            placeholderWord={selectedRule.ballotId}
+            placeholderWord={selectedSearch.ballotId}
           />
+          <div className='self-center'>
+            <LanguageSwitcher
+              isOpen={isThaiLanguage}
+              setIsOpen={setIsThaiLanguage}
+            />
+          </div>
         </div>
-        <div className='mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
+        <div className='mt-10 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
           {selectedBallotList.map((ballot) => (
             <BallotShow
               key={ballot.ballotId}
