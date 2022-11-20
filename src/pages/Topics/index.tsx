@@ -5,7 +5,7 @@ import { TOPIC_LIST } from '../../config/mockTopics'
 import {
   thaiSearchPlaceholder,
   englishSearchPlaceholder,
-} from '../../config/searchWord'
+} from '../../config/searchWords'
 
 const Topics = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -57,6 +57,7 @@ const Topics = () => {
               key={topic.topicId}
               topicId={topic.topicId}
               topicName={topic.topicName}
+              isThaiLanguage={isThaiLanguage}
             />
           ))}
         </div>

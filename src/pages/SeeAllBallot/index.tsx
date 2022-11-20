@@ -6,7 +6,7 @@ import SearchBar from '../../components/SearchBar'
 import {
   thaiSearchPlaceholder,
   englishSearchPlaceholder,
-} from '../../config/searchWord'
+} from '../../config/searchWords'
 
 const SeeAllBallot: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
