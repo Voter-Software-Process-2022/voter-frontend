@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import LanguageSwitcher from './LanguageSwitcher'
+import React from 'react'
 import { thaiBallot, englishBallot } from '../config/ballotWords'
 import type { BallotShowProps } from '../interfaces/components/ballotShow'
 
@@ -7,18 +6,16 @@ const BallotShow: React.FC<BallotShowProps> = ({
   ballotId,
   amountOfCandidates,
   voteForCandidateNumber,
+  isThaiLanguage,
 }) => {
-  const [isThaiLanguage, setIsThaiLanguage] = useState<boolean>(true)
   const selectedRule = isThaiLanguage ? thaiBallot : englishBallot
-
   const listOfNumbers = []
   for (let i = 1; i <= amountOfCandidates; i++) {
     listOfNumbers.push(i)
   }
 
   return (
-    <div className='group relative border border-white rounded-xl p-4'>
-      <LanguageSwitcher isOpen={isThaiLanguage} setIsOpen={setIsThaiLanguage} />
+    <div className='group relative border border-gray-400 text-zinc-800 rounded-xl p-4'>
       <p>{`${selectedRule.ballotId}: ${ballotId}`}</p>
       <table>
         <tr>
