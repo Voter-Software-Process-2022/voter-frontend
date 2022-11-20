@@ -4,6 +4,6 @@ export const thaiTopic = {
 }
 
 export const englishTopic = {
-  vote: 'vote',
-  result: 'result',
+  vote: 'Vote',
+  result: 'Result',
 }
