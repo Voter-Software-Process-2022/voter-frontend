@@ -39,7 +39,7 @@ const Topics = () => {
         />
       </div>
       <div className='flex flex-col justify-center mx-auto max-w-4xl py-16 px-8 sm:py-12 sm:px-6 lg:min-w-[56rem] lg:max-w-7xl lg:px-8'>
-        <div className='flex flex-row'>
+        <div className='flex flex-row ml-[54px] '>
           <SearchBar
             onChangeHandler={searchHandler}
             placeholderWord={selectedSearch.search}

@@ -41,7 +41,7 @@ const SeeAllBallot: React.FC = () => {
         />
       </div>
       <div className='mx-auto max-w-2xl py-16 px-8 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8'>
-        <div className='flex flex-row'>
+        <div className='flex flex-row ml-[44px]'>
           <SearchBar
             onChangeHandler={searchHandler}
             placeholderWord={selectedSearch.ballotId}
