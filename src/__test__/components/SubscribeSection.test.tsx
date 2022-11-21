@@ -13,7 +13,9 @@ describe('SubscribeSection', () => {
     )
 
     expect(screen.getByText('Get Our Updates')).toBeDefined()
-    expect(screen.getByText('Find out about voting events and other news')).toBeDefined()
+    expect(
+      screen.getByText('Find out about voting events and other news'),
+    ).toBeDefined()
     const inputField = screen.getByPlaceholderText('john@mail.com')
     expect(inputField).toBeDefined()
     const subscribeButton = screen.getByTestId('subscribe-button')
@@ -22,39 +24,43 @@ describe('SubscribeSection', () => {
 
   test('click subscribe button without email', () => {
     render(
-        <BrowserRouter>
-          <SubscribeSection />
-        </BrowserRouter>,
-      )
-  
-      expect(screen.getByText('Get Our Updates')).toBeDefined()
-      expect(screen.getByText('Find out about voting events and other news')).toBeDefined()
-      const inputField = screen.getByPlaceholderText('john@mail.com')
-      expect(inputField).toBeDefined()
-      const subscribeButton = screen.getByTestId('subscribe-button')
-      expect(subscribeButton).toBeDefined()
+      <BrowserRouter>
+        <SubscribeSection />
+      </BrowserRouter>,
+    )
 
-      fireEvent.click(subscribeButton)
-      // expect please field some email
+    expect(screen.getByText('Get Our Updates')).toBeDefined()
+    expect(
+      screen.getByText('Find out about voting events and other news'),
+    ).toBeDefined()
+    const inputField = screen.getByPlaceholderText('john@mail.com')
+    expect(inputField).toBeDefined()
+    const subscribeButton = screen.getByTestId('subscribe-button')
+    expect(subscribeButton).toBeDefined()
+
+    fireEvent.click(subscribeButton)
+    // expect please field some email
   })
 
   test('click subscribe button with email', () => {
     render(
-        <BrowserRouter>
-          <SubscribeSection />
-        </BrowserRouter>,
-      )
-  
-      expect(screen.getByText('Get Our Updates')).toBeDefined()
-      expect(screen.getByText('Find out about voting events and other news')).toBeDefined()
-      const inputField = screen.getByPlaceholderText('john@mail.com')
-      expect(inputField).toBeDefined()
-      const subscribeButton = screen.getByTestId('subscribe-button')
-      expect(subscribeButton).toBeDefined()
+      <BrowserRouter>
+        <SubscribeSection />
+      </BrowserRouter>,
+    )
 
-      // inputField fireevent.change
-      // enter email
-      fireEvent.click(subscribeButton)
-      // expect please field some email
+    expect(screen.getByText('Get Our Updates')).toBeDefined()
+    expect(
+      screen.getByText('Find out about voting events and other news'),
+    ).toBeDefined()
+    const inputField = screen.getByPlaceholderText('john@mail.com')
+    expect(inputField).toBeDefined()
+    const subscribeButton = screen.getByTestId('subscribe-button')
+    expect(subscribeButton).toBeDefined()
+
+    // inputField fireevent.change
+    // enter email
+    fireEvent.click(subscribeButton)
+    // expect please field some email
   })
 })
