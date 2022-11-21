@@ -12,7 +12,7 @@ describe('LowerInfo', () => {
       </BrowserRouter>,
     )
 
-    expect(screen.getByText('Vote Now')).toBeDefined()
+    expect(screen.getAllByText('Vote Now')).toBeDefined()
 
     const voteNowButton = screen.getByTestId('vote-now-button')
     expect(voteNowButton).toBeDefined()
@@ -27,7 +27,7 @@ describe('LowerInfo', () => {
       </BrowserRouter>,
     )
 
-    expect(screen.getByText('Vote Now')).toBeDefined()
+    expect(screen.getAllByText('Vote Now')).toBeDefined()
 
     const voteNowButton = screen.getByTestId('vote-now-button')
     expect(voteNowButton).toBeDefined()
@@ -44,7 +44,7 @@ describe('LowerInfo', () => {
       </BrowserRouter>,
     )
 
-    expect(screen.getByText('Vote Now')).toBeDefined()
+    expect(screen.getAllByText('Vote Now')).toBeDefined()
 
     const voteNowButton = screen.getByTestId('vote-now-button')
     expect(voteNowButton).toBeDefined()
