@@ -15,6 +15,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       <div
         className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-cover border border-slate-600 duration-150
         ${isOpen ? 'left-[22px] bg-th-flag' : 'left-[2px] bg-us-flag'}`}
+        data-testid='flag'
       ></div>
     </div>
   )

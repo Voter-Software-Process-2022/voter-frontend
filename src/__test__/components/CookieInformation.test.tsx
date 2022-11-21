@@ -1,8 +1,7 @@
 import { describe, expect, test } from 'vitest'
-import { BrowserRouter, Router } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { createMemoryHistory } from 'history'
 import CookieInformation from '../../components/CookieInformation'
 
 describe('CookieInformation', () => {
@@ -38,14 +37,15 @@ describe('CookieInformation', () => {
     fireEvent.click(understoodButton)
 
     // expect(screen.getByTestId('cookie-information')).not.toBeVisible();
+    // expect(screen.getByText('We uses cookies').innerHTML).toBe('');
+    // expect(screen.getByTag('CookieInformation').isAccepted).toBe(true);
   })
 
   test('click on "Learn more" button', () => {
-    const history = createMemoryHistory()
     render(
-      <Router navigator={history} location={history.location}>
+      <BrowserRouter>
         <CookieInformation />
-      </Router>,
+      </BrowserRouter>,
     )
 
     const cookieInformation = screen.getByTestId('cookie-information')
@@ -55,8 +55,8 @@ describe('CookieInformation', () => {
     const learnMoreButton = screen.getByText('Learn more')
     expect(learnMoreButton).toBeDefined()
 
-    fireEvent.click(learnMoreButton)
-
-    // expect(history.location).toBe('https://www.cloudflare.com/learning/privacy/what-are-cookies/')
+    expect(learnMoreButton.getAttribute('href')).toBe(
+      'https://www.cloudflare.com/learning/privacy/what-are-cookies/',
+    )
   })
 })
