@@ -3,7 +3,7 @@ import Logo from './../assets/images/gov-logo.png'
 
 const FooterSection: React.FC = () => {
   return (
-    <footer className='p-4  rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900'>
+    <footer className='p-4 shadow md:px-6 md:py-8 dark:bg-gray-900'>
       <div className='sm:flex sm:items-center sm:justify-between'>
         <a
           href='https://github.com/Voter-Software-Process-2022'

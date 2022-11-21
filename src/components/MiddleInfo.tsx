@@ -4,9 +4,9 @@ const MiddleInfo = () => {
   return (
     <div
       id='vote-section'
-      className='h-[60vh] lg:h-[80vh] xl:h-[90vh] 2xl:h[90vh] text-black flex justify-around bg-[#3850ba]  p-[4rem]'
+      className=' lg:h-[80vh] xl:h-[90vh] 2xl:h[90vh] text-black sm:flex sm:flex-row md:flex justify-around bg-[#3850ba]  p-[4rem] '
     >
-      <div className='p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem]'>
+      <div className='p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem] my-[5rem]'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white'>
             Need a help in Claim?
@@ -32,7 +32,7 @@ const MiddleInfo = () => {
           </svg>
         </a>
       </div>
-      <div className='p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem]'>
+      <div className='p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem] my-[5rem]'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
             Noteworthy technology acquisitions 2021
@@ -62,7 +62,7 @@ const MiddleInfo = () => {
           </svg>
         </a>
       </div>
-      <div className='max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem]'>
+      <div className='max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem] my-[5rem]'>
         <a href='#'>
           <img
             className='rounded-t-lg m-auto'
