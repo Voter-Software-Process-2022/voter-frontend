@@ -46,18 +46,18 @@ describe('test sidebar link component with prop have sub topic', () => {
 
   test('click on topic then render all sub topic', () => {
     render(
-        <BrowserRouter>
-          <SidebarLink
-            topic={mockProp.topic}
-            subTopic={mockProp.subTopic}
-            hasSubTopic={mockProp.hasSubTopic}
-            path={mockProp.path}
-          />
-        </BrowserRouter>,
-      )
-      const topicDOM = screen.getByTestId('sidebar-topic')
-      expect(topicDOM).toBeDefined()
-      expect(topicDOM.textContent).toBe(mockProp.topic)
+      <BrowserRouter>
+        <SidebarLink
+          topic={mockProp.topic}
+          subTopic={mockProp.subTopic}
+          hasSubTopic={mockProp.hasSubTopic}
+          path={mockProp.path}
+        />
+      </BrowserRouter>,
+    )
+    const topicDOM = screen.getByTestId('sidebar-topic')
+    expect(topicDOM).toBeDefined()
+    expect(topicDOM.textContent).toBe(mockProp.topic)
 
     fireEvent.click(topicDOM)
     mockProp.subTopic.forEach((subTopic) => {
