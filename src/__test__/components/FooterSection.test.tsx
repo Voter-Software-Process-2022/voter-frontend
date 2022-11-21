@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 import { BrowserRouter } from 'react-router-dom'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import FooterSection from '../../components/FooterSection'
 
@@ -48,7 +48,9 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(governmentLogo.getAttribute("href")).toBe("https://github.com/Voter-Software-Process-2022")
+    expect(governmentLogo.getAttribute('href')).toBe(
+      'https://github.com/Voter-Software-Process-2022',
+    )
   })
 
   test('click about link', () => {
@@ -72,7 +74,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(aboutLink.getAttribute("href")).toBe("#")
+    expect(aboutLink.getAttribute('href')).toBe('#')
   })
 
   test('click privacy link', () => {
@@ -96,7 +98,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(privacyLink.getAttribute("href")).toBe("#")
+    expect(privacyLink.getAttribute('href')).toBe('#')
   })
 
   test('click github link', () => {
@@ -120,7 +122,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(gitHubLink.getAttribute("href")).toBe("#")
+    expect(gitHubLink.getAttribute('href')).toBe('#')
   })
 
   test('click contract link', () => {
@@ -144,7 +146,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(contactLink.getAttribute("href")).toBe("#")
+    expect(contactLink.getAttribute('href')).toBe('#')
   })
 
   test('click developer link', () => {
@@ -168,6 +170,8 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(developerLink.getAttribute("href")).toBe("https://github.com/Voter-Software-Process-2022")
+    expect(developerLink.getAttribute('href')).toBe(
+      'https://github.com/Voter-Software-Process-2022',
+    )
   })
 })
