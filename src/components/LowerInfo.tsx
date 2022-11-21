@@ -23,13 +23,17 @@ const LowerInfo = () => {
         </div>
         <div className='flex flex-row mb-[3rem]'>
           <Link to='/topics'>
-            <button className=' p-2.5 px-1.5 mr-[2rem] rounded-md mt-[70px] md:mt-[60px] md:p-2  lg:px[2.5rem]  lg:px-[2rem] lg:py-[15px]     inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'
-            data-testid='vote-now-button'>
+            <button
+              className=' p-2.5 px-1.5 mr-[2rem] rounded-md mt-[70px] md:mt-[60px] md:p-2  lg:px[2.5rem]  lg:px-[2rem] lg:py-[15px]     inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'
+              data-testid='vote-now-button'
+            >
               Vote Now
             </button>
           </Link>
-          <button className=' p-2.5 px-1.5 rounded-md mt-[70px] md:mt-[60px] md:p-2   lg:px[2.5rem]  lg:px-[2rem] lg:py-[15px]      inline-block px-6 py-2.5 bg-[gray] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[gray] hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'
-          data-testid='see-details-button'>
+          <button
+            className=' p-2.5 px-1.5 rounded-md mt-[70px] md:mt-[60px] md:p-2   lg:px[2.5rem]  lg:px-[2rem] lg:py-[15px]      inline-block px-6 py-2.5 bg-[gray] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-[gray] hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'
+            data-testid='see-details-button'
+          >
             See Details
           </button>
         </div>
