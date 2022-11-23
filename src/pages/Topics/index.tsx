@@ -38,7 +38,7 @@ const Topics = () => {
               </p>
             </div>
             <div className='flex justify-center'>
-              <Link to='/info/1'>
+              <Link to='2'>
                 <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] md:p-2 xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'>
                   See Details
                 </button>
@@ -70,7 +70,7 @@ const Topics = () => {
               </p>
             </div>
             <div className='flex justify-center'>
-              <Link to='/info/2'>
+              <Link to='1'>
                 <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'>
                   See Details
                 </button>

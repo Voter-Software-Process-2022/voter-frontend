@@ -10,6 +10,7 @@ import LanguageSwitcher from './LanguageSwitcher'
 import { thaiRule, englishRule } from '../config/rulesWords'
 
 const RuleModal: React.FC<RuleModalProps> = ({
+  topicId,
   isOpenRuleModal,
   setIsOpenRuleModal,
 }) => {
@@ -77,7 +78,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
           <p className='mt-[0.8rem] grow text-orange-800'>
             *** {selectedRule.penaltyAndPunishment.agree}
           </p>
-          <Link to='#'>
+          <Link to={`/topics/${topicId}/vote`}>
             <button
               disabled={!checked}
               className={`${

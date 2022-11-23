@@ -1,11 +1,11 @@
-// import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Navbar, RuleModal } from '../../components'
 import { useState } from 'react'
 import InfoList from '../../components/InfoList'
 const Info: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
   const [isOpenRuleModal, setIsOpenRuleModal] = useState(false)
-  // const { id } = useParams()
+  const { id } = useParams()
 
   return (
     <div className='min-h-screen bg-white'>
@@ -22,6 +22,7 @@ const Info: React.FC = () => {
           Vote
         </button>
         <RuleModal
+          topicId={id}
           isOpenRuleModal={isOpenRuleModal}
           setIsOpenRuleModal={setIsOpenRuleModal}
         />

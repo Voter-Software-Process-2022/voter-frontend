@@ -14,10 +14,10 @@ const routes = [
   },
   { path: '/register', element: <SignUp /> },
   { path: '/login', element: <SignIn /> },
-  { path: '/info/:id', element: <Info /> },
+  { path: '/topics/:id', element: <Info /> },
   {
-    path: '/topics/Vote/:id',
-    element: <Vote topicId={1} topicName={'text'} />,
+    path: '/topics/:topicId/vote',
+    element: <Vote />,
   },
   { path: '/all-ballot', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },
