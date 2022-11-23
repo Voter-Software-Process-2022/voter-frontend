@@ -18,9 +18,9 @@ const TopicCard: React.FC<TopicCardProps> = ({
       <div className='flex'>
         <div className='w-[0.5px] bg-gray-400 ml-4'></div>
         <div className='m-3 mr-1 justify-end w-24'>
-          <Link to='/topics/vote/``'>
+          <Link to='/info/1'>
             <button className='w-20 my-1 ml-4 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 px-3 py-2 text-center text-white bg-blue-700 rounded'>
-              {selectedRule.vote}
+              {selectedRule.information}
             </button>
           </Link>
           <Link to='/all-ballot'>

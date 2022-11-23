@@ -1,9 +1,9 @@
 export const thaiTopic = {
-  vote: 'โหวต',
+  information: 'ข้อมูล',
   result: 'ผลลัพธ์',
 }
 
 export const englishTopic = {
-  vote: 'Vote',
+  information: 'Information',
   result: 'Result',
 }
