@@ -13,10 +13,14 @@ const UpperInfo: React.FC = () => {
               Click the button below to see the details of MPS voting
             </p>
             <p className='w-[60%] m-auto mt-[3rem] hidden  lg:flex'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              You can select your preferred candidates from the available MPS
+              members. Each candidate has his own biography and photo that
+              appears on the ballot paper. Elections typically have multiple
+              seats to fill in the national parliament and state assemblies. In
+              addition, some countries have a local government as well as a
+              senate and a president. All elected officials must take your
+              position seriously and fulfill your duties to the people. Failure
+              to do so would undermine the democratic process itself.
             </p>
             <Link to='/info/2'>
               <button className=' p-2.5 rounded-md mt-[70px] md:mt-[60px] md:p-2  xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'>
@@ -34,10 +38,14 @@ const UpperInfo: React.FC = () => {
               {'Click the button below to see the details of Party voting'}
             </p>
             <p className='w-[60%] m-auto mt-[3rem] hidden  lg:flex'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              You can select your preferred candidates from the available party
+              members. Each candidate has his own biography and photo that
+              appears on the ballot paper. Elections typically have multiple
+              seats to fill in the national parliament and state assemblies. In
+              addition, some countries have a local government as well as a
+              senate and a president. All elected officials must take your
+              position seriously and fulfill your duties to the people. Failure
+              to do so would undermine the democratic process itself.
             </p>
           </div>
           <Link to='/info/1'>
