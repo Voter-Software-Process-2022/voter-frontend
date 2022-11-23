@@ -17,7 +17,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
   const [isThaiLanguage, setIsThaiLanguage] = useState<boolean>(true)
   const [checked, setChecked] = useState<boolean>(false)
   const selectedRule = isThaiLanguage ? thaiRule : englishRule
-  const listInnerRef = useRef()
+  const listInnerRef = useRef<HTMLDivElement>(null)
 
   const onScrollHandler = () => {
     if (listInnerRef.current) {
