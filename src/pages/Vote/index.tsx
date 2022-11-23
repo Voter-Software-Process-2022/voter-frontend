@@ -1,85 +1,136 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './vote.css'
-import { Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ReactRouterPrompt from 'react-router-prompt'
-import { ErrorBoundary } from 'react-error-boundary'
+import { BallotSelection, PreventDialog } from '../../components'
+import uuid from 'react-uuid'
+
+interface Candidate {
+  number: number
+  name: string
+  pictureUrl: string
+}
+
+const mockData = [
+  {
+    number: 1,
+    name: 'Prayut Nahee',
+    pictureUrl:
+      'https://www.asiafinancial.com/wp-content/uploads/2022/10/Thai-PM-Prayut-Chan-ocha-is-seen-at-Government-House-in-Bangkok-Sept-9-2015.-RsChaiwat-Subprasom.jpg',
+  },
+  {
+    number: 2,
+    name: 'Prayut Kuy',
+    pictureUrl:
+      'https://static.bangkokpost.com/media/content/dcx/2020/06/18/3664912.jpg',
+  },
+  {
+    number: 3,
+    name: 'Prayut Edok',
+    pictureUrl:
+      'https://www.thephuketnews.com/photo/listing/2019/1559752046_1-org.jpg',
+  },
+  {
+    number: 0,
+    name: 'ไม่ลงคะแนนเสียง',
+    pictureUrl: '',
+  },
+]
+
+const ballotId = uuid()
 
 const Vote: React.FC = () => {
   const { topicId } = useParams()
-  const formIsDirty = true
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
+    null,
+  )
+  const [isFinished, setIsFinished] = useState<boolean>(false)
+  const navigate = useNavigate()
 
-  function ErrorFallback({
-    error,
-    resetErrorBoundary,
-  }: {
-    error: Error
-    resetErrorBoundary: () => void
-  }) {
-    return (
-      <div role='alert'>
-        <p>Something went wrong:</p>
-        <pre>{error.message}</pre>
-        <button onClick={resetErrorBoundary}>Try again</button>
-      </div>
-    )
+  const onClickHandler = (candidate: Candidate) => {
+    setSelectedCandidate(candidate)
+  }
+
+  const onSubmitHandler = () => {
+    if (!selectedCandidate) return
+    setIsFinished(false)
+    navigate('/thank-you')
   }
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div className='min-h-screen'>
-        <ReactRouterPrompt when={formIsDirty}>
-          {({ isActive, onConfirm, onCancel }) =>
-            isActive && (
-              // styling modal alert later
-              <div className='lightbox'>
-                <div className='container'>
-                  <p>Do you really want to leave?</p>
-                  <button onClick={onCancel}>Cancel</button>
-                  <button onClick={onConfirm}>Ok</button>
-                </div>
-              </div>
-            )
-          }
-        </ReactRouterPrompt>
-        <Link to='/'>home</Link>
-        <div className='max-w-6xl mx-auto'>
-          <div className='flex items-center justify-between'>
-            <span>Ballot ID: 11</span>
-            <span>{`Vote for ${topicId === '1' ? 'MPS' : 'Party'}`}</span>
+    <div className='min-h-screen'>
+      <ReactRouterPrompt when={isFinished}>
+        {({ isActive, onConfirm, onCancel }) =>
+          isActive && (
+            <PreventDialog
+              isActive={isActive}
+              onConfirm={onConfirm}
+              onCancel={onCancel}
+            />
+          )
+        }
+      </ReactRouterPrompt>
+      <div className='max-w-6xl mx-auto'>
+        <div className='flex items-center justify-between py-8'>
+          <span className='text-3xl'>Ballot ID: {ballotId}</span>
+          <span className='text-xl'>{`Vote for ${
+            topicId === '1' ? 'MPS' : 'Party'
+          }`}</span>
+        </div>
+        <div className='flex justify-between px-8 mt-8'>
+          <div className='flex flex-col'>
+            <div className='w-96 h-96 mb-10 flex items-center justify-center border border-zinc-600'>
+              <SelectedCandidatePicture selectedCandidate={selectedCandidate} />
+            </div>
+            <p className='text-2xl '>
+              <span className='font-bold'>Name : </span>
+              {selectedCandidate?.name || '-'}
+            </p>
           </div>
           <div className='flex flex-col'>
-            {[1, 2, 3, 4].map((number) => (
-              <div className='flex' key={number}>
-                <input
-                  className='checkbox-budget'
-                  type='radio'
-                  name='budget'
-                  id={`budget-${number}`}
-                />
-                <label
-                  className='for-checkbox-budget'
-                  htmlFor={`budget-${number}`}
-                >
-                  <span>{number}</span>
-                </label>
-              </div>
-            ))}
-            <div className='flex'>
-              <input
-                className='checkbox-budget'
-                type='radio'
-                name='budget'
-                id='no'
+            {mockData.map((candidate: Candidate, index) => (
+              <BallotSelection
+                choice={candidate.number}
+                displayName={`${candidate.number}`}
+                key={index}
+                onClickHandler={() => onClickHandler(candidate)}
               />
-              <label className='for-checkbox-budget' htmlFor='no'>
-                <span>ไม่ลงคะแนนเสียง</span>
-              </label>
-            </div>
+            ))}
           </div>
         </div>
+        <div className='flex justify-end px-8 mt-4'>
+          <button
+            className='bg-green-400 hover:bg-green-500 duration-150 mr-[5px] px-4 py-2 rounded text-2xl'
+            onClick={onSubmitHandler}
+          >
+            Confirm
+          </button>
+        </div>
       </div>
-    </ErrorBoundary>
+    </div>
   )
 }
 
 export default Vote
+
+function SelectedCandidatePicture({
+  selectedCandidate,
+}: {
+  selectedCandidate: Candidate | null
+}) {
+  if (selectedCandidate) {
+    if (selectedCandidate.number === 0) {
+      return <span className='text-4xl font-semibold'>งดออกเสียง</span>
+    } else {
+      return (
+        <img
+          src={selectedCandidate.pictureUrl}
+          alt=''
+          className='w-full h-full object-contain'
+        />
+      )
+    }
+  } else {
+    return <span className='text-4xl font-semibold'>Select candidate...</span>
+  }
+}
