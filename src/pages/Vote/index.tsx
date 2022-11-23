@@ -53,13 +53,15 @@ const Vote: React.FC = () => {
 
   const onSubmitHandler = () => {
     if (!selectedCandidate) return
-    setIsFinished(false)
-    navigate('/thank-you')
+    setIsFinished(true)
+    setTimeout(() => {
+      navigate('/thank-you')
+    }, 1000)
   }
 
   return (
     <div className='min-h-screen'>
-      <ReactRouterPrompt when={isFinished}>
+      <ReactRouterPrompt when={!isFinished}>
         {({ isActive, onConfirm, onCancel }) =>
           isActive && (
             <PreventDialog
@@ -72,7 +74,9 @@ const Vote: React.FC = () => {
       </ReactRouterPrompt>
       <div className='max-w-6xl mx-auto'>
         <div className='flex items-center justify-between py-8'>
-          <span className='text-3xl'>Ballot ID: {ballotId}</span>
+          <span className='text-3xl'>
+            Ballot ID: {ballotId} {JSON.stringify(isFinished)}
+          </span>
           <span className='text-xl'>{`Vote for ${
             topicId === '1' ? 'MPS' : 'Party'
           }`}</span>

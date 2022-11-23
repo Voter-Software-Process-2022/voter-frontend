@@ -1,23 +1,12 @@
 import React from 'react'
 import {
   Button,
+  Dialog,
   DialogTitle,
   DialogActions,
   DialogContent,
   DialogContentText,
 } from '@mui/material'
-import { makeStyles, Dialog } from '@material-ui/core'
-
-const useStyles = makeStyles({
-  dialog: {
-    position: 'absolute',
-    top: 50,
-    backgroundColor: '#242424',
-    color: '#fff',
-    border: '1px solid #434343',
-    width: '375px',
-  },
-})
 
 interface PreventDialogProps {
   isActive: boolean
@@ -30,16 +19,21 @@ const PreventDialog: React.FC<PreventDialogProps> = ({
   onConfirm,
   onCancel,
 }) => {
-  const classes = useStyles()
-
   return (
     <Dialog
       open={isActive}
       keepMounted
       onClose={onCancel}
       aria-describedby='alert-dialog-slide-description'
-      classes={{
-        paper: classes.dialog,
+      PaperProps={{
+        style: {
+          backgroundColor: '#242424',
+          color: '#fff',
+          position: 'absolute',
+          top: 50,
+          border: '1px solid #434343',
+          width: '375px',
+        },
       }}
     >
       <DialogTitle
@@ -60,8 +54,17 @@ const PreventDialog: React.FC<PreventDialogProps> = ({
             fontWeight: 500,
           }}
         >
-          <p>The voting process has not yet been completed.</p>
-          <p>If you leave this page, your ballot will automatically be void.</p>
+          The voting process has not yet been completed.
+        </DialogContentText>
+        <DialogContentText
+          id='alert-dialog-slide-description'
+          style={{
+            color: '#fff',
+            fontSize: '12px',
+            fontWeight: 500,
+          }}
+        >
+          If you leave this page, your ballot will automatically be void.
         </DialogContentText>
       </DialogContent>
       <DialogActions>
