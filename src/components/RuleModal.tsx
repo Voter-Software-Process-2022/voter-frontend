@@ -88,7 +88,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
               disabled={!checked}
               className={`${
                 checked
-                  ? 'hover:bg-green-600 text-green-500 border-green-400 hover:text-white ml-[auto]'
+                  ? 'hover:bg-green-600 text-green-500 border-2 border-green-400 hover:text-white ml-[auto]'
                   : 'bg-slate-300 text-white ml-[auto]'
               } focus:outline-none p-3 text-center border bg-white rounded mt-2 `}
             >
