@@ -10,7 +10,7 @@ const UpperInfo: React.FC = () => {
               Vote For Party
             </h1>
             <p className=' m-auto mt-[3rem] lg:flex'>
-              {`Click the button below to see the details of Party voting`}
+              {'Click the button below to see the details of Party voting'}
             </p>
             <p className='w-[60%] m-auto mt-[3rem] hidden  lg:flex'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

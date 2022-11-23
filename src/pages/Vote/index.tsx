@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { VoteProps } from '../../interfaces/components/vote'
+import type { VoteProps } from '../../interfaces/components/vote'
 const Vote: React.FC<VoteProps> = ({ topicId, topicName }) => {
   return (
     <div>
