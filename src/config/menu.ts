@@ -9,17 +9,9 @@ export const MENU_LIST: MenuList[] = [
   },
   {
     topic: 'Vote',
-    subTopic: [
-      {
-        topic: 'Vote 1',
-        path: '/vote/1',
-      },
-      {
-        topic: 'Vote 2',
-        path: '/vote/2',
-      },
-    ],
-    hasSubTopic: true,
+    subTopic: [],
+    hasSubTopic: false,
+    path: '/topics',
   },
   {
     topic: 'Information',
@@ -34,11 +26,5 @@ export const MENU_LIST: MenuList[] = [
       },
     ],
     hasSubTopic: true,
-  },
-  {
-    topic: 'About',
-    subTopic: [],
-    hasSubTopic: false,
-    path: '/about',
   },
 ]
