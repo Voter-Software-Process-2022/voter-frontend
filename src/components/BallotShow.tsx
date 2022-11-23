@@ -15,8 +15,9 @@ const BallotShow: React.FC<BallotShowProps> = ({
   }
 
   return (
-    <div className='group relative border border-gray-400 text-zinc-800 rounded-xl p-4'
-    data-testid='ballot-show'
+    <div
+      className='group relative border border-gray-400 text-zinc-800 rounded-xl p-4'
+      data-testid='ballot-show'
     >
       <p data-testid='ballot-id'>{`${selectedRule.ballotId}: ${ballotId}`}</p>
       <table data-testid='table'>
