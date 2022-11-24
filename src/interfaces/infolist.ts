@@ -1,5 +1,6 @@
-export interface InfoList {
+export interface InfoCardProps {
   id: number
   name: string
-  description: string
+  pictureUrl: string
+  voteTopicId: number
 }

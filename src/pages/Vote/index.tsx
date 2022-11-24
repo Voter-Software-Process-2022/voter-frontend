@@ -42,7 +42,7 @@ const mockData = [
 const ballotId = uuid()
 
 const Vote: React.FC = () => {
-  const { topicId } = useParams()
+  const { voteTopicId } = useParams()
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
     null,
   )
@@ -80,7 +80,7 @@ const Vote: React.FC = () => {
         <div className='flex items-center justify-between py-8'>
           <span className='text-lg lg:text-3xl'>Ballot ID: {ballotId}</span>
           <span className='text-md lg:text-xl'>{`Vote for ${
-            topicId === '1' ? 'MPS' : 'Party'
+            voteTopicId === '1' ? 'MPS' : 'Party'
           }`}</span>
         </div>
         <div className='flex flex-col items-center justify-between px-8 mt-8 lg:flex-row'>
