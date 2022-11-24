@@ -11,6 +11,7 @@ const authApi = new AuthApi()
 const initialState: IUser = {
   isAuthenticated: false,
   authUser: null,
+  isAcceptedRules: false,
 }
 
 export const fetchLogin = createAsyncThunk(
@@ -32,6 +33,9 @@ export const userSlice = createSlice({
     setIsAuthenticated: (state: IUser, action: PayloadAction<boolean>) => {
       state.isAuthenticated = action.payload
     },
+    setIsAcceptedRules: (state: IUser, action: PayloadAction<boolean>) => {
+      state.isAcceptedRules = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -45,7 +49,7 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setIsAuthenticated } = userSlice.actions
+export const { setIsAuthenticated, setIsAcceptedRules } = userSlice.actions
 
 export const isUserAuthenticated = (state: RootState) =>
   state.user.isAuthenticated

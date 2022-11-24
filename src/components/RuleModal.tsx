@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import { Stack } from '@mui/system'
 import LanguageSwitcher from './LanguageSwitcher'
 import { thaiRule, englishRule } from '../config/rulesWords'
+import { useAppDispatch } from '../app/hooks'
+import { setIsAcceptedRules } from '../features/user/userSlice'
 
 const RuleModal: React.FC<RuleModalProps> = ({
   topicId,
@@ -18,12 +20,17 @@ const RuleModal: React.FC<RuleModalProps> = ({
   const [checked, setChecked] = useState<boolean>(false)
   const selectedRule = isThaiLanguage ? thaiRule : englishRule
   const listInnerRef = useRef<HTMLDivElement>(null)
+  const dispatch = useAppDispatch()
 
   const onScrollHandler = () => {
     if (listInnerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current
       setChecked(scrollTop + clientHeight === scrollHeight)
     }
+  }
+
+  const onClickHandler = () => {
+    dispatch(setIsAcceptedRules(true))
   }
 
   return (
@@ -81,6 +88,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
           <Link to={`/topics/${topicId}/vote`}>
             <button
               disabled={!checked}
+              onClick={onClickHandler}
               className={`${
                 checked
                   ? 'hover:bg-green-600 text-green-500 border-2 border-green-400 hover:text-white ml-[auto]'
