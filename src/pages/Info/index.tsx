@@ -14,18 +14,20 @@ const Info: React.FC = () => {
           isOpenSidebar={isOpenSidebar}
           setIsOpenSidebar={setIsOpenSidebar}
         />
-        <InfoList />
-        <button
-          onClick={() => setIsOpenRuleModal(true)}
-          className='hover:bg-gray-700 focus:outline-none p-3 w-16 self-center flex-center text-center text-white bg-gray-600 rounded'
-        >
-          Vote
-        </button>
-        <RuleModal
-          topicId={id}
-          isOpenRuleModal={isOpenRuleModal}
-          setIsOpenRuleModal={setIsOpenRuleModal}
-        />
+        <div className=' flex flex-col pb-16'>
+          <InfoList />
+          <button
+            onClick={() => setIsOpenRuleModal(true)}
+            className='hover:bg-gray-700 focus:outline-none p-3 w-16 self-center flex-center text-center text-white bg-gray-600 rounded'
+          >
+            Vote
+          </button>
+          <RuleModal
+            topicId={id}
+            isOpenRuleModal={isOpenRuleModal}
+            setIsOpenRuleModal={setIsOpenRuleModal}
+          />
+        </div>
       </div>
     </div>
   )
