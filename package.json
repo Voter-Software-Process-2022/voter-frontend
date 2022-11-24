@@ -14,7 +14,7 @@
     "format": "prettier --write \"**/*.+(json|yml|css|md|mdx)\" \"src/**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
     "clean": "rimraf node_modules yarn.lock package-lock.json dist",
     "prepare": "husky install",
-    "gen-client": "openapi-generator-cli generate -g typescript-axios -o src/generated -i http://localhost:8000/docs.json --additional-properties=disallowAdditionalPropertiesIfNotPresent=false,supportsES6=true --enable-post-process-file"
+    "gen-client": "openapi-generator-cli generate -g typescript-axios -o src/generated -i http://localhost:8000/docs.json --additional-properties=disallowAdditionalPropertiesIfNotPresent=false,supportsES6=true --enable-post-process-file --skip-validate-spec"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
