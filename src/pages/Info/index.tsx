@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { Navbar, RuleModal } from '../../components'
+import { Navbar, RuleModal, Sidebar } from '../../components'
 import { useState } from 'react'
 import InfoList from '../../components/InfoList'
 const Info: React.FC = () => {
@@ -14,7 +14,11 @@ const Info: React.FC = () => {
           isOpenSidebar={isOpenSidebar}
           setIsOpenSidebar={setIsOpenSidebar}
         />
-        <div className='flex flex-col pb-16'>
+        <div className='relative flex flex-col pb-16'>
+          <Sidebar
+            isOpenSidebar={isOpenSidebar}
+            setIsOpenSidebar={setIsOpenSidebar}
+          />
           <InfoList />
           <button
             onClick={() => setIsOpenRuleModal(true)}

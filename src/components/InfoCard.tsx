@@ -3,8 +3,8 @@ import type { InfoList } from '../interfaces/infolist'
 
 const InfoCard: React.FC<InfoList> = ({ id, name, description }) => {
   return (
-    <div className='flex flex-col p-[1rem]  '>
-      <div className='w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 m-auto'>
+    <div className='flex flex-col p-[1rem]'>
+      <div className='w-[300px] bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 m-auto'>
         <div className='flex flex-col items-center pb-10 pt-[1rem]'>
           <img
             className='mb-3 w-[10rem] h-[10rem] rounded-full shadow-lg'
