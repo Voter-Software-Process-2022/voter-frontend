@@ -6,6 +6,7 @@ const Info = lazy(() => import('../pages/Info'))
 const SeeAllBallot = lazy(() => import('../pages/SeeAllBallot'))
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'))
 const Topics = lazy(() => import('../pages/Topics'))
+const NotFound = lazy(() => import('../pages/NotFound'))
 
 const routes = [
   {
@@ -18,6 +19,7 @@ const routes = [
   { path: '/all-ballot', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/topics', element: <Topics /> },
+  { path: '*', element: <NotFound /> }
 ]
 
 export default routes
