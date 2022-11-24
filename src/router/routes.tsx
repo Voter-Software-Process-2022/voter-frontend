@@ -7,7 +7,7 @@ const Info = lazy(() => import('../pages/Info'))
 const SeeAllBallot = lazy(() => import('../pages/SeeAllBallot'))
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'))
 const Topics = lazy(() => import('../pages/Topics'))
-const CandidateDetail = lazy(() => import('../pages/PartyMember'))
+const PartyMember = lazy(() => import('../pages/PartyMember'))
 const Vote = lazy(() => import('../pages/Vote'))
 
 const routes = (user: IUser) => [
@@ -19,8 +19,8 @@ const routes = (user: IUser) => [
   { path: '/login', element: <SignIn /> },
   { path: '/topics/:voteTopicId', element: <Info /> },
   {
-    path: 'topics/:voteTopicId/candidate',
-    element: <CandidateDetail />,
+    path: 'topics/candidate/:partyId',
+    element: <PartyMember />,
   },
   {
     path: '/topics/:voteTopicId/vote',

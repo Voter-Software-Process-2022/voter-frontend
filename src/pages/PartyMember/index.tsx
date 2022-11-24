@@ -1,27 +1,68 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useAppDispatch } from '../../app/hooks'
-import { fetchCandidateDetails } from '../../features/candidate/candidateSlice'
+import { Navbar, Sidebar } from '../../components'
+import { fetchPartyMembers } from '../../features/candidate/candidateSlice'
+import type { CandidateI } from '../../interfaces/candidate'
 
 const CandidateDetail: React.FC = () => {
+  const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
+  const [candidates, setCandidates] = useState<CandidateI[]>()
   const dispatch = useAppDispatch()
-  const { voteTopicId, candidateId } = useParams()
+  const { partyId } = useParams()
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (!voteTopicId || !candidateId) return
-      const { payload }: { payload: any } = await dispatch(
-        fetchCandidateDetails({
-          voteTopicId: parseInt(voteTopicId),
-          candidateId: parseInt(candidateId),
+    const fetchPartyMembersData = async () => {
+      if (!partyId) return
+      const { payload }: any = await dispatch(
+        fetchPartyMembers({
+          partyId: parseInt(partyId),
         }),
       )
+      setCandidates(payload)
       console.log(payload)
     }
-    fetchData()
-  }, [voteTopicId])
+    fetchPartyMembersData()
+  }, [partyId])
 
-  return <div>CandidateDetail</div>
+  return (
+    <div className='w-full overflow-x-hidden bg-white min-h-screen'>
+      <Navbar
+        isOpenSidebar={isOpenSidebar}
+        setIsOpenSidebar={setIsOpenSidebar}
+      />
+      <div className='relative h-full'>
+        <Sidebar
+          isOpenSidebar={isOpenSidebar}
+          setIsOpenSidebar={setIsOpenSidebar}
+        />
+        <div className='max-w-6xl mx-auto h-32 text-slate-900 p-8'>
+          <span className='text-4xl'>Party: {partyId}</span>
+          <div className='mt-6'>
+            <span className='text-2xl'>Members</span>
+            <div className='flex flex-col mt-4'>
+              {candidates &&
+                candidates.map((candidate) => (
+                  <div
+                    className='flex items-center border text-white border-zinc-800 my-2 bg-gray-800 p-2 rounded'
+                    key={candidate.id}
+                  >
+                    <div className='w-44 h-44 mr-12'>
+                      <img
+                        src={candidate.pictureUrl}
+                        alt={candidate.name}
+                        className='h-full w-full object-cover rounded-full'
+                      />
+                    </div>
+                    <span className='text-xl'>ชื่อ: {candidate.name}</span>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default CandidateDetail
