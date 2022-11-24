@@ -7,6 +7,7 @@ const Info = lazy(() => import('../pages/Info'))
 const SeeAllBallot = lazy(() => import('../pages/SeeAllBallot'))
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'))
 const Topics = lazy(() => import('../pages/Topics'))
+const CandidateDetail = lazy(() => import('../pages/PartyMember'))
 const Vote = lazy(() => import('../pages/Vote'))
 
 const routes = (user: IUser) => [
@@ -16,9 +17,13 @@ const routes = (user: IUser) => [
   },
   { path: '/register', element: <SignUp /> },
   { path: '/login', element: <SignIn /> },
-  { path: '/topics/:id', element: <Info /> },
+  { path: '/topics/:voteTopicId', element: <Info /> },
   {
-    path: '/topics/:topicId/vote',
+    path: 'topics/:voteTopicId/candidate',
+    element: <CandidateDetail />,
+  },
+  {
+    path: '/topics/:voteTopicId/vote',
     element: user.isAcceptedRules ? <Vote /> : <div>Not allowed</div>,
   },
   { path: '/all-ballot', element: <SeeAllBallot /> },
