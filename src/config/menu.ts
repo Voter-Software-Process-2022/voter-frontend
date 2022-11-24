@@ -17,12 +17,12 @@ export const MENU_LIST: MenuList[] = [
     topic: 'Information',
     subTopic: [
       {
-        topic: 'Info 1',
-        path: '/info/1',
+        topic: 'Party',
+        path: '/topics/2',
       },
       {
-        topic: 'Info 2',
-        path: '/info/2',
+        topic: 'MPS',
+        path: '/topics/1',
       },
     ],
     hasSubTopic: true,

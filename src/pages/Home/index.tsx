@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
 
   return (
-    <div className='w-full overflow-x-hidden'>
+    <div className='w-full overflow-x-hidden mt-[88px] lg:mt-0'>
       <Navbar
         isOpenSidebar={isOpenSidebar}
         setIsOpenSidebar={setIsOpenSidebar}

@@ -8,35 +8,38 @@ import { Link } from 'react-router-dom'
 import { Stack } from '@mui/system'
 import LanguageSwitcher from './LanguageSwitcher'
 import { thaiRule, englishRule } from '../config/rulesWords'
-import { Checkbox } from '@mui/material'
+import { useAppDispatch } from '../app/hooks'
+import { setIsAcceptedRules } from '../features/user/userSlice'
 
 const RuleModal: React.FC<RuleModalProps> = ({
+  topicId,
   isOpenRuleModal,
   setIsOpenRuleModal,
 }) => {
   const [isThaiLanguage, setIsThaiLanguage] = useState<boolean>(true)
   const [checked, setChecked] = useState<boolean>(false)
   const selectedRule = isThaiLanguage ? thaiRule : englishRule
-  const listInnerRef = useRef()
+  const listInnerRef = useRef<HTMLDivElement>(null)
+  const dispatch = useAppDispatch()
 
   const onScrollHandler = () => {
     if (listInnerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current
-      if (scrollTop + clientHeight === scrollHeight) {
-        // TO SOMETHING HERE
-        console.log('Reached bottom')
-      }
+      setChecked(scrollTop + clientHeight === scrollHeight)
     }
   }
 
-  const onCheckHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked)
+  const onClickHandler = () => {
+    dispatch(setIsAcceptedRules(true))
   }
 
   return (
     <Modal
       open={isOpenRuleModal}
-      onClose={() => setIsOpenRuleModal(false)}
+      onClose={() => {
+        setIsOpenRuleModal(false)
+        setChecked(false)
+      }}
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
       className='container flex flex-col items-center justify-center flex-1 w-full px-2 mx-auto text-black'
@@ -52,7 +55,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
             </Stack>
             <Typography
               id='modal-modal-title'
-              className='absolute left-1/2 -translate-x-1/2 !text-sm !font-semibold lg:!text-2xl'
+              className='absolute left-1/2 -translate-x-1/2 !text-sm !font-semibold lg:!text-3xl'
             >
               {selectedRule.title}
             </Typography>
@@ -62,13 +65,13 @@ const RuleModal: React.FC<RuleModalProps> = ({
             />
           </div>
           <div
-            className='w-full my-5 px-2 sm:px-10 mx-auto max-h-[350px] overflow-y-auto'
+            className='w-full my-5 px-2 sm:px-10 mx-auto max-h-[220px] overflow-y-auto'
             onScroll={() => onScrollHandler()}
             ref={listInnerRef}
           >
             {selectedRule.penaltyAndPunishment.rules.map((rule, index) => (
               <Typography
-                className='!text-sm lg:text-base'
+                className='!text-lg lg:text-base'
                 id='modal-modal-description'
                 sx={{ mt: 2 }}
                 key={index}
@@ -78,21 +81,21 @@ const RuleModal: React.FC<RuleModalProps> = ({
             ))}
           </div>
         </Box>
-        <div className='flex justify-center'>
-          <p className='mt-[0.8rem]  grow text-center'>
-            <Checkbox checked={checked} onChange={onCheckHandler} />
-            {selectedRule.penaltyAndPunishment.agree}
+        <div className='flex items-center'>
+          <p className='mt-[0.8rem] grow text-orange-800'>
+            *** {selectedRule.penaltyAndPunishment.agree}
           </p>
-          <Link to='#'>
+          <Link to={`/topics/${topicId}/vote`}>
             <button
               disabled={!checked}
+              onClick={onClickHandler}
               className={`${
                 checked
-                  ? 'hover:bg-green-600 text-green-500 border-green-400 hover:text-white ml-[auto]'
-                  : 'bg-slate-300 text-white ml-[auto]'
-              } focus:outline-none p-3 text-center border bg-white rounded mt-2 `}
+                  ? 'hover:bg-green-600 text-green-500 border-2 border-green-400 hover:text-white ml-[auto]'
+                  : 'bg-slate-300 text-white ml-[auto] border-2'
+              } focus:outline-none p-3 text-center border bg-white rounded mt-2 uppercase`}
             >
-              Next
+              {selectedRule.penaltyAndPunishment.nextButton}
             </button>
           </Link>
         </div>
