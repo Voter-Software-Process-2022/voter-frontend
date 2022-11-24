@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useAppDispatch } from '../../app/hooks'
-import { Navbar, Sidebar } from '../../components'
+import { Loader, Navbar, Sidebar } from '../../components'
 import { fetchPartyMembers } from '../../features/candidate/candidateSlice'
 import type { CandidateI } from '../../interfaces/candidate'
 
 const CandidateDetail: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
   const [candidates, setCandidates] = useState<CandidateI[]>()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const dispatch = useAppDispatch()
   const { partyId } = useParams()
 
   useEffect(() => {
     const fetchPartyMembersData = async () => {
+      setIsLoading(true)
       if (!partyId) return
       const { payload }: any = await dispatch(
         fetchPartyMembers({
@@ -20,10 +22,12 @@ const CandidateDetail: React.FC = () => {
         }),
       )
       setCandidates(payload)
-      console.log(payload)
+      setIsLoading(false)
     }
     fetchPartyMembersData()
   }, [partyId])
+
+  if (isLoading) return <Loader />
 
   return (
     <div className='w-full overflow-x-hidden bg-white min-h-screen'>
