@@ -9,7 +9,6 @@ const ThankYouPage = lazy(() => import('../pages/ThankYouPage'))
 const Topics = lazy(() => import('../pages/Topics'))
 const NotFound = lazy(() => import('../pages/NotFound'))
 const Vote = lazy(() => import('../pages/Vote'))
-const Forbidden = lazy(() => import('../pages/Forbidden'))
 const routes = (user: IUser) => [
   {
     path: '/',
@@ -26,7 +25,6 @@ const routes = (user: IUser) => [
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/topics', element: <Topics /> },
   { path: '*', element: <NotFound /> },
-  { path: '/403', element: <Forbidden /> },
 ]
 
 export default routes
