@@ -1,6 +1,6 @@
+import type { CandidateI } from './candidate'
+
 export interface InfoCardProps {
-  id: number
-  name: string
-  pictureUrl: string
   voteTopicId: number
+  candidate: CandidateI
 }

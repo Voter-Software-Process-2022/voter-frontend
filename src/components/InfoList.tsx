@@ -9,9 +9,7 @@ const InfoList: React.FC<InfoListProps> = ({ voteTopicId, candidates }) => {
         {candidates.map((candidate) => (
           <InfoCard
             voteTopicId={voteTopicId}
-            id={candidate.id}
-            name={candidate.name}
-            pictureUrl={candidate.pictureUrl}
+            candidate={candidate}
             key={candidate.id}
           />
         ))}

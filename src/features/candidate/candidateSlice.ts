@@ -27,3 +27,11 @@ export const fetchCandidateDetails = createAsyncThunk(
     return data
   },
 )
+
+export const fetchPartyMembers = createAsyncThunk(
+  'user/fetchPartyMembers',
+  async ({ partyId }: { partyId: number }) => {
+    const { data } = await candidateApi.candidatePartymemberPartyIdGet(partyId)
+    return data
+  },
+)

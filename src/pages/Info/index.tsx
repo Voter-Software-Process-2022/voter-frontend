@@ -20,6 +20,7 @@ const Info: React.FC = () => {
         fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
       )
       setCandidates(payload)
+      console.log(payload)
     }
     fetchData()
   }, [voteTopicId])
