@@ -1,56 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './vote.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactRouterPrompt from 'react-router-prompt'
-import { BallotSelection, PreventDialog } from '../../components'
+import { BallotSelection, Loader, PreventDialog } from '../../components'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../app/hooks'
 import { setIsAcceptedRules } from '../../features/user/userSlice'
-
-interface Candidate {
-  number: number
-  name: string
-  pictureUrl: string
-}
-
-const mockData = [
-  {
-    number: 1,
-    name: 'Prayut Nahee',
-    pictureUrl:
-      'https://www.asiafinancial.com/wp-content/uploads/2022/10/Thai-PM-Prayut-Chan-ocha-is-seen-at-Government-House-in-Bangkok-Sept-9-2015.-RsChaiwat-Subprasom.jpg',
-  },
-  {
-    number: 2,
-    name: 'Prayut Kuy',
-    pictureUrl:
-      'https://static.bangkokpost.com/media/content/dcx/2020/06/18/3664912.jpg',
-  },
-  {
-    number: 3,
-    name: 'Prayut Edok',
-    pictureUrl:
-      'https://www.thephuketnews.com/photo/listing/2019/1559752046_1-org.jpg',
-  },
-  {
-    number: 0,
-    name: 'ไม่ลงคะแนนเสียง',
-    pictureUrl: '',
-  },
-]
+import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
+import type { CandidateI } from '../../interfaces/candidate'
 
 const ballotId = uuid()
 
 const Vote: React.FC = () => {
   const { voteTopicId } = useParams()
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
+  const [selectedCandidate, setSelectedCandidate] = useState<CandidateI | null>(
     null,
   )
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isFinished, setIsFinished] = useState<boolean>(false)
+  const [candidates, setCandidates] = useState<CandidateI[]>()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const onClickHandler = (candidate: Candidate) => {
+  useEffect(() => {
+    const onFetchAllCandidates = async () => {
+      setIsLoading(true)
+      if (!voteTopicId) return
+      const { payload }: any = await dispatch(
+        fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
+      )
+      setCandidates([
+        ...payload,
+        {
+          id: 0,
+          name: 'ไม่ลงคะแนนเสียง',
+          pictureUrl: '',
+        },
+      ])
+      console.log(payload)
+      setIsLoading(false)
+    }
+    onFetchAllCandidates()
+  }, [])
+
+  const onClickHandler = (candidate: CandidateI) => {
     setSelectedCandidate(candidate)
   }
 
@@ -62,6 +55,8 @@ const Vote: React.FC = () => {
       dispatch(setIsAcceptedRules(false))
     }, 1000)
   }
+
+  if (isLoading) return <Loader />
 
   return (
     <div className='min-h-screen'>
@@ -95,14 +90,15 @@ const Vote: React.FC = () => {
           </div>
           <div>
             <div className='flex flex-col mt-6 lg:mt-0'>
-              {mockData.map((candidate: Candidate, index) => (
-                <BallotSelection
-                  choice={candidate.number}
-                  displayName={`${candidate.number}`}
-                  key={index}
-                  onClickHandler={() => onClickHandler(candidate)}
-                />
-              ))}
+              {candidates &&
+                candidates.map((candidate, index) => (
+                  <BallotSelection
+                    choice={candidate.id}
+                    displayName={`${candidate.id}`}
+                    key={index}
+                    onClickHandler={() => onClickHandler(candidate)}
+                  />
+                ))}
               <button
                 className='bg-green-400 hover:bg-green-500 mt-2 duration-150 p-2 rounded text-2xl'
                 onClick={onSubmitHandler}
@@ -122,10 +118,10 @@ export default Vote
 function SelectedCandidatePicture({
   selectedCandidate,
 }: {
-  selectedCandidate: Candidate | null
+  selectedCandidate: CandidateI | null
 }) {
   if (selectedCandidate) {
-    if (selectedCandidate.number === 0) {
+    if (selectedCandidate.id === 0) {
       return (
         <span className='text-2xl lg:text-4xl font-semibold'>งดออกเสียง</span>
       )
