@@ -74,41 +74,39 @@ const Vote: React.FC = () => {
       </ReactRouterPrompt>
       <div className='max-w-6xl mx-auto'>
         <div className='flex items-center justify-between py-8'>
-          <span className='text-3xl'>
-            Ballot ID: {ballotId} {JSON.stringify(isFinished)}
-          </span>
-          <span className='text-xl'>{`Vote for ${
+          <span className='text-lg lg:text-3xl'>Ballot ID: {ballotId}</span>
+          <span className='text-md lg:text-xl'>{`Vote for ${
             topicId === '1' ? 'MPS' : 'Party'
           }`}</span>
         </div>
-        <div className='flex justify-between px-8 mt-8'>
+        <div className='flex flex-col items-center justify-between px-8 mt-8 lg:flex-row'>
           <div className='flex flex-col'>
-            <div className='w-96 h-96 mb-10 flex items-center justify-center border border-zinc-600'>
+            <div className='w-72 h-72 xs:w-96 xs:h-96 mb-10 flex items-center justify-center border border-zinc-600'>
               <SelectedCandidatePicture selectedCandidate={selectedCandidate} />
             </div>
-            <p className='text-2xl '>
+            <p className='text-lg lg:text-2xl'>
               <span className='font-bold'>Name : </span>
               {selectedCandidate?.name || '-'}
             </p>
           </div>
-          <div className='flex flex-col'>
-            {mockData.map((candidate: Candidate, index) => (
-              <BallotSelection
-                choice={candidate.number}
-                displayName={`${candidate.number}`}
-                key={index}
-                onClickHandler={() => onClickHandler(candidate)}
-              />
-            ))}
+          <div>
+            <div className='flex flex-col mt-6 lg:mt-0'>
+              {mockData.map((candidate: Candidate, index) => (
+                <BallotSelection
+                  choice={candidate.number}
+                  displayName={`${candidate.number}`}
+                  key={index}
+                  onClickHandler={() => onClickHandler(candidate)}
+                />
+              ))}
+              <button
+                className='bg-green-400 hover:bg-green-500 mt-2 duration-150 p-2 rounded text-2xl'
+                onClick={onSubmitHandler}
+              >
+                Confirm
+              </button>
+            </div>
           </div>
-        </div>
-        <div className='flex justify-end px-8 mt-4'>
-          <button
-            className='bg-green-400 hover:bg-green-500 duration-150 mr-[5px] px-4 py-2 rounded text-2xl'
-            onClick={onSubmitHandler}
-          >
-            Confirm
-          </button>
         </div>
       </div>
     </div>
@@ -124,7 +122,9 @@ function SelectedCandidatePicture({
 }) {
   if (selectedCandidate) {
     if (selectedCandidate.number === 0) {
-      return <span className='text-4xl font-semibold'>งดออกเสียง</span>
+      return (
+        <span className='text-2xl lg:text-4xl font-semibold'>งดออกเสียง</span>
+      )
     } else {
       return (
         <img
@@ -135,6 +135,10 @@ function SelectedCandidatePicture({
       )
     }
   } else {
-    return <span className='text-4xl font-semibold'>Select candidate...</span>
+    return (
+      <span className='text-2xl lg:text-4xl font-semibold'>
+        Select candidate...
+      </span>
+    )
   }
 }

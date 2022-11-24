@@ -51,6 +51,19 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+@media screen and (max-width: 400px) {
+  .checkbox-budget:checked + label,
+  .checkbox-budget:not(:checked) + label {
+    width: 320px;
+  }
+
+  .checkbox-budget:checked + label:last-child,
+  .checkbox-budget:not(:checked) + label:last-child {
+    font-size: 32px;
+  }
+}
+
 .checkbox-budget:not(:checked) + label {
   background-color: var(--dark-light);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
