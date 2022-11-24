@@ -14,7 +14,7 @@ const Info: React.FC = () => {
           isOpenSidebar={isOpenSidebar}
           setIsOpenSidebar={setIsOpenSidebar}
         />
-        <div className=' flex flex-col pb-16'>
+        <div className='flex flex-col pb-16'>
           <InfoList />
           <button
             onClick={() => setIsOpenRuleModal(true)}
