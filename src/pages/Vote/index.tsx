@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ReactRouterPrompt from 'react-router-prompt'
 import { BallotSelection, PreventDialog } from '../../components'
 import uuid from 'react-uuid'
+import { useAppDispatch } from '../../app/hooks'
+import { setIsAcceptedRules } from '../../features/user/userSlice'
 
 interface Candidate {
   number: number
@@ -46,6 +48,7 @@ const Vote: React.FC = () => {
   )
   const [isFinished, setIsFinished] = useState<boolean>(false)
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const onClickHandler = (candidate: Candidate) => {
     setSelectedCandidate(candidate)
@@ -56,6 +59,7 @@ const Vote: React.FC = () => {
     setIsFinished(true)
     setTimeout(() => {
       navigate('/thank-you')
+      dispatch(setIsAcceptedRules(false))
     }, 1000)
   }
 
