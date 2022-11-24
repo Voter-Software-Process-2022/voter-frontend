@@ -19,7 +19,7 @@ const routes = [
   { path: '/all-ballot', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/topics', element: <Topics /> },
-  { path: '*', element: <NotFound /> }
+  { path: '*', element: <NotFound /> },
 ]
 
 export default routes
