@@ -1,15 +1,12 @@
+import type { UserInformation } from '../generated'
+
 export interface IUser {
   isAuthenticated: boolean
-  authUser: IUserData | null
+  authUser: UserInformation | null
   isAcceptedRules: boolean
 }
 
 export interface IUserLogin {
   citizenId: string
   laserId: string
-}
-
-export interface IUserData {
-  firstname: string
-  location: string
 }
