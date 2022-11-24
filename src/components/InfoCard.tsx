@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import type { InfoListProps } from '../interfaces/infolist'
+import type { InfoCardProps } from '../interfaces/infolist'
 
-const InfoCard: React.FC<InfoListProps> = ({
+const InfoCard: React.FC<InfoCardProps> = ({
   id,
   name,
   pictureUrl,
