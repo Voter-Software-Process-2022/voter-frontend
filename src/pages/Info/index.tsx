@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { Navbar, RuleModal, Sidebar } from '../../components'
+import { Loader, Navbar, RuleModal, Sidebar } from '../../components'
 import { useEffect, useState } from 'react'
 import InfoList from '../../components/InfoList'
 import type { CandidateI } from '../../interfaces/candidate'
@@ -8,22 +8,26 @@ import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 
 const Info: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
-  const [isOpenRuleModal, setIsOpenRuleModal] = useState(false)
+  const [isOpenRuleModal, setIsOpenRuleModal] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [candidates, setCandidates] = useState<CandidateI[]>()
   const { voteTopicId } = useParams()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       if (!voteTopicId) return
       const { payload }: any = await dispatch(
         fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
       )
       setCandidates(payload)
-      console.log(payload)
+      setIsLoading(false)
     }
     fetchData()
   }, [voteTopicId])
+
+  if (isLoading) return <Loader />
 
   return (
     <div className='min-h-screen bg-white'>
