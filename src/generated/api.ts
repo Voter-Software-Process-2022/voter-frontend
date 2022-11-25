@@ -1435,7 +1435,7 @@ export const VoteApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    voteMpcandidatePost: async (
+    voteMpcandidateGet: async (
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/vote/mpcandidate`
@@ -1447,7 +1447,7 @@ export const VoteApiAxiosParamCreator = function (
       }
 
       const localVarRequestOptions = {
-        method: 'POST',
+        method: 'GET',
         ...baseOptions,
         ...options,
       }
@@ -1538,7 +1538,7 @@ export const VoteApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    votePreVerifyPost: async (
+    votePreVerifyGet: async (
       options: AxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       const localVarPath = `/vote/pre-verify`
@@ -1550,7 +1550,7 @@ export const VoteApiAxiosParamCreator = function (
       }
 
       const localVarRequestOptions = {
-        method: 'POST',
+        method: 'GET',
         ...baseOptions,
         ...options,
       }
@@ -1651,7 +1651,7 @@ export const VoteApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async voteMpcandidatePost(
+    async voteMpcandidateGet(
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -1660,7 +1660,7 @@ export const VoteApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<CandidateResponse>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.voteMpcandidatePost(options)
+        await localVarAxiosParamCreator.voteMpcandidateGet(options)
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1698,7 +1698,7 @@ export const VoteApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async votePreVerifyPost(
+    async votePreVerifyGet(
       options?: AxiosRequestConfig,
     ): Promise<
       (
@@ -1707,7 +1707,7 @@ export const VoteApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<VoteAvailableResponse>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.votePreVerifyPost(options)
+        await localVarAxiosParamCreator.votePreVerifyGet(options)
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1759,9 +1759,9 @@ export const VoteApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    voteMpcandidatePost(options?: any): AxiosPromise<Array<CandidateResponse>> {
+    voteMpcandidateGet(options?: any): AxiosPromise<Array<CandidateResponse>> {
       return localVarFp
-        .voteMpcandidatePost(options)
+        .voteMpcandidateGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1785,11 +1785,11 @@ export const VoteApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    votePreVerifyPost(
+    votePreVerifyGet(
       options?: any,
     ): AxiosPromise<Array<VoteAvailableResponse>> {
       return localVarFp
-        .votePreVerifyPost(options)
+        .votePreVerifyGet(options)
         .then((request) => request(axios, basePath))
     },
     /**
@@ -1824,9 +1824,9 @@ export class VoteApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof VoteApi
    */
-  public voteMpcandidatePost(options?: AxiosRequestConfig) {
+  public voteMpcandidateGet(options?: AxiosRequestConfig) {
     return VoteApiFp(this.configuration)
-      .voteMpcandidatePost(options)
+      .voteMpcandidateGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
@@ -1854,9 +1854,9 @@ export class VoteApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof VoteApi
    */
-  public votePreVerifyPost(options?: AxiosRequestConfig) {
+  public votePreVerifyGet(options?: AxiosRequestConfig) {
     return VoteApiFp(this.configuration)
-      .votePreVerifyPost(options)
+      .votePreVerifyGet(options)
       .then((request) => request(this.axios, this.basePath))
   }
 
