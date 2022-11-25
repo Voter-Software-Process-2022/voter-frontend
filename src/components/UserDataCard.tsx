@@ -40,7 +40,7 @@ const UserDataCard: React.FC = () => {
           </div>
           {isOpenData && (
             <div
-              className='absolute flex flex-col min-w-max bg-slate-100 text-black top-14 right-0 rounded py-2 px-4 shadow-xl'
+              className='absolute flex flex-col min-w-max bg-slate-100 text-black top-14 right-0 rounded py-2 px-4 shadow-xl z-10'
               ref={wrapperRef}
             >
               <div className='flex'>

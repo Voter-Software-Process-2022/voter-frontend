@@ -8,8 +8,11 @@ import { useNavigate } from 'react-router-dom'
 import { Stack } from '@mui/system'
 import LanguageSwitcher from './LanguageSwitcher'
 import { thaiRule, englishRule } from '../config/rulesWords'
-import { useAppDispatch } from '../app/hooks'
-import { setIsAcceptedRules } from '../features/user/userSlice'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import {
+  isUserAuthenticated,
+  setIsAcceptedRules,
+} from '../features/user/userSlice'
 import { alertErrorMessage } from '../utils/alert'
 
 const RuleModal: React.FC<RuleModalProps> = ({
@@ -24,6 +27,7 @@ const RuleModal: React.FC<RuleModalProps> = ({
   const selectedRule = isThaiLanguage ? thaiRule : englishRule
   const listInnerRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
+  const verifyUserAuthenticated = useAppSelector(isUserAuthenticated)
 
   const onScrollHandler = () => {
     if (listInnerRef.current) {
@@ -35,7 +39,12 @@ const RuleModal: React.FC<RuleModalProps> = ({
   const onClickHandler = (topicId: string | undefined) => {
     if (!canVote) {
       setIsOpenRuleModal(false)
-      alertErrorMessage('You already voted this topic!', false)
+      alertErrorMessage(
+        !verifyUserAuthenticated
+          ? 'You are not signed in or your token has expired!'
+          : 'You already voted this topic!',
+        false,
+      )
     } else {
       dispatch(setIsAcceptedRules(true))
       navigate(`/topics/${topicId}/vote`)
