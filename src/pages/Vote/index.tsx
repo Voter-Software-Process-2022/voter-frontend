@@ -65,7 +65,10 @@ const Vote: React.FC = () => {
           isActive && (
             <PreventDialog
               isActive={isActive}
-              onConfirm={onConfirm}
+              onConfirm={() => {
+                onConfirm(isActive)
+                dispatch(setIsAcceptedRules(false))
+              }}
               onCancel={onCancel}
             />
           )
