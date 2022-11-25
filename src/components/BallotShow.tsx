@@ -26,7 +26,7 @@ const BallotShow: React.FC<BallotShowProps> = ({
           </tr>
           {candidates.map((x) => (
             <tr key={x}>
-              <th className='px-2'>{x}</th>
+              <th className='px-2'>{x === 0 ? 'ไม่ลงคะแนน' : x}</th>
               <th className='px-2'>
                 <input
                   disabled

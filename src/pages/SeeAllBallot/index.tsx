@@ -41,11 +41,11 @@ const SeeAllBallot: React.FC = () => {
       const { payload: candidatePayload }: any = await dispatch(
         fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
       )
-      console.log(ballotPayload)
       setBallotList(ballotPayload)
-      setCandidates(
-        candidatePayload.map((candidate: CandidateI) => candidate.id),
-      )
+      setCandidates([
+        ...candidatePayload.map((candidate: CandidateI) => candidate.id),
+        0,
+      ])
       setIsLoading(false)
     }
     onFetchVoteAllBallot()
@@ -85,7 +85,7 @@ const SeeAllBallot: React.FC = () => {
         <Loader />
       ) : (
         <div className='mx-auto max-w-4xl py-16 px-8 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8'>
-          <div className='flex items-center justify-between'>
+          <div className='flex items-center justify-between relative'>
             <Title
               voteTopicId={voteTopicId ?? ''}
               isThaiLanguage={isThaiLanguage}
@@ -131,7 +131,7 @@ const Title = ({
   if (isThaiLanguage) {
     return (
       <span className='text-black font-semibold text-2xl w-64'>
-        บัตรเลือกตั้งสำหรับ{topic === 'MPS' ? 'สมาชิกสภาผู้แทนราษฎร' : 'พรรค'}
+        บัตรเลือกตั้งสำหรับ{topic === 'MPS' ? 'สส.' : 'พรรค'}
       </span>
     )
   } else {
