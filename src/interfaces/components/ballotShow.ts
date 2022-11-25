@@ -1,6 +1,6 @@
 export interface BallotShowProps {
-  ballotId: number
-  amountOfCandidates: number
+  ballotId: string
+  candidates: number[]
   voteForCandidateNumber: number
   isThaiLanguage: boolean
 }
