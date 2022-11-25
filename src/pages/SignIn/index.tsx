@@ -25,6 +25,7 @@ const SignIn: React.FC = () => {
     setIsLoading(true)
     if (!citizen || !laser1 || !laser2 || !laser3) {
       alertErrorMessage('Fields must not be empty')
+      setIsLoading(false)
       return
     }
 
