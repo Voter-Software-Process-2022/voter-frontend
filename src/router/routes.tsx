@@ -8,8 +8,8 @@ const SeeAllBallot = lazy(() => import('../pages/SeeAllBallot'))
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'))
 const Topics = lazy(() => import('../pages/Topics'))
 const PartyMember = lazy(() => import('../pages/PartyMember'))
+const NotFound = lazy(() => import('../pages/NotFound'))
 const Vote = lazy(() => import('../pages/Vote'))
-
 const routes = (user: IUser) => [
   {
     path: '/',
@@ -29,6 +29,7 @@ const routes = (user: IUser) => [
   { path: '/all-ballot', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/topics', element: <Topics /> },
+  { path: '*', element: <NotFound /> },
 ]
 
 export default routes
