@@ -156,6 +156,56 @@ export interface ErrorResponse {
 /**
  *
  * @export
+ * @interface GetAllBallotRequest
+ */
+export interface GetAllBallotRequest {
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotRequest
+   */
+  voteTopicId: number
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotRequest
+   */
+  areaId: number
+}
+/**
+ *
+ * @export
+ * @interface GetAllBallotResponse
+ */
+export interface GetAllBallotResponse {
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotResponse
+   */
+  id?: number
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotResponse
+   */
+  party_id?: number
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotResponse
+   */
+  candidate_id?: number
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotResponse
+   */
+  area_id?: number
+}
+/**
+ *
+ * @export
  * @interface LoginUserInput
  */
 export interface LoginUserInput {
@@ -1431,6 +1481,60 @@ export const VoteApiAxiosParamCreator = function (
   return {
     /**
      *
+     * @summary Get all ballots
+     * @param {GetAllBallotRequest} getAllBallotRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteAllBallotPost: async (
+      getAllBallotRequest: GetAllBallotRequest,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'getAllBallotRequest' is not null or undefined
+      assertParamExists(
+        'voteAllBallotPost',
+        'getAllBallotRequest',
+        getAllBallotRequest,
+      )
+      const localVarPath = `/vote/all-ballot`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getAllBallotRequest,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
      * @summary Get MP candidate in user area
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1647,6 +1751,34 @@ export const VoteApiFp = function (configuration?: Configuration) {
   return {
     /**
      *
+     * @summary Get all ballots
+     * @param {GetAllBallotRequest} getAllBallotRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async voteAllBallotPost(
+      getAllBallotRequest: GetAllBallotRequest,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<GetAllBallotResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.voteAllBallotPost(
+          getAllBallotRequest,
+          options,
+        )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
+     *
      * @summary Get MP candidate in user area
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1755,6 +1887,21 @@ export const VoteApiFactory = function (
   return {
     /**
      *
+     * @summary Get all ballots
+     * @param {GetAllBallotRequest} getAllBallotRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteAllBallotPost(
+      getAllBallotRequest: GetAllBallotRequest,
+      options?: any,
+    ): AxiosPromise<Array<GetAllBallotResponse>> {
+      return localVarFp
+        .voteAllBallotPost(getAllBallotRequest, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
      * @summary Get MP candidate in user area
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1817,6 +1964,23 @@ export const VoteApiFactory = function (
  * @extends {BaseAPI}
  */
 export class VoteApi extends BaseAPI {
+  /**
+   *
+   * @summary Get all ballots
+   * @param {GetAllBallotRequest} getAllBallotRequest
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof VoteApi
+   */
+  public voteAllBallotPost(
+    getAllBallotRequest: GetAllBallotRequest,
+    options?: AxiosRequestConfig,
+  ) {
+    return VoteApiFp(this.configuration)
+      .voteAllBallotPost(getAllBallotRequest, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
   /**
    *
    * @summary Get MP candidate in user area
