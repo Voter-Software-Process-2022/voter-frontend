@@ -3,13 +3,28 @@ import { useSelector } from 'react-redux'
 import type { RootState } from '../app/store'
 import { BiLogOut } from 'react-icons/bi'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
+import { useAppDispatch } from '../app/hooks'
+import {
+  setAuthUser,
+  setIsAcceptedRules,
+  setIsAuthenticated,
+} from '../features/user/userSlice'
+import Cookies from 'js-cookie'
 
 const UserDataCard: React.FC = () => {
   const [isOpenData, setIsOpenData] = useState<boolean>(false)
   const authUser = useSelector((state: RootState) => state.user.authUser)
+  const dispatch = useAppDispatch()
 
   const wrapperRef = useRef(null)
   useOutsideAlerter(wrapperRef, setIsOpenData)
+
+  const onLogoutHandler = () => {
+    dispatch(setIsAuthenticated(false))
+    dispatch(setIsAcceptedRules(false))
+    dispatch(setAuthUser(null))
+    Cookies.remove('token')
+  }
 
   return (
     <div className='relative'>
@@ -46,7 +61,10 @@ const UserDataCard: React.FC = () => {
                   <p>{authUser.Nationality}</p>
                 </div>
               </div>
-              <div className='mt-2 bg-slate-200 flex items-center justify-center py-2 rounded cursor-pointer hover:bg-slate-300'>
+              <div
+                className='mt-2 bg-slate-200 flex items-center justify-center py-2 rounded cursor-pointer hover:bg-slate-300'
+                onClick={onLogoutHandler}
+              >
                 <BiLogOut className='text-2xl mr-2' />
                 <span className='font-semibold'>LOGOUT</span>
               </div>
