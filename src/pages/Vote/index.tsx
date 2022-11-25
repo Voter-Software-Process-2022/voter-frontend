@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../app/hooks'
 import { setIsAcceptedRules } from '../../features/user/userSlice'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 import type { CandidateI } from '../../interfaces/candidate'
+import { fetchVoteSubmit } from '../../features/vote/voteSlice'
 
 const ballotId = uuid()
 
@@ -47,13 +48,23 @@ const Vote: React.FC = () => {
     setSelectedCandidate(candidate)
   }
 
-  const onSubmitHandler = () => {
-    if (!selectedCandidate) return
+  const onSubmitHandler = async () => {
+    if (!selectedCandidate || !voteTopicId) return
+    const response = await dispatch(
+      fetchVoteSubmit({
+        voteTopicId: parseInt(voteTopicId),
+        candidateId: selectedCandidate.id,
+      }),
+    )
+    console.log(response)
+
     setIsFinished(true)
-    setTimeout(() => {
-      navigate('/thank-you')
-      dispatch(setIsAcceptedRules(false))
-    }, 1000)
+    dispatch(setIsAcceptedRules(false))
+    navigate('/thank-you')
+    // setTimeout(() => {
+    //   navigate('/thank-you')
+    //   dispatch(setIsAcceptedRules(false))
+    // }, 1000)
   }
 
   if (isLoading) return <Loader />
