@@ -382,7 +382,7 @@ export interface UserInformation {
    * @type {number}
    * @memberof UserInformation
    */
-  DictricID?: number
+  DistricID?: number
 }
 /**
  *
