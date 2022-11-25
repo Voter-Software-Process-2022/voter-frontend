@@ -6,6 +6,7 @@ import type {
   CreateUserResponse,
   LoginUserInputV2,
   LoginUserResponseV2,
+  UserInformation,
   VoteAvailableResponse,
 } from '../../generated'
 import { UserApi, AuthApi } from '../../generated'
@@ -65,6 +66,12 @@ export const userSlice = createSlice({
     setIsAuthenticated: (state: IUser, action: PayloadAction<boolean>) => {
       state.isAuthenticated = action.payload
     },
+    setAuthUser: (
+      state: IUser,
+      action: PayloadAction<UserInformation | null>,
+    ) => {
+      state.authUser = action.payload
+    },
     setIsAcceptedRules: (state: IUser, action: PayloadAction<boolean>) => {
       state.isAcceptedRules = action.payload
     },
@@ -107,7 +114,8 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setIsAuthenticated, setIsAcceptedRules } = userSlice.actions
+export const { setIsAuthenticated, setIsAcceptedRules, setAuthUser } =
+  userSlice.actions
 
 export const isUserAuthenticated = (state: RootState) =>
   state.user.isAuthenticated
