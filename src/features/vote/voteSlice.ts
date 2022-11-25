@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 import Cookies from 'js-cookie'
 import { VoteApi, type VoteNoRequest, type VoteRequest } from '../../generated'
 
@@ -43,10 +42,7 @@ export const fetchMpCandidates = createAsyncThunk(
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    const { data } = await axios.get(
-      'http://localhost:8000/api/vote/mpcandidate',
-      options,
-    )
+    const { data } = await voteApi.voteMpcandidatePost(options)
     return data
   },
 )
