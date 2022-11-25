@@ -54,7 +54,7 @@ export const fetchUserRightToVote = createAsyncThunk(
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    const { data } = await voteApi.votePreVerifyPost(options)
+    const { data } = await voteApi.votePreVerifyGet(options)
     return data
   },
 )

@@ -50,16 +50,20 @@ const Vote: React.FC = () => {
 
   const onSubmitHandler = async () => {
     if (!selectedCandidate || !voteTopicId) return
+
     const response =
       selectedCandidate.id !== 0
         ? await dispatch(
             fetchVoteSubmit({
+              ballotId: ballotId,
               voteTopicId: parseInt(voteTopicId),
               candidateId: selectedCandidate.id,
+              areaId: selectedCandidate.areaId ?? 0,
             }),
           )
         : await dispatch(
             fetchVoteNo({
+              ballotId: ballotId,
               voteTopicId: parseInt(voteTopicId),
             }),
           )
