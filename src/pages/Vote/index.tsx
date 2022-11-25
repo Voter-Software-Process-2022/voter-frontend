@@ -121,7 +121,17 @@ const Vote: React.FC = () => {
       </ReactRouterPrompt>
       <div className='max-w-6xl mx-auto'>
         <div className='flex items-center justify-between py-8'>
-          <span className='text-lg lg:text-3xl'>Ballot ID: {ballotId}</span>
+          <span className='text-lg lg:text-3xl flex flex-col'>
+            <p className='mb-[1rem]'>Ballot ID: {ballotId}</p>
+            <p className='text-lg text-[red]'>
+              !!! The ballot will be considered as a void ballot if you close
+              this page. !!!
+            </p>
+            <p className='text-lg text-[violet]'>
+              !!! Please remember your Ballot ID if you want to see your vote
+              result later. !!!
+            </p>
+          </span>
           <span className='text-md lg:text-xl'>{`Vote for ${
             voteTopicId === '1' ? 'MPS' : 'Party'
           }`}</span>
@@ -148,7 +158,7 @@ const Vote: React.FC = () => {
                   />
                 ))}
               <button
-                className='bg-green-400 hover:bg-green-500 mt-2 duration-150 p-2 rounded text-2xl'
+                className='bg-green-400 hover:bg-green-500 my-[2rem] duration-150 p-2 rounded text-2xl'
                 onClick={onSubmitHandler}
               >
                 Confirm
