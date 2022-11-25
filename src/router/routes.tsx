@@ -1,5 +1,7 @@
 import { lazy } from 'react'
 import type { IUser } from '../interfaces/user'
+import { Navigate } from 'react-router-dom'
+
 const Home = lazy(() => import('../pages/Home'))
 const SignUp = lazy(() => import('../pages/SignUp'))
 const SignIn = lazy(() => import('../pages/SignIn'))
@@ -10,13 +12,18 @@ const Topics = lazy(() => import('../pages/Topics'))
 const PartyMember = lazy(() => import('../pages/PartyMember'))
 const NotFound = lazy(() => import('../pages/NotFound'))
 const Vote = lazy(() => import('../pages/Vote'))
+const Forbidden = lazy(() => import('../pages/Forbidden'))
+
 const routes = (user: IUser) => [
   {
     path: '/',
     element: <Home />,
   },
   { path: '/register', element: <SignUp /> },
-  { path: '/login', element: <SignIn /> },
+  {
+    path: '/login',
+    element: !user.isAuthenticated ? <SignIn /> : <Navigate to='/' />,
+  },
   { path: '/topics/:voteTopicId', element: <Info /> },
   {
     path: 'topics/candidate/:partyId',
@@ -24,11 +31,17 @@ const routes = (user: IUser) => [
   },
   {
     path: '/topics/:voteTopicId/vote',
-    element: user.isAcceptedRules ? <Vote /> : <div>Not allowed</div>,
+    element:
+      user.isAuthenticated && user.isAcceptedRules ? (
+        <Vote />
+      ) : (
+        <Navigate to='/forbidden' />
+      ),
   },
   { path: '/all-ballot', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/topics', element: <Topics /> },
+  { path: '/forbidden', element: <Forbidden /> },
   { path: '*', element: <NotFound /> },
 ]
 
