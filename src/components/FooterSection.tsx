@@ -31,7 +31,10 @@ const FooterSection: React.FC = () => {
             </a>
           </li>
           <li>
-            <a href='#' className='hover:underline'>
+            <a
+              href='https://github.com/Voter-Software-Process-2022/voter-frontend/issues'
+              className='hover:underline'
+            >
               Contact Us
             </a>
           </li>
