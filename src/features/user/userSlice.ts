@@ -2,16 +2,25 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import Cookies from 'js-cookie'
 import type { RootState } from '../../app/store'
-import type { LoginUserInputV2, LoginUserResponseV2 } from '../../generated'
-import { AuthApi } from '../../generated'
+import type {
+  CreateUserResponse,
+  LoginUserInputV2,
+  LoginUserResponseV2,
+  UserInformation,
+  VoteAvailableResponse,
+} from '../../generated'
+import { UserApi, AuthApi } from '../../generated'
 import type { IUser } from '../../interfaces/user'
+import { voteApi } from '../vote/voteSlice'
 
 const authApi = new AuthApi()
+const userApi = new UserApi()
 
 const initialState: IUser = {
   isAuthenticated: false,
   authUser: null,
   isAcceptedRules: false,
+  allowedVoteTopics: [],
 }
 
 export const fetchLogin = createAsyncThunk(
@@ -26,12 +35,42 @@ export const fetchLogin = createAsyncThunk(
   },
 )
 
+export const fetchUserInformation = createAsyncThunk(
+  'user/fetchUserInformation',
+  async () => {
+    const token = Cookies.get('token')
+    const options = {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+    const { data } = await userApi.usersMeGet(options)
+    return data
+  },
+)
+
+export const fetchUserRightToVote = createAsyncThunk(
+  'user/fetchUserRightToVote',
+  async () => {
+    const token = Cookies.get('token')
+    const options = {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+    const { data } = await voteApi.votePreVerifyPost(options)
+    return data
+  },
+)
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     setIsAuthenticated: (state: IUser, action: PayloadAction<boolean>) => {
       state.isAuthenticated = action.payload
+    },
+    setAuthUser: (
+      state: IUser,
+      action: PayloadAction<UserInformation | null>,
+    ) => {
+      state.authUser = action.payload
     },
     setIsAcceptedRules: (state: IUser, action: PayloadAction<boolean>) => {
       state.isAcceptedRules = action.payload
@@ -42,14 +81,41 @@ export const userSlice = createSlice({
       fetchLogin.fulfilled,
       (state, action: PayloadAction<LoginUserResponseV2>) => {
         const { token } = action.payload
-        state.isAuthenticated = true
-        if (token) Cookies.set('token', token)
+        if (token) {
+          state.isAuthenticated = true
+          Cookies.set('token', token)
+        }
+      },
+    )
+    builder.addCase(
+      fetchUserInformation.fulfilled,
+      (state, action: PayloadAction<CreateUserResponse>) => {
+        const { user } = action.payload
+        if (user) {
+          state.authUser = user
+        }
+      },
+    )
+    builder.addCase(fetchUserInformation.rejected, (state) => {
+      state.isAuthenticated = false
+      state.authUser = null
+      state.isAcceptedRules = false
+      Cookies.remove('token')
+    })
+    builder.addCase(
+      fetchUserRightToVote.fulfilled,
+      (state, action: PayloadAction<VoteAvailableResponse[]>) => {
+        const { payload } = action
+        state.allowedVoteTopics = payload.map(
+          (topic) => topic.voteTopicId ?? -1,
+        )
       },
     )
   },
 })
 
-export const { setIsAuthenticated, setIsAcceptedRules } = userSlice.actions
+export const { setIsAuthenticated, setIsAcceptedRules, setAuthUser } =
+  userSlice.actions
 
 export const isUserAuthenticated = (state: RootState) =>
   state.user.isAuthenticated

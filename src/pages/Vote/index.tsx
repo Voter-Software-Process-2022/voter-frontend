@@ -1,67 +1,80 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './vote.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import ReactRouterPrompt from 'react-router-prompt'
-import { BallotSelection, PreventDialog } from '../../components'
+import { BallotSelection, Loader, PreventDialog } from '../../components'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../app/hooks'
 import { setIsAcceptedRules } from '../../features/user/userSlice'
-
-interface Candidate {
-  number: number
-  name: string
-  pictureUrl: string
-}
-
-const mockData = [
-  {
-    number: 1,
-    name: 'Prayut Nahee',
-    pictureUrl:
-      'https://www.asiafinancial.com/wp-content/uploads/2022/10/Thai-PM-Prayut-Chan-ocha-is-seen-at-Government-House-in-Bangkok-Sept-9-2015.-RsChaiwat-Subprasom.jpg',
-  },
-  {
-    number: 2,
-    name: 'Prayut Kuy',
-    pictureUrl:
-      'https://static.bangkokpost.com/media/content/dcx/2020/06/18/3664912.jpg',
-  },
-  {
-    number: 3,
-    name: 'Prayut Edok',
-    pictureUrl:
-      'https://www.thephuketnews.com/photo/listing/2019/1559752046_1-org.jpg',
-  },
-  {
-    number: 0,
-    name: 'ไม่ลงคะแนนเสียง',
-    pictureUrl: '',
-  },
-]
+import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
+import type { CandidateI } from '../../interfaces/candidate'
+import { fetchVoteNo, fetchVoteSubmit } from '../../features/vote/voteSlice'
 
 const ballotId = uuid()
 
 const Vote: React.FC = () => {
-  const { topicId } = useParams()
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
+  const { voteTopicId } = useParams()
+  const [selectedCandidate, setSelectedCandidate] = useState<CandidateI | null>(
     null,
   )
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isFinished, setIsFinished] = useState<boolean>(false)
+  const [candidates, setCandidates] = useState<CandidateI[]>()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const onClickHandler = (candidate: Candidate) => {
+  useEffect(() => {
+    const onFetchAllCandidates = async () => {
+      setIsLoading(true)
+      if (!voteTopicId) return
+      const { payload }: any = await dispatch(
+        fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
+      )
+      setCandidates([
+        ...payload,
+        {
+          id: 0,
+          name: 'ไม่ลงคะแนนเสียง',
+          pictureUrl: '',
+        },
+      ])
+      console.log(payload)
+      setIsLoading(false)
+    }
+    onFetchAllCandidates()
+  }, [])
+
+  const onClickHandler = (candidate: CandidateI) => {
     setSelectedCandidate(candidate)
   }
 
-  const onSubmitHandler = () => {
-    if (!selectedCandidate) return
+  const onSubmitHandler = async () => {
+    if (!selectedCandidate || !voteTopicId) return
+    const response =
+      selectedCandidate.id !== 0
+        ? await dispatch(
+            fetchVoteSubmit({
+              voteTopicId: parseInt(voteTopicId),
+              candidateId: selectedCandidate.id,
+            }),
+          )
+        : await dispatch(
+            fetchVoteNo({
+              voteTopicId: parseInt(voteTopicId),
+            }),
+          )
+    console.log(response)
+
     setIsFinished(true)
-    setTimeout(() => {
-      navigate('/thank-you')
-      dispatch(setIsAcceptedRules(false))
-    }, 1000)
+    dispatch(setIsAcceptedRules(false))
+    navigate('/thank-you')
+    // setTimeout(() => {
+    //   navigate('/thank-you')
+    //   dispatch(setIsAcceptedRules(false))
+    // }, 1000)
   }
+
+  if (isLoading) return <Loader />
 
   return (
     <div className='min-h-screen'>
@@ -70,7 +83,10 @@ const Vote: React.FC = () => {
           isActive && (
             <PreventDialog
               isActive={isActive}
-              onConfirm={onConfirm}
+              onConfirm={() => {
+                onConfirm(isActive)
+                dispatch(setIsAcceptedRules(false))
+              }}
               onCancel={onCancel}
             />
           )
@@ -80,7 +96,7 @@ const Vote: React.FC = () => {
         <div className='flex items-center justify-between py-8'>
           <span className='text-lg lg:text-3xl'>Ballot ID: {ballotId}</span>
           <span className='text-md lg:text-xl'>{`Vote for ${
-            topicId === '1' ? 'MPS' : 'Party'
+            voteTopicId === '1' ? 'MPS' : 'Party'
           }`}</span>
         </div>
         <div className='flex flex-col items-center justify-between px-8 mt-8 lg:flex-row'>
@@ -95,14 +111,15 @@ const Vote: React.FC = () => {
           </div>
           <div>
             <div className='flex flex-col mt-6 lg:mt-0'>
-              {mockData.map((candidate: Candidate, index) => (
-                <BallotSelection
-                  choice={candidate.number}
-                  displayName={`${candidate.number}`}
-                  key={index}
-                  onClickHandler={() => onClickHandler(candidate)}
-                />
-              ))}
+              {candidates &&
+                candidates.map((candidate, index) => (
+                  <BallotSelection
+                    choice={candidate.id}
+                    displayName={`${candidate.id}`}
+                    key={index}
+                    onClickHandler={() => onClickHandler(candidate)}
+                  />
+                ))}
               <button
                 className='bg-green-400 hover:bg-green-500 mt-2 duration-150 p-2 rounded text-2xl'
                 onClick={onSubmitHandler}
@@ -122,10 +139,10 @@ export default Vote
 function SelectedCandidatePicture({
   selectedCandidate,
 }: {
-  selectedCandidate: Candidate | null
+  selectedCandidate: CandidateI | null
 }) {
   if (selectedCandidate) {
-    if (selectedCandidate.number === 0) {
+    if (selectedCandidate.id === 0) {
       return (
         <span className='text-2xl lg:text-4xl font-semibold'>งดออกเสียง</span>
       )

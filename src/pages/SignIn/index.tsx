@@ -1,12 +1,12 @@
 import React, { useState, type FormEvent } from 'react'
 import { IoChevronBackOutline } from 'react-icons/io5'
 import { ToastContainer } from 'react-toastify'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { alertErrorMessage } from '../../utils/alert'
 import useSSNFields from '../../hooks/useSSNFields'
 import * as AiIcon from 'react-icons/ai'
 import * as VSCIcon from 'react-icons/vsc'
-import { LaserInfo } from '../../components'
+import { LaserInfo, Loader } from '../../components'
 import { useAppDispatch } from '../../app/hooks'
 import { fetchLogin } from '../../features/user/userSlice'
 
@@ -17,13 +17,15 @@ const SignIn: React.FC = () => {
   const [laser3, setLaser3] = useState<string>('')
   const { handleChangeFocusInput } = useSSNFields()
   const [isHoverInfo, setIsHoverInfo] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
 
-  const onSubmitHandler = (e: FormEvent) => {
+  const onSubmitHandler = async (e: FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
     if (!citizen || !laser1 || !laser2 || !laser3) {
-      alertErrorMessage('Fields must not be empty')
+      alertErrorMessage('Fields must not be empty', true)
+      setIsLoading(false)
       return
     }
 
@@ -31,12 +33,20 @@ const SignIn: React.FC = () => {
       citizenId: citizen,
       laserId: `${laser1}${laser2}${laser3}`,
     }
-    dispatch(fetchLogin(data))
-    navigate('/')
+
+    const { payload } = await dispatch(fetchLogin(data))
+    setIsLoading(false)
+    if (!payload) {
+      alertErrorMessage(
+        'Cannot authenticate with this CitizenID and LaserID',
+        true,
+      )
+    }
   }
 
   return (
     <div className='bg-gray-800 flex flex-col min-h-screen'>
+      {isLoading && <Loader />}
       <ToastContainer
         position='bottom-right'
         autoClose={5000}

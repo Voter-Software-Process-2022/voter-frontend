@@ -1,5 +1,6 @@
-export interface InfoList {
-  id: number
-  name: string
-  description: string
+import type { CandidateI } from './candidate'
+
+export interface InfoCardProps {
+  voteTopicId: number
+  candidate: CandidateI
 }
