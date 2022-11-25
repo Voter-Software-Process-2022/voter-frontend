@@ -1,11 +1,13 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 import Cookies from 'js-cookie'
 import type { RootState } from '../../app/store'
 import type {
   CreateUserResponse,
   LoginUserInputV2,
   LoginUserResponseV2,
+  VoteAvailableResponse,
 } from '../../generated'
 import { UserApi, AuthApi } from '../../generated'
 import type { IUser } from '../../interfaces/user'
@@ -17,6 +19,7 @@ const initialState: IUser = {
   isAuthenticated: false,
   authUser: null,
   isAcceptedRules: false,
+  allowedVoteTopics: [],
 }
 
 export const fetchLogin = createAsyncThunk(
@@ -39,6 +42,21 @@ export const fetchUserInformation = createAsyncThunk(
       headers: { Authorization: `Bearer ${token}` },
     }
     const { data } = await userApi.usersMeGet(options)
+    return data
+  },
+)
+
+export const fetchUserRightToVote = createAsyncThunk(
+  'user/fetchUserRightToVote',
+  async () => {
+    const token = Cookies.get('token')
+    const options = {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+    const { data } = await axios.get(
+      'http://localhost:8000/api/vote/pre-verify',
+      options,
+    )
     return data
   },
 )
@@ -80,6 +98,15 @@ export const userSlice = createSlice({
       state.isAcceptedRules = false
       Cookies.remove('token')
     })
+    builder.addCase(
+      fetchUserRightToVote.fulfilled,
+      (state, action: PayloadAction<VoteAvailableResponse[]>) => {
+        const { payload } = action
+        state.allowedVoteTopics = payload.map(
+          (topic) => topic.voteTopicId ?? -1,
+        )
+      },
+    )
   },
 })
 
