@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
     e.preventDefault()
     setIsLoading(true)
     if (!citizen || !laser1 || !laser2 || !laser3) {
-      alertErrorMessage('Fields must not be empty')
+      alertErrorMessage('Fields must not be empty', true)
       setIsLoading(false)
       return
     }
@@ -37,7 +37,10 @@ const SignIn: React.FC = () => {
     const { payload } = await dispatch(fetchLogin(data))
     setIsLoading(false)
     if (!payload) {
-      alertErrorMessage('Cannot authenticate with this CitizenID and LaserID')
+      alertErrorMessage(
+        'Cannot authenticate with this CitizenID and LaserID',
+        true,
+      )
     }
   }
 

@@ -32,12 +32,12 @@ const SignUp: React.FC = () => {
       !password ||
       !confirmPassword
     ) {
-      alertErrorMessage('Fields must not be empty')
+      alertErrorMessage('Fields must not be empty', true)
       return
     }
 
     if (password !== confirmPassword) {
-      alertErrorMessage('Password mismatch!')
+      alertErrorMessage('Password mismatch!', true)
       return
     }
 
