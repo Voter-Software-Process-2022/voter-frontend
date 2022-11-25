@@ -11,6 +11,7 @@ import type {
 } from '../../generated'
 import { UserApi, AuthApi } from '../../generated'
 import type { IUser } from '../../interfaces/user'
+import { voteApi } from '../vote/voteSlice'
 
 const authApi = new AuthApi()
 const userApi = new UserApi()
@@ -53,10 +54,11 @@ export const fetchUserRightToVote = createAsyncThunk(
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    const { data } = await axios.get(
-      'http://localhost:8000/api/vote/pre-verify',
-      options,
-    )
+    const { data } = await voteApi.votePreVerifyPost(options)
+    // const { data } = await axios.get(
+    //   'http://localhost:8000/api/vote/pre-verify',
+    //   options,
+    // )
     return data
   },
 )
