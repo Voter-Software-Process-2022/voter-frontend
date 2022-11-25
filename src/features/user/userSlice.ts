@@ -115,6 +115,9 @@ export const userSlice = createSlice({
         )
       },
     )
+    builder.addCase(fetchUserRightToVote.rejected, (state) => {
+      state.allowedVoteTopics = []
+    })
   },
 })
 
