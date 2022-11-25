@@ -180,28 +180,46 @@ export interface GetAllBallotRequest {
 export interface GetAllBallotResponse {
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof GetAllBallotResponse
    */
-  id?: number
+  _id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof GetAllBallotResponse
+   */
+  timestamp?: string
+  /**
+   *
+   * @type {string}
+   * @memberof GetAllBallotResponse
+   */
+  userReference?: string
+  /**
+   *
+   * @type {string}
+   * @memberof GetAllBallotResponse
+   */
+  ballotId?: string
   /**
    *
    * @type {number}
    * @memberof GetAllBallotResponse
    */
-  party_id?: number
+  voteTopicId?: number
   /**
    *
    * @type {number}
    * @memberof GetAllBallotResponse
    */
-  candidate_id?: number
+  candidateId?: number
   /**
    *
    * @type {number}
    * @memberof GetAllBallotResponse
    */
-  area_id?: number
+  areaIdd?: number
 }
 /**
  *
