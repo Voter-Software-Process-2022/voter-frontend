@@ -1,5 +1,7 @@
+/* eslint-disable camelcase */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import Cookies from 'js-cookie'
+import type { GetAllBallotRequest } from '../../generated'
 import { VoteApi, type VoteNoRequest, type VoteRequest } from '../../generated'
 
 export const voteApi = new VoteApi()
@@ -46,6 +48,18 @@ export const fetchMpCandidates = createAsyncThunk(
       headers: { Authorization: `Bearer ${token}` },
     }
     const { data } = await voteApi.voteMpcandidateGet(options)
+    return data
+  },
+)
+
+export const fetchVoteAllBallot = createAsyncThunk(
+  'vote/fetchVoteAllBallot',
+  async ({ voteTopicId, areaId }: GetAllBallotRequest) => {
+    const submitVoteAllBallot: GetAllBallotRequest = {
+      voteTopicId: voteTopicId,
+      areaId: areaId,
+    }
+    const { data } = await voteApi.voteAllBallotPost(submitVoteAllBallot)
     return data
   },
 )
