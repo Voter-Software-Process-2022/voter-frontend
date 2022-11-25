@@ -12,6 +12,7 @@ const App = () => {
   return (
     <HistoryRouter history={createBrowserHistory()}>
       <Suspense fallback={<Loader />}>
+        {JSON.stringify(user)}
         <Router user={user} />
       </Suspense>
     </HistoryRouter>

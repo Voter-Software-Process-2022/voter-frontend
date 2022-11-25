@@ -75,6 +75,9 @@ export const userSlice = createSlice({
     setIsAcceptedRules: (state: IUser, action: PayloadAction<boolean>) => {
       state.isAcceptedRules = action.payload
     },
+    setAllowedVoteTopics: (state: IUser, action: PayloadAction<number[]>) => {
+      state.allowedVoteTopics = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -100,6 +103,7 @@ export const userSlice = createSlice({
       state.isAuthenticated = false
       state.authUser = null
       state.isAcceptedRules = false
+      state.allowedVoteTopics = []
       Cookies.remove('token')
     })
     builder.addCase(
@@ -114,8 +118,12 @@ export const userSlice = createSlice({
   },
 })
 
-export const { setIsAuthenticated, setIsAcceptedRules, setAuthUser } =
-  userSlice.actions
+export const {
+  setIsAuthenticated,
+  setIsAcceptedRules,
+  setAuthUser,
+  setAllowedVoteTopics,
+} = userSlice.actions
 
 export const isUserAuthenticated = (state: RootState) =>
   state.user.isAuthenticated
