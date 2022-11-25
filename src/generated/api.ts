@@ -356,6 +356,19 @@ export interface VoteAvailableResponse {
 /**
  *
  * @export
+ * @interface VoteNoRequest
+ */
+export interface VoteNoRequest {
+  /**
+   *
+   * @type {number}
+   * @memberof VoteNoRequest
+   */
+  voteTopicId: number
+}
+/**
+ *
+ * @export
  * @interface VoteRequest
  */
 export interface VoteRequest {
@@ -1439,6 +1452,63 @@ export const VoteApiAxiosParamCreator = function (
       }
     },
     /**
+     * Process vote No to topic
+     * @summary Process Vote No
+     * @param {VoteNoRequest} voteNoRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteNoPost: async (
+      voteNoRequest: VoteNoRequest,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'voteNoRequest' is not null or undefined
+      assertParamExists('voteNoPost', 'voteNoRequest', voteNoRequest)
+      const localVarPath = `/vote/no`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearerAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'Authorization',
+        configuration,
+      )
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        voteNoRequest,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
      * Verify right to vote before can access to vote
      * @summary Verify right to vote
      * @param {*} [options] Override http request option.
@@ -1575,6 +1645,30 @@ export const VoteApiFp = function (configuration?: Configuration) {
       )
     },
     /**
+     * Process vote No to topic
+     * @summary Process Vote No
+     * @param {VoteNoRequest} voteNoRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async voteNoPost(
+      voteNoRequest: VoteNoRequest,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.voteNoPost(
+        voteNoRequest,
+        options,
+      )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
      * Verify right to vote before can access to vote
      * @summary Verify right to vote
      * @param {*} [options] Override http request option.
@@ -1647,6 +1741,21 @@ export const VoteApiFactory = function (
         .then((request) => request(axios, basePath))
     },
     /**
+     * Process vote No to topic
+     * @summary Process Vote No
+     * @param {VoteNoRequest} voteNoRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteNoPost(
+      voteNoRequest: VoteNoRequest,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .voteNoPost(voteNoRequest, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
      * Verify right to vote before can access to vote
      * @summary Verify right to vote
      * @param {*} [options] Override http request option.
@@ -1694,6 +1803,23 @@ export class VoteApi extends BaseAPI {
   public voteMpcandidatePost(options?: AxiosRequestConfig) {
     return VoteApiFp(this.configuration)
       .voteMpcandidatePost(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * Process vote No to topic
+   * @summary Process Vote No
+   * @param {VoteNoRequest} voteNoRequest
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof VoteApi
+   */
+  public voteNoPost(
+    voteNoRequest: VoteNoRequest,
+    options?: AxiosRequestConfig,
+  ) {
+    return VoteApiFp(this.configuration)
+      .voteNoPost(voteNoRequest, options)
       .then((request) => request(this.axios, this.basePath))
   }
 
