@@ -106,7 +106,7 @@ const Vote: React.FC = () => {
             </p>
             <p className='text-lg text-[violet]'>
               !!! Please remember your Ballot ID if you want to see your vote
-              result. !!!
+              result later. !!!
             </p>
           </span>
           <span className='text-md lg:text-xl'>{`Vote for ${
