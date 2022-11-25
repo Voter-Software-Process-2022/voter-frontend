@@ -85,7 +85,7 @@ const Info: React.FC = () => {
               isOpenSidebar={isOpenSidebar}
               setIsOpenSidebar={setIsOpenSidebar}
             />
-            {voteTopicId && candidates && (
+            {voteTopicId && candidates ? (
               <Fragment>
                 <InfoList
                   voteTopicId={parseInt(voteTopicId)}
@@ -98,6 +98,12 @@ const Info: React.FC = () => {
                   Vote
                 </button>
               </Fragment>
+            ) : (
+              <div className='my-8'>
+                <span className='text-black text-xl flex justify-center'>
+                  Not found available candidates in your area...
+                </span>
+              </div>
             )}
             <RuleModal
               topicId={voteTopicId}
