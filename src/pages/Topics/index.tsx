@@ -43,7 +43,7 @@ const Topics = () => {
                   See Details
                 </button>
               </Link>
-              <Link to='/all-ballot'>
+              <Link to='/ballots/2'>
                 <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#3f8391] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-[#194f5a] hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-ou'>
                   Results
                 </button>
@@ -75,7 +75,7 @@ const Topics = () => {
                   See Details
                 </button>
               </Link>
-              <Link to='/all-ballot'>
+              <Link to='/ballots/1'>
                 <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#3f8391] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-[#194f5a] hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-ou'>
                   Results
                 </button>

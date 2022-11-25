@@ -38,7 +38,7 @@ const routes = (user: IUser) => [
         <Navigate to='/forbidden' />
       ),
   },
-  { path: '/all-ballot', element: <SeeAllBallot /> },
+  { path: '/ballots/:voteTopicId', element: <SeeAllBallot /> },
   { path: '/thank-you', element: <ThankYouPage /> },
   { path: '/topics', element: <Topics /> },
   { path: '/forbidden', element: <Forbidden /> },
