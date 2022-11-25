@@ -3,12 +3,13 @@ import { Loader, Navbar, RuleModal, Sidebar } from '../../components'
 import { Fragment, useEffect, useState } from 'react'
 import InfoList from '../../components/InfoList'
 import type { CandidateI } from '../../interfaces/candidate'
-import { useAppDispatch } from '../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 import { ToastContainer } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../app/store'
 import { fetchMpCandidates } from '../../features/vote/voteSlice'
+import { isUserAuthenticated } from '../../features/user/userSlice'
 
 const Info: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -21,6 +22,7 @@ const Info: React.FC = () => {
   const userAllowedTopics = useSelector(
     (state: RootState) => state.user.allowedVoteTopics,
   )
+  const verifyUserAuthenticated = useAppSelector(isUserAuthenticated)
 
   useEffect(() => {
     const verifyRightToVote = () => {
@@ -38,7 +40,11 @@ const Info: React.FC = () => {
       if (!voteTopicId) return
       let fetchCandidate: any
       if (voteTopicId === '1') {
-        const { payload }: any = await dispatch(fetchMpCandidates())
+        const { payload }: any = verifyUserAuthenticated
+          ? await dispatch(fetchMpCandidates())
+          : await dispatch(
+              fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
+            )
         fetchCandidate = payload
       } else {
         const { payload }: any = await dispatch(
