@@ -58,7 +58,7 @@ const Vote: React.FC = () => {
               ballotId: ballotId,
               voteTopicId: parseInt(voteTopicId),
               candidateId: selectedCandidate.id,
-              areaId: selectedCandidate.areaId ?? 0,
+              areaId: selectedCandidate.areaId,
             }),
           )
         : await dispatch(
