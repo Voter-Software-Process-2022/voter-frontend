@@ -24,7 +24,7 @@ const Info: React.FC = () => {
 
   useEffect(() => {
     const verifyRightToVote = () => {
-      if (!voteTopicId) return
+      if (!voteTopicId || !userAllowedTopics) return
       if (userAllowedTopics.includes(parseInt(voteTopicId))) {
         setCanVote(true)
       }
