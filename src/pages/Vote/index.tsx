@@ -6,9 +6,13 @@ import { BallotSelection, Loader, PreventDialog } from '../../components'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../app/hooks'
 import { setIsAcceptedRules } from '../../features/user/userSlice'
-import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 import type { CandidateI } from '../../interfaces/candidate'
-import { fetchVoteNo, fetchVoteSubmit } from '../../features/vote/voteSlice'
+import {
+  fetchMpCandidates,
+  fetchVoteNo,
+  fetchVoteSubmit,
+} from '../../features/vote/voteSlice'
+import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 
 const ballotId = uuid()
 
@@ -24,12 +28,15 @@ const Vote: React.FC = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const onFetchAllCandidates = async () => {
+    const onFetchCandidates = async () => {
       setIsLoading(true)
       if (!voteTopicId) return
-      const { payload }: any = await dispatch(
-        fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
-      )
+      const { payload }: any =
+        voteTopicId === '1'
+          ? await dispatch(fetchMpCandidates())
+          : await dispatch(
+              fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
+            )
       setCandidates([
         ...payload,
         {
@@ -38,11 +45,18 @@ const Vote: React.FC = () => {
           pictureUrl: '',
         },
       ])
-      console.log(payload)
       setIsLoading(false)
     }
-    onFetchAllCandidates()
+    onFetchCandidates()
   }, [])
+
+  useEffect(() => {
+    if (!isFinished) return
+    navigate('/thank-you')
+    setTimeout(() => {
+      dispatch(setIsAcceptedRules(false))
+    }, 1500)
+  }, [isFinished])
 
   const onClickHandler = (candidate: CandidateI) => {
     setSelectedCandidate(candidate)
@@ -50,7 +64,7 @@ const Vote: React.FC = () => {
 
   const onSubmitHandler = async () => {
     if (!selectedCandidate || !voteTopicId) return
-
+    setIsLoading(true)
     const response =
       selectedCandidate.id !== 0
         ? await dispatch(
@@ -68,29 +82,38 @@ const Vote: React.FC = () => {
             }),
           )
     console.log(response)
-
+    setIsLoading(false)
     setIsFinished(true)
-    dispatch(setIsAcceptedRules(false))
-    navigate('/thank-you')
-    // setTimeout(() => {
-    //   navigate('/thank-you')
-    //   dispatch(setIsAcceptedRules(false))
-    // }, 1000)
   }
 
-  if (isLoading) return <Loader />
+  const onLeavingPage = async (
+    isActive: boolean,
+    onConfirm: (value: unknown) => void,
+  ) => {
+    if (!voteTopicId) return
+    onConfirm(isActive)
+    setIsLoading(true)
+    await dispatch(
+      fetchVoteNo({
+        ballotId: ballotId,
+        voteTopicId: parseInt(voteTopicId),
+      }),
+    )
+    setIsLoading(false)
+    dispatch(setIsAcceptedRules(false))
+  }
+
+  // if (isLoading) return <Loader />
 
   return (
     <div className='min-h-screen'>
+      {isLoading && <Loader />}
       <ReactRouterPrompt when={!isFinished}>
         {({ isActive, onConfirm, onCancel }) =>
           isActive && (
             <PreventDialog
               isActive={isActive}
-              onConfirm={() => {
-                onConfirm(isActive)
-                dispatch(setIsAcceptedRules(false))
-              }}
+              onConfirm={() => onLeavingPage(isActive, onConfirm)}
               onCancel={onCancel}
             />
           )
