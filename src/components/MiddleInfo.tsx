@@ -9,18 +9,17 @@ const MiddleInfo = () => {
       <div className='p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem] my-[5rem]'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white'>
-            Need a help in Claim?
+            Want to keep in touch with the news?
           </h5>
         </a>
         <p className='mb-3 font-normal text-gray-500 dark:text-gray-400'>
-          Go to this step by step guideline process on how to certify for your
-          weekly benefits:
+          Go to this Thairath website now
         </p>
         <a
-          href='#'
+          href='https://www.thairath.co.th/tags/%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87'
           className='inline-flex items-center text-blue-600 hover:underline'
         >
-          See our guideline
+          See the website
           <svg
             className='ml-2 w-5 h-5'
             fill='currentColor'
@@ -35,15 +34,18 @@ const MiddleInfo = () => {
       <div className='p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-[2rem] my-[5rem]'>
         <a href='#'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
-            Noteworthy technology acquisitions 2021
+            Chaiwut has submitted a resignation letter.
           </h5>
         </a>
         <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
-          Here are the biggest enterprise technology acquisitions of 2021 so
-          far, in reverse chronological order.
+          On November 25, 65, reporters reported that Mr. Chaiwut
+          Thanakmanusorn, Minister of DES, and a list of MPs Palang Pracharath
+          Party has decided to submit a resignation letter from a member of the
+          House of Representatives By making a letter to the chairman of the
+          House signed on 24 November 2022.
         </p>
         <a
-          href='#'
+          href='https://www.thairath.co.th/news/politic/2562600'
           className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
         >
           Read more
@@ -66,14 +68,16 @@ const MiddleInfo = () => {
         <a href='#'>
           <img
             className='rounded-t-lg m-auto'
-            src='https://flowbite.com/docs/images/blog/image-1.jpg'
+            src='https://static.thairath.co.th/media/dFQROr7oWzulq5Fa5ya7VyvmUHNf3KWqTK8eSz6EMCsfrY11DEJi9ihEknFlNBfe3Hz.webp'
             alt=''
           />
         </a>
         <div className='p-5'>
           <a href='#'>
             <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
-              Noteworthy technology acquisitions 2021
+              {
+                'Keep an eye on "Big Tu", the number 1 prime minister\'s candidacy'
+              }
             </h5>
           </a>
           {/* <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
@@ -81,7 +85,7 @@ const MiddleInfo = () => {
             far, in reverse chronological order.
           </p> */}
           <a
-            href='#'
+            href='https://www.thairath.co.th/news/politic/2562631'
             className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
           >
             Read more
