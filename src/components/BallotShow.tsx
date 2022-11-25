@@ -22,15 +22,15 @@ const BallotShow: React.FC<BallotShowProps> = ({
         <p className='text-xs'>{`${ballotId}`}</p>
         <p></p>
       </div>
-      <table className='bg-white'>
+      <table className='bg-white w-full'>
         <tr>
-          <th>{selectedRule.candidateNumber}</th>
-          <th>{selectedRule.checkbox}</th>
+          <th className='px-2 w-40'>{selectedRule.candidateNumber}</th>
+          <th className='px-2 w-40'>{selectedRule.checkbox}</th>
         </tr>
         {listOfNumbers.map((x) => (
           <tr key={x}>
-            <th>{x}</th>
-            <th>
+            <th className='px-2'>{x}</th>
+            <th className='px-2'>
               <input
                 disabled
                 type='radio'
