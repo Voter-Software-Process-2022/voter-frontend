@@ -16,17 +16,18 @@ const FooterSection: React.FC = () => {
         </a>
         <ul className='flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400'>
           <li>
-            <a href='#' className='mr-4 hover:underline md:mr-6 '>
+            <a
+              href='https://github.com/orgs/Voter-Software-Process-2022/people'
+              className='mr-4 hover:underline md:mr-6 '
+            >
               About
             </a>
           </li>
           <li>
-            <a href='#' className='mr-4 hover:underline md:mr-6'>
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a href='#' className='mr-4 hover:underline md:mr-6 '>
+            <a
+              href='https://github.com/Voter-Software-Process-2022'
+              className='mr-4 hover:underline md:mr-6 '
+            >
               Github
             </a>
           </li>
