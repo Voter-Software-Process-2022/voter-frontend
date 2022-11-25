@@ -1,6 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 import Cookies from 'js-cookie'
 import type { RootState } from '../../app/store'
 import type {
@@ -55,10 +54,6 @@ export const fetchUserRightToVote = createAsyncThunk(
       headers: { Authorization: `Bearer ${token}` },
     }
     const { data } = await voteApi.votePreVerifyPost(options)
-    // const { data } = await axios.get(
-    //   'http://localhost:8000/api/vote/pre-verify',
-    //   options,
-    // )
     return data
   },
 )
