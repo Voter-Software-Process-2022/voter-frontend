@@ -361,6 +361,12 @@ export interface VoteAvailableResponse {
 export interface VoteNoRequest {
   /**
    *
+   * @type {string}
+   * @memberof VoteNoRequest
+   */
+  ballotId: string
+  /**
+   *
    * @type {number}
    * @memberof VoteNoRequest
    */
@@ -374,6 +380,12 @@ export interface VoteNoRequest {
 export interface VoteRequest {
   /**
    *
+   * @type {string}
+   * @memberof VoteRequest
+   */
+  ballotId: string
+  /**
+   *
    * @type {number}
    * @memberof VoteRequest
    */
@@ -384,6 +396,12 @@ export interface VoteRequest {
    * @memberof VoteRequest
    */
   candidateId: number
+  /**
+   *
+   * @type {number}
+   * @memberof VoteRequest
+   */
+  areaId: number
 }
 
 /**
