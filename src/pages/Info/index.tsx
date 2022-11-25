@@ -8,6 +8,7 @@ import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 import { ToastContainer } from 'react-toastify'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../app/store'
+import { fetchMpCandidates } from '../../features/vote/voteSlice'
 
 const Info: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
@@ -35,10 +36,17 @@ const Info: React.FC = () => {
     const fetchData = async () => {
       setIsLoading(true)
       if (!voteTopicId) return
-      const { payload }: any = await dispatch(
-        fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
-      )
-      setCandidates(payload)
+      let fetchCandidate: any
+      if (voteTopicId === '1') {
+        const { payload }: any = await dispatch(fetchMpCandidates())
+        fetchCandidate = payload
+      } else {
+        const { payload }: any = await dispatch(
+          fetchAllCandidates({ voteTopicId: parseInt(voteTopicId) }),
+        )
+        fetchCandidate = payload
+      }
+      setCandidates(fetchCandidate)
       setIsLoading(false)
     }
     fetchData()
