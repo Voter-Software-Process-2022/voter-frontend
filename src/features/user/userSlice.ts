@@ -54,7 +54,7 @@ export const fetchUserRightToVote = createAsyncThunk(
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    const { data } = await voteApi.votePreVerifyPost(options)
+    const { data } = await voteApi.votePreVerifyGet(options)
     return data
   },
 )
@@ -74,6 +74,9 @@ export const userSlice = createSlice({
     },
     setIsAcceptedRules: (state: IUser, action: PayloadAction<boolean>) => {
       state.isAcceptedRules = action.payload
+    },
+    setAllowedVoteTopics: (state: IUser, action: PayloadAction<number[]>) => {
+      state.allowedVoteTopics = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -100,6 +103,7 @@ export const userSlice = createSlice({
       state.isAuthenticated = false
       state.authUser = null
       state.isAcceptedRules = false
+      state.allowedVoteTopics = []
       Cookies.remove('token')
     })
     builder.addCase(
@@ -111,11 +115,18 @@ export const userSlice = createSlice({
         )
       },
     )
+    builder.addCase(fetchUserRightToVote.rejected, (state) => {
+      state.allowedVoteTopics = []
+    })
   },
 })
 
-export const { setIsAuthenticated, setIsAcceptedRules, setAuthUser } =
-  userSlice.actions
+export const {
+  setIsAuthenticated,
+  setIsAcceptedRules,
+  setAuthUser,
+  setAllowedVoteTopics,
+} = userSlice.actions
 
 export const isUserAuthenticated = (state: RootState) =>
   state.user.isAuthenticated

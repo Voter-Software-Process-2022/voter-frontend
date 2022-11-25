@@ -19,6 +19,8 @@ const FooterSection: React.FC = () => {
             <a
               href='https://github.com/orgs/Voter-Software-Process-2022/people'
               className='mr-4 hover:underline md:mr-6 '
+              target='_blank'
+              rel='noreferrer'
             >
               About
             </a>
@@ -27,6 +29,8 @@ const FooterSection: React.FC = () => {
             <a
               href='https://github.com/Voter-Software-Process-2022'
               className='mr-4 hover:underline md:mr-6 '
+              target='_blank'
+              rel='noreferrer'
             >
               Github
             </a>
@@ -35,6 +39,8 @@ const FooterSection: React.FC = () => {
             <a
               href='https://github.com/Voter-Software-Process-2022/voter-frontend/issues'
               className='hover:underline'
+              target='_blank'
+              rel='noreferrer'
             >
               Contact Us
             </a>
@@ -47,6 +53,8 @@ const FooterSection: React.FC = () => {
         <a
           href='https://github.com/Voter-Software-Process-2022'
           className='hover:underline'
+          target='_blank'
+          rel='noreferrer'
         >
           Yak3BdPro
         </a>

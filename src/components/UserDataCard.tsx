@@ -5,6 +5,7 @@ import { BiLogOut } from 'react-icons/bi'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import { useAppDispatch } from '../app/hooks'
 import {
+  setAllowedVoteTopics,
   setAuthUser,
   setIsAcceptedRules,
   setIsAuthenticated,
@@ -23,6 +24,7 @@ const UserDataCard: React.FC = () => {
     dispatch(setIsAuthenticated(false))
     dispatch(setIsAcceptedRules(false))
     dispatch(setAuthUser(null))
+    dispatch(setAllowedVoteTopics([]))
     Cookies.remove('token')
   }
 
