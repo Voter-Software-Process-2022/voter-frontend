@@ -9,8 +9,6 @@ const ThankYouPage = lazy(() => import('../pages/ThankYouPage'))
 const Topics = lazy(() => import('../pages/Topics'))
 const PartyMember = lazy(() => import('../pages/PartyMember'))
 const NotFound = lazy(() => import('../pages/NotFound'))
-const CandidateDetail = lazy(() => import('../pages/PartyMember'))
-const PartyMember = lazy(() => import('../pages/PartyMember'))
 const Vote = lazy(() => import('../pages/Vote'))
 const routes = (user: IUser) => [
   {
