@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../app/hooks'
 import { setIsAcceptedRules } from '../../features/user/userSlice'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
 import type { CandidateI } from '../../interfaces/candidate'
-import { fetchVoteSubmit } from '../../features/vote/voteSlice'
+import { fetchVoteNo, fetchVoteSubmit } from '../../features/vote/voteSlice'
 
 const ballotId = uuid()
 
@@ -50,12 +50,19 @@ const Vote: React.FC = () => {
 
   const onSubmitHandler = async () => {
     if (!selectedCandidate || !voteTopicId) return
-    const response = await dispatch(
-      fetchVoteSubmit({
-        voteTopicId: parseInt(voteTopicId),
-        candidateId: selectedCandidate.id,
-      }),
-    )
+    const response =
+      selectedCandidate.id !== 0
+        ? await dispatch(
+            fetchVoteSubmit({
+              voteTopicId: parseInt(voteTopicId),
+              candidateId: selectedCandidate.id,
+            }),
+          )
+        : await dispatch(
+            fetchVoteNo({
+              voteTopicId: parseInt(voteTopicId),
+            }),
+          )
     console.log(response)
 
     setIsFinished(true)
