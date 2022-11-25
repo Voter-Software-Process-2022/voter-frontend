@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { Loader, Navbar, RuleModal, Sidebar } from '../../components'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import InfoList from '../../components/InfoList'
 import type { CandidateI } from '../../interfaces/candidate'
 import { useAppDispatch } from '../../app/hooks'
@@ -52,8 +52,6 @@ const Info: React.FC = () => {
     fetchData()
   }, [voteTopicId])
 
-  if (isLoading) return <Loader />
-
   return (
     <div className='min-h-screen bg-white'>
       <div className='flex flex-col'>
@@ -61,42 +59,48 @@ const Info: React.FC = () => {
           isOpenSidebar={isOpenSidebar}
           setIsOpenSidebar={setIsOpenSidebar}
         />
-        <div className='relative flex flex-col pb-16'>
-          <ToastContainer
-            position='bottom-right'
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme='dark'
-          />
-          <Sidebar
-            isOpenSidebar={isOpenSidebar}
-            setIsOpenSidebar={setIsOpenSidebar}
-          />
-          {voteTopicId && candidates && (
-            <InfoList
-              voteTopicId={parseInt(voteTopicId)}
-              candidates={candidates}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className='relative flex flex-col pb-16'>
+            <ToastContainer
+              position='bottom-right'
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme='dark'
             />
-          )}
-          <button
-            onClick={() => setIsOpenRuleModal(true)}
-            className='hover:bg-gray-700 focus:outline-none p-3 w-16 self-center flex-center text-center text-white bg-gray-600 rounded'
-          >
-            Vote
-          </button>
-          <RuleModal
-            topicId={voteTopicId}
-            canVote={canVote}
-            isOpenRuleModal={isOpenRuleModal}
-            setIsOpenRuleModal={setIsOpenRuleModal}
-          />
-        </div>
+            <Sidebar
+              isOpenSidebar={isOpenSidebar}
+              setIsOpenSidebar={setIsOpenSidebar}
+            />
+            {voteTopicId && candidates && (
+              <Fragment>
+                <InfoList
+                  voteTopicId={parseInt(voteTopicId)}
+                  candidates={candidates}
+                />
+                <button
+                  onClick={() => setIsOpenRuleModal(true)}
+                  className='hover:bg-gray-700 focus:outline-none p-3 w-16 self-center flex-center text-center text-white bg-gray-600 rounded'
+                >
+                  Vote
+                </button>
+              </Fragment>
+            )}
+            <RuleModal
+              topicId={voteTopicId}
+              canVote={canVote}
+              isOpenRuleModal={isOpenRuleModal}
+              setIsOpenRuleModal={setIsOpenRuleModal}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
