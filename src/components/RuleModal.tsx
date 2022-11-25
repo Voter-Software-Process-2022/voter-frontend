@@ -4,20 +4,23 @@ import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import type { RuleModalProps } from './../interfaces/components/ruleModal'
 import { IoCloseOutline } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Stack } from '@mui/system'
 import LanguageSwitcher from './LanguageSwitcher'
 import { thaiRule, englishRule } from '../config/rulesWords'
 import { useAppDispatch } from '../app/hooks'
 import { setIsAcceptedRules } from '../features/user/userSlice'
+import { alertErrorMessage } from '../utils/alert'
 
 const RuleModal: React.FC<RuleModalProps> = ({
   topicId,
+  canVote,
   isOpenRuleModal,
   setIsOpenRuleModal,
 }) => {
   const [isThaiLanguage, setIsThaiLanguage] = useState<boolean>(true)
   const [checked, setChecked] = useState<boolean>(false)
+  const navigate = useNavigate()
   const selectedRule = isThaiLanguage ? thaiRule : englishRule
   const listInnerRef = useRef<HTMLDivElement>(null)
   const dispatch = useAppDispatch()
@@ -29,8 +32,14 @@ const RuleModal: React.FC<RuleModalProps> = ({
     }
   }
 
-  const onClickHandler = () => {
-    dispatch(setIsAcceptedRules(true))
+  const onClickHandler = (topicId: string | undefined) => {
+    if (!canVote) {
+      setIsOpenRuleModal(false)
+      alertErrorMessage('You already voted this topic!', false)
+    } else {
+      dispatch(setIsAcceptedRules(true))
+      navigate(`/topics/${topicId}/vote`)
+    }
   }
 
   return (
@@ -85,19 +94,17 @@ const RuleModal: React.FC<RuleModalProps> = ({
           <p className='mt-[0.8rem] grow text-orange-800'>
             *** {selectedRule.penaltyAndPunishment.agree}
           </p>
-          <Link to={`/topics/${topicId}/vote`}>
-            <button
-              disabled={!checked}
-              onClick={onClickHandler}
-              className={`${
-                checked
-                  ? 'hover:bg-green-600 text-green-500 border-2 border-green-400 hover:text-white ml-[auto]'
-                  : 'bg-slate-300 text-white ml-[auto] border-2'
-              } focus:outline-none p-3 text-center border bg-white rounded mt-2 uppercase`}
-            >
-              {selectedRule.penaltyAndPunishment.nextButton}
-            </button>
-          </Link>
+          <button
+            disabled={!checked}
+            onClick={() => onClickHandler(topicId)}
+            className={`${
+              checked
+                ? 'hover:bg-green-600 text-green-500 border-2 border-green-400 hover:text-white ml-[auto]'
+                : 'bg-slate-300 text-white ml-[auto] border-2'
+            } focus:outline-none p-3 text-center border bg-white rounded mt-2 uppercase`}
+          >
+            {selectedRule.penaltyAndPunishment.nextButton}
+          </button>
         </div>
       </div>
     </Modal>

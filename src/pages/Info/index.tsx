@@ -5,14 +5,31 @@ import InfoList from '../../components/InfoList'
 import type { CandidateI } from '../../interfaces/candidate'
 import { useAppDispatch } from '../../app/hooks'
 import { fetchAllCandidates } from '../../features/candidate/candidateSlice'
+import { ToastContainer } from 'react-toastify'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../app/store'
 
 const Info: React.FC = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false)
   const [isOpenRuleModal, setIsOpenRuleModal] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [candidates, setCandidates] = useState<CandidateI[]>()
+  const [canVote, setCanVote] = useState<boolean>(false)
   const { voteTopicId } = useParams()
   const dispatch = useAppDispatch()
+  const userAllowedTopics = useSelector(
+    (state: RootState) => state.user.allowedVoteTopics,
+  )
+
+  useEffect(() => {
+    const verifyRightToVote = () => {
+      if (!voteTopicId) return
+      if (userAllowedTopics.includes(parseInt(voteTopicId))) {
+        setCanVote(true)
+      }
+    }
+    verifyRightToVote()
+  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +54,18 @@ const Info: React.FC = () => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
         <div className='relative flex flex-col pb-16'>
+          <ToastContainer
+            position='bottom-right'
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme='dark'
+          />
           <Sidebar
             isOpenSidebar={isOpenSidebar}
             setIsOpenSidebar={setIsOpenSidebar}
@@ -55,6 +84,7 @@ const Info: React.FC = () => {
           </button>
           <RuleModal
             topicId={voteTopicId}
+            canVote={canVote}
             isOpenRuleModal={isOpenRuleModal}
             setIsOpenRuleModal={setIsOpenRuleModal}
           />
