@@ -75,7 +75,9 @@ const MiddleInfo = () => {
         <div className='p-5'>
           <a href='#'>
             <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
-              Keep an eye on "Big Tu", the number 1 prime minister's candidacy
+              {
+                'Keep an eye on "Big Tu", the number 1 prime minister\'s candidacy'
+              }
             </h5>
           </a>
           {/* <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>
