@@ -39,12 +39,12 @@ const Topics = () => {
             </div>
             <div className='flex justify-center'>
               <Link to='2'>
-                <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] md:p-2 xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'>
+                <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#19303d] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-ou'>
                   See Details
                 </button>
               </Link>
               <Link to='/all-ballot'>
-                <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] md:p-2 xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#3f8391] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-[#194f5a] hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-ou'>
+                <button className='mx-4 p-2.5 mt-[70px] md:mt-[60px] xl:p-[1.5rem] inline-block px-6 py-2.5 bg-[#3f8391] text-white font-medium text-xs leading-tight uppercase rounded-lg shadow-md hover:bg-[#194f5a] hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-ou'>
                   Results
                 </button>
               </Link>
