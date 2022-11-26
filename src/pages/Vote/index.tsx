@@ -65,23 +65,21 @@ const Vote: React.FC = () => {
   const onSubmitHandler = async () => {
     if (!selectedCandidate || !voteTopicId) return
     setIsLoading(true)
-    const response =
-      selectedCandidate.id !== 0
-        ? await dispatch(
-            fetchVoteSubmit({
-              ballotId: ballotId,
-              voteTopicId: parseInt(voteTopicId),
-              candidateId: selectedCandidate.id,
-              areaId: selectedCandidate.areaId,
-            }),
-          )
-        : await dispatch(
-            fetchVoteNo({
-              ballotId: ballotId,
-              voteTopicId: parseInt(voteTopicId),
-            }),
-          )
-    console.log(response)
+    selectedCandidate.id !== 0
+      ? await dispatch(
+          fetchVoteSubmit({
+            ballotId: ballotId,
+            voteTopicId: parseInt(voteTopicId),
+            candidateId: selectedCandidate.id,
+            areaId: selectedCandidate.areaId,
+          }),
+        )
+      : await dispatch(
+          fetchVoteNo({
+            ballotId: ballotId,
+            voteTopicId: parseInt(voteTopicId),
+          }),
+        )
     setIsLoading(false)
     setIsFinished(true)
   }
@@ -102,8 +100,6 @@ const Vote: React.FC = () => {
     setIsLoading(false)
     dispatch(setIsAcceptedRules(false))
   }
-
-  // if (isLoading) return <Loader />
 
   return (
     <div className='min-h-screen'>
