@@ -13,10 +13,10 @@
   --grey: #ecedf3;
 }
 
-[type='checkbox']:checked,
-[type='checkbox']:not(:checked),
-[type='radio']:checked,
-[type='radio']:not(:checked) {
+.checkbox-budget:checked,
+.checkbox-budget:not(:checked),
+.checkbox-budget:checked,
+.checkbox-budget:not(:checked) {
   position: absolute;
   left: -9999px;
   width: 0;
