@@ -31,7 +31,9 @@ const BallotShow: React.FC<BallotShowProps> = ({
                 <input
                   disabled
                   type='radio'
-                  checked={x === voteForCandidateNumber}
+                  checked={
+                    candidates.includes(x) ? x === voteForCandidateNumber : true
+                  }
                 />
               </th>
             </tr>
