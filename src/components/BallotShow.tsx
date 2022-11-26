@@ -9,6 +9,7 @@ const BallotShow: React.FC<BallotShowProps> = ({
   isThaiLanguage,
 }) => {
   const selectedRule = isThaiLanguage ? thaiBallot : englishBallot
+  console.log(voteForCandidateNumber)
 
   return (
     <div className='group relative border border-gray-400 text-zinc-800 rounded-xl p-4 bg-zinc-400'>
@@ -31,7 +32,11 @@ const BallotShow: React.FC<BallotShowProps> = ({
                 <input
                   disabled
                   type='radio'
-                  checked={x === voteForCandidateNumber}
+                  checked={
+                    voteForCandidateNumber
+                      ? x === voteForCandidateNumber
+                      : x === 0
+                  }
                 />
               </th>
             </tr>
