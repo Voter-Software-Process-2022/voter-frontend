@@ -21,7 +21,7 @@ import globalAxios, {
   AxiosRequestConfig,
 } from 'axios'
 
-export const BASE_PATH = 'http://localhost:8000/api'.replace(/\/+$/, '')
+export const BASE_PATH = 'https://api.yak3bd.pro/api'.replace(/\/+$/, '')
 
 /**
  *
