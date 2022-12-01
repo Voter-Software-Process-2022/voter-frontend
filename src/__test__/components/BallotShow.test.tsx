@@ -5,15 +5,17 @@ import '@testing-library/jest-dom'
 import BallotShow from '../../components/BallotShow'
 
 const mockPropWithSelectedCandidate = {
-  ballotId: 1,
-  amountOfCandidates: 3,
-  voteForCandidateNumber: 3,
+  ballotId: "test1",
+  candidates: [9,1,3],
+  voteForCandidateNumber: 1,
+  isThaiLanguage: false
 }
 
 const mockPropWithUnSelectedCandidate = {
-  ballotId: 1,
-  amountOfCandidates: 5,
+  ballotId: "test2",
+  candidates: [9,1,3],
   voteForCandidateNumber: 0,
+  isThaiLanguage: false
 }
 
 describe('test ballot show with selected candidate', () => {
@@ -22,10 +24,9 @@ describe('test ballot show with selected candidate', () => {
       <BrowserRouter>
         <BallotShow
           ballotId={mockPropWithSelectedCandidate.ballotId}
-          amountOfCandidates={mockPropWithSelectedCandidate.amountOfCandidates}
-          voteForCandidateNumber={
-            mockPropWithSelectedCandidate.voteForCandidateNumber
-          }
+          candidates={mockPropWithSelectedCandidate.candidates}
+          voteForCandidateNumber={mockPropWithSelectedCandidate.voteForCandidateNumber}
+          isThaiLanguage={mockPropWithSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
     )
@@ -40,7 +41,7 @@ describe('test ballot show with selected candidate', () => {
 
     const table = screen.getByTestId('table')
     expect(table.getElementsByTagName('input').length).toBe(
-      mockPropWithSelectedCandidate.amountOfCandidates,
+      mockPropWithSelectedCandidate.candidates.length,
     )
   })
 
@@ -49,10 +50,9 @@ describe('test ballot show with selected candidate', () => {
       <BrowserRouter>
         <BallotShow
           ballotId={mockPropWithSelectedCandidate.ballotId}
-          amountOfCandidates={mockPropWithSelectedCandidate.amountOfCandidates}
-          voteForCandidateNumber={
-            mockPropWithSelectedCandidate.voteForCandidateNumber
-          }
+          candidates={mockPropWithSelectedCandidate.candidates}
+          voteForCandidateNumber={mockPropWithSelectedCandidate.voteForCandidateNumber}
+          isThaiLanguage={mockPropWithSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
     )
@@ -68,11 +68,12 @@ describe('test ballot show with selected candidate', () => {
     const table = screen.getByTestId('table')
     const tableInputs = table.getElementsByTagName('input')
     expect(tableInputs.length).toBe(
-      mockPropWithSelectedCandidate.amountOfCandidates,
+      mockPropWithSelectedCandidate.candidates.length,
     )
 
+    const checkedIndex = mockPropWithSelectedCandidate.candidates.map( (loopVariable) => loopVariable).indexOf(mockPropWithSelectedCandidate.voteForCandidateNumber)
     expect(
-      tableInputs[mockPropWithSelectedCandidate.voteForCandidateNumber - 1]
+      tableInputs[checkedIndex]
         .checked,
     ).toBe(true)
   })
@@ -84,12 +85,9 @@ describe('test ballot show with unselected candidate', () => {
       <BrowserRouter>
         <BallotShow
           ballotId={mockPropWithUnSelectedCandidate.ballotId}
-          amountOfCandidates={
-            mockPropWithUnSelectedCandidate.amountOfCandidates
-          }
-          voteForCandidateNumber={
-            mockPropWithUnSelectedCandidate.voteForCandidateNumber
-          }
+          candidates={mockPropWithUnSelectedCandidate.candidates}
+          voteForCandidateNumber={mockPropWithUnSelectedCandidate.voteForCandidateNumber}
+          isThaiLanguage={mockPropWithUnSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
     )
@@ -104,7 +102,7 @@ describe('test ballot show with unselected candidate', () => {
 
     const table = screen.getByTestId('table')
     expect(table.getElementsByTagName('input').length).toBe(
-      mockPropWithUnSelectedCandidate.amountOfCandidates,
+      mockPropWithUnSelectedCandidate.candidates.length,
     )
   })
 
@@ -113,12 +111,9 @@ describe('test ballot show with unselected candidate', () => {
       <BrowserRouter>
         <BallotShow
           ballotId={mockPropWithUnSelectedCandidate.ballotId}
-          amountOfCandidates={
-            mockPropWithUnSelectedCandidate.amountOfCandidates
-          }
-          voteForCandidateNumber={
-            mockPropWithUnSelectedCandidate.voteForCandidateNumber
-          }
+          candidates={mockPropWithUnSelectedCandidate.candidates}
+          voteForCandidateNumber={mockPropWithUnSelectedCandidate.voteForCandidateNumber}
+          isThaiLanguage={mockPropWithUnSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
     )
@@ -134,7 +129,7 @@ describe('test ballot show with unselected candidate', () => {
     const table = screen.getByTestId('table')
     const tableInputs = table.getElementsByTagName('input')
     expect(tableInputs.length).toBe(
-      mockPropWithUnSelectedCandidate.amountOfCandidates,
+      mockPropWithUnSelectedCandidate.candidates.length,
     )
 
     for (let i = 0; i < tableInputs.length; i++) {

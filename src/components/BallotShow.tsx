@@ -19,7 +19,7 @@ const BallotShow: React.FC<BallotShowProps> = ({
       {/* <p>{`${selectedRule.ballotId}: ${ballotId}`}</p> */}
       <div className='text-center mb-4 border  border-gray-400 rounded-xl bg-white'>
         <p className='font-bold'>{`${selectedRule.ballotId}`}</p>
-        <p className='text-xs'>{`${ballotId}`}</p>
+        <p className='text-xs' data-testid='ballot-id'>{`${ballotId}`}</p>
         <p></p>
       </div>
       <table className='bg-white w-full' data-testid='table'>
