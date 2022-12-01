@@ -5,9 +5,12 @@ import '@testing-library/jest-dom'
 import InfoCard from '../../components/InfoCard'
 
 const mockPropInfoSingleCard = {
-  id: 1,
-  name: 'John Doe',
-  description: 'Candidate#1',
+  voteTopicId: 0,
+  candidate: {
+    id: 1,
+    name: 'John Doe',
+    pictureUrl: "pictureUrl"
+  }
 }
 
 describe('test info card', () => {
@@ -15,50 +18,36 @@ describe('test info card', () => {
     render(
       <BrowserRouter>
         <InfoCard
-          id={mockPropInfoSingleCard.id}
-          name={mockPropInfoSingleCard.name}
-          description={mockPropInfoSingleCard.description}
+          voteTopicId={mockPropInfoSingleCard.voteTopicId}
+          candidate={mockPropInfoSingleCard.candidate}
         />
       </BrowserRouter>,
     )
     const idText = screen.getByTestId('id-field')
     expect(idText).toBeDefined()
-    expect(idText.innerHTML).toContain(mockPropInfoSingleCard.id)
+    expect(idText.innerHTML).toContain(mockPropInfoSingleCard.candidate.id)
 
     const nameText = screen.getByTestId('name-field')
     expect(nameText).toBeDefined()
-    expect(nameText.innerHTML).toContain(mockPropInfoSingleCard.name)
-
-    const descriptionText = screen.getByTestId('description-field')
-    expect(descriptionText).toBeDefined()
-    expect(descriptionText.innerHTML).toContain(
-      mockPropInfoSingleCard.description,
-    )
+    expect(nameText.innerHTML).toContain(mockPropInfoSingleCard.candidate.name)
   })
 
   test('click see details link', () => {
     render(
       <BrowserRouter>
         <InfoCard
-          id={mockPropInfoSingleCard.id}
-          name={mockPropInfoSingleCard.name}
-          description={mockPropInfoSingleCard.description}
+          voteTopicId={mockPropInfoSingleCard.voteTopicId}
+          candidate={mockPropInfoSingleCard.candidate}
         />
       </BrowserRouter>,
     )
     const idText = screen.getByTestId('id-field')
     expect(idText).toBeDefined()
-    expect(idText.innerHTML).toContain(mockPropInfoSingleCard.id)
+    expect(idText.innerHTML).toContain(mockPropInfoSingleCard.candidate.id)
 
     const nameText = screen.getByTestId('name-field')
     expect(nameText).toBeDefined()
-    expect(nameText.innerHTML).toContain(mockPropInfoSingleCard.name)
-
-    const descriptionText = screen.getByTestId('description-field')
-    expect(descriptionText).toBeDefined()
-    expect(descriptionText.innerHTML).toContain(
-      mockPropInfoSingleCard.description,
-    )
+    expect(nameText.innerHTML).toContain(mockPropInfoSingleCard.candidate.name)
 
     // wait development to finish see details pages
 
