@@ -17,8 +17,6 @@ describe('FooterSection', () => {
     expect(governmentLogo.textContent).toBe('Royal Thai Government')
     const aboutLink = screen.getByText('About')
     expect(aboutLink).toBeDefined()
-    const privacyLink = screen.getByText('Privacy Policy')
-    expect(privacyLink).toBeDefined()
     const gitHubLink = screen.getByText('Github')
     expect(gitHubLink).toBeDefined()
     const contactLink = screen.getByText('Contact Us')
@@ -39,8 +37,7 @@ describe('FooterSection', () => {
     expect(governmentLogo.textContent).toBe('Royal Thai Government')
     const aboutLink = screen.getByText('About')
     expect(aboutLink).toBeDefined()
-    const privacyLink = screen.getByText('Privacy Policy')
-    expect(privacyLink).toBeDefined()
+    
     const gitHubLink = screen.getByText('Github')
     expect(gitHubLink).toBeDefined()
     const contactLink = screen.getByText('Contact Us')
@@ -65,8 +62,7 @@ describe('FooterSection', () => {
     expect(governmentLogo.textContent).toBe('Royal Thai Government')
     const aboutLink = screen.getByText('About')
     expect(aboutLink).toBeDefined()
-    const privacyLink = screen.getByText('Privacy Policy')
-    expect(privacyLink).toBeDefined()
+    
     const gitHubLink = screen.getByText('Github')
     expect(gitHubLink).toBeDefined()
     const contactLink = screen.getByText('Contact Us')
@@ -74,31 +70,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(aboutLink.getAttribute('href')).toBe('#')
-  })
-
-  test('click privacy link', () => {
-    render(
-      <BrowserRouter>
-        <FooterSection />
-      </BrowserRouter>,
-    )
-
-    const governmentLogo = screen.getByTestId('royal-thai-government')
-    expect(governmentLogo).toBeDefined()
-    expect(governmentLogo.textContent).toBe('Royal Thai Government')
-    const aboutLink = screen.getByText('About')
-    expect(aboutLink).toBeDefined()
-    const privacyLink = screen.getByText('Privacy Policy')
-    expect(privacyLink).toBeDefined()
-    const gitHubLink = screen.getByText('Github')
-    expect(gitHubLink).toBeDefined()
-    const contactLink = screen.getByText('Contact Us')
-    expect(contactLink).toBeDefined()
-    const developerLink = screen.getByText('Yak3BdPro')
-    expect(developerLink).toBeDefined()
-
-    expect(privacyLink.getAttribute('href')).toBe('#')
+    expect(aboutLink.getAttribute('href')).toBe('https://github.com/orgs/Voter-Software-Process-2022/people')
   })
 
   test('click github link', () => {
@@ -113,8 +85,7 @@ describe('FooterSection', () => {
     expect(governmentLogo.textContent).toBe('Royal Thai Government')
     const aboutLink = screen.getByText('About')
     expect(aboutLink).toBeDefined()
-    const privacyLink = screen.getByText('Privacy Policy')
-    expect(privacyLink).toBeDefined()
+    
     const gitHubLink = screen.getByText('Github')
     expect(gitHubLink).toBeDefined()
     const contactLink = screen.getByText('Contact Us')
@@ -122,7 +93,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(gitHubLink.getAttribute('href')).toBe('#')
+    expect(gitHubLink.getAttribute('href')).toBe('https://github.com/Voter-Software-Process-2022')
   })
 
   test('click contract link', () => {
@@ -137,8 +108,7 @@ describe('FooterSection', () => {
     expect(governmentLogo.textContent).toBe('Royal Thai Government')
     const aboutLink = screen.getByText('About')
     expect(aboutLink).toBeDefined()
-    const privacyLink = screen.getByText('Privacy Policy')
-    expect(privacyLink).toBeDefined()
+    
     const gitHubLink = screen.getByText('Github')
     expect(gitHubLink).toBeDefined()
     const contactLink = screen.getByText('Contact Us')
@@ -146,7 +116,7 @@ describe('FooterSection', () => {
     const developerLink = screen.getByText('Yak3BdPro')
     expect(developerLink).toBeDefined()
 
-    expect(contactLink.getAttribute('href')).toBe('#')
+    expect(contactLink.getAttribute('href')).toBe('https://github.com/Voter-Software-Process-2022/voter-frontend/issues')
   })
 
   test('click developer link', () => {
@@ -161,8 +131,7 @@ describe('FooterSection', () => {
     expect(governmentLogo.textContent).toBe('Royal Thai Government')
     const aboutLink = screen.getByText('About')
     expect(aboutLink).toBeDefined()
-    const privacyLink = screen.getByText('Privacy Policy')
-    expect(privacyLink).toBeDefined()
+    
     const gitHubLink = screen.getByText('Github')
     expect(gitHubLink).toBeDefined()
     const contactLink = screen.getByText('Contact Us')
