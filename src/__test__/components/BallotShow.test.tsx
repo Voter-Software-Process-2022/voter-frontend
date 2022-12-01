@@ -5,17 +5,17 @@ import '@testing-library/jest-dom'
 import BallotShow from '../../components/BallotShow'
 
 const mockPropWithSelectedCandidate = {
-  ballotId: "test1",
-  candidates: [9,1,3],
+  ballotId: 'test1',
+  candidates: [9, 1, 3],
   voteForCandidateNumber: 1,
-  isThaiLanguage: false
+  isThaiLanguage: false,
 }
 
 const mockPropWithUnSelectedCandidate = {
-  ballotId: "test2",
-  candidates: [9,1,3],
+  ballotId: 'test2',
+  candidates: [9, 1, 3],
   voteForCandidateNumber: 0,
-  isThaiLanguage: false
+  isThaiLanguage: false,
 }
 
 describe('test ballot show with selected candidate', () => {
@@ -25,7 +25,9 @@ describe('test ballot show with selected candidate', () => {
         <BallotShow
           ballotId={mockPropWithSelectedCandidate.ballotId}
           candidates={mockPropWithSelectedCandidate.candidates}
-          voteForCandidateNumber={mockPropWithSelectedCandidate.voteForCandidateNumber}
+          voteForCandidateNumber={
+            mockPropWithSelectedCandidate.voteForCandidateNumber
+          }
           isThaiLanguage={mockPropWithSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
@@ -51,7 +53,9 @@ describe('test ballot show with selected candidate', () => {
         <BallotShow
           ballotId={mockPropWithSelectedCandidate.ballotId}
           candidates={mockPropWithSelectedCandidate.candidates}
-          voteForCandidateNumber={mockPropWithSelectedCandidate.voteForCandidateNumber}
+          voteForCandidateNumber={
+            mockPropWithSelectedCandidate.voteForCandidateNumber
+          }
           isThaiLanguage={mockPropWithSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
@@ -71,11 +75,10 @@ describe('test ballot show with selected candidate', () => {
       mockPropWithSelectedCandidate.candidates.length,
     )
 
-    const checkedIndex = mockPropWithSelectedCandidate.candidates.map( (loopVariable) => loopVariable).indexOf(mockPropWithSelectedCandidate.voteForCandidateNumber)
-    expect(
-      tableInputs[checkedIndex]
-        .checked,
-    ).toBe(true)
+    const checkedIndex = mockPropWithSelectedCandidate.candidates
+      .map((loopVariable) => loopVariable)
+      .indexOf(mockPropWithSelectedCandidate.voteForCandidateNumber)
+    expect(tableInputs[checkedIndex].checked).toBe(true)
   })
 })
 
@@ -86,7 +89,9 @@ describe('test ballot show with unselected candidate', () => {
         <BallotShow
           ballotId={mockPropWithUnSelectedCandidate.ballotId}
           candidates={mockPropWithUnSelectedCandidate.candidates}
-          voteForCandidateNumber={mockPropWithUnSelectedCandidate.voteForCandidateNumber}
+          voteForCandidateNumber={
+            mockPropWithUnSelectedCandidate.voteForCandidateNumber
+          }
           isThaiLanguage={mockPropWithUnSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
@@ -112,7 +117,9 @@ describe('test ballot show with unselected candidate', () => {
         <BallotShow
           ballotId={mockPropWithUnSelectedCandidate.ballotId}
           candidates={mockPropWithUnSelectedCandidate.candidates}
-          voteForCandidateNumber={mockPropWithUnSelectedCandidate.voteForCandidateNumber}
+          voteForCandidateNumber={
+            mockPropWithUnSelectedCandidate.voteForCandidateNumber
+          }
           isThaiLanguage={mockPropWithUnSelectedCandidate.isThaiLanguage}
         />
       </BrowserRouter>,
