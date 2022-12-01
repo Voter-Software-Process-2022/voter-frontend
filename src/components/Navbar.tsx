@@ -6,10 +6,14 @@ import type { NavbarProps } from './../interfaces/components/navbar'
 import NavbarLink from './NavbarLink'
 import Logo from './../assets/images/gov-logo.png'
 import { MENU_LIST } from '../config/menu'
+import UserDataCard from './UserDataCard'
+import { useAppSelector } from '../app/hooks'
+import { isUserAuthenticated } from '../features/user/userSlice'
 
 const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isHomepage, setIsHomepage] = useState(false)
+  const verifyUserAuthenticated = useAppSelector(isUserAuthenticated)
 
   useEffect(() => {
     setIsHomepage(window.location.pathname === '/')
@@ -64,13 +68,21 @@ const Navbar: React.FC<NavbarProps> = ({ isOpenSidebar, setIsOpenSidebar }) => {
             onClick={() => setIsOpenSidebar(false)}
           />
         )}
-        <div className='hidden lg:flex items-center h-[40px] bg-[#ffffff17] rounded-lg'>
-          <Link to='/login'>
-            <div className='flex items-center px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-lg '>
-              <IoPersonSharp className='mr-2' />
-              <span>Sign In</span>
-            </div>
-          </Link>
+        <div
+          className={`hidden lg:flex items-center h-[40px] bg-[#ffffff17] rounded-lg ${
+            !verifyUserAuthenticated ? 'rounded-lg' : 'rounded-full'
+          }`}
+        >
+          {verifyUserAuthenticated ? (
+            <UserDataCard />
+          ) : (
+            <Link to='/login'>
+              <div className='flex items-center px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-lg'>
+                <IoPersonSharp className='mr-2' />
+                <span>Sign In</span>
+              </div>
+            </Link>
+          )}
           {/* <div className='w-[0.5px] bg-white h-[70%]'></div>
           <Link to='/register'>
             <div className='px-4 py-2 cursor-pointer duration-300 hover:bg-[#ffffff26] hover:rounded-r-lg'>

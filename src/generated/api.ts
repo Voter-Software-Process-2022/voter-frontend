@@ -44,6 +44,43 @@ import {
 /**
  *
  * @export
+ * @interface CandidateResponse
+ */
+export interface CandidateResponse {
+  /**
+   *
+   * @type {number}
+   * @memberof CandidateResponse
+   */
+  id?: number
+  /**
+   *
+   * @type {string}
+   * @memberof CandidateResponse
+   */
+  name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof CandidateResponse
+   */
+  pictureUrl?: string
+  /**
+   *
+   * @type {number}
+   * @memberof CandidateResponse
+   */
+  area_id?: number
+  /**
+   *
+   * @type {number}
+   * @memberof CandidateResponse
+   */
+  party_id?: number
+}
+/**
+ *
+ * @export
  * @interface CreateUserInput
  */
 export interface CreateUserInput {
@@ -92,10 +129,10 @@ export interface CreateUserResponse {
   status?: string
   /**
    *
-   * @type {User}
+   * @type {UserInformation}
    * @memberof CreateUserResponse
    */
-  user?: User
+  user?: UserInformation
 }
 /**
  *
@@ -115,6 +152,74 @@ export interface ErrorResponse {
    * @memberof ErrorResponse
    */
   error?: string
+}
+/**
+ *
+ * @export
+ * @interface GetAllBallotRequest
+ */
+export interface GetAllBallotRequest {
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotRequest
+   */
+  voteTopicId: number
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotRequest
+   */
+  areaId: number
+}
+/**
+ *
+ * @export
+ * @interface GetAllBallotResponse
+ */
+export interface GetAllBallotResponse {
+  /**
+   *
+   * @type {string}
+   * @memberof GetAllBallotResponse
+   */
+  _id?: string
+  /**
+   *
+   * @type {string}
+   * @memberof GetAllBallotResponse
+   */
+  timestamp?: string
+  /**
+   *
+   * @type {string}
+   * @memberof GetAllBallotResponse
+   */
+  userReference?: string
+  /**
+   *
+   * @type {string}
+   * @memberof GetAllBallotResponse
+   */
+  ballotId?: string
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotResponse
+   */
+  voteTopicId?: number
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotResponse
+   */
+  candidateId?: number
+  /**
+   *
+   * @type {number}
+   * @memberof GetAllBallotResponse
+   */
+  areaIdd?: number
 }
 /**
  *
@@ -247,6 +352,130 @@ export interface User {
    * @memberof User
    */
   updatedAt?: string
+}
+/**
+ *
+ * @export
+ * @interface UserInformation
+ */
+export interface UserInformation {
+  /**
+   *
+   * @type {number}
+   * @memberof UserInformation
+   */
+  CitizenID?: number
+  /**
+   *
+   * @type {string}
+   * @memberof UserInformation
+   */
+  LazerID?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UserInformation
+   */
+  Name?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UserInformation
+   */
+  Lastname?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UserInformation
+   */
+  Birthday?: string
+  /**
+   *
+   * @type {string}
+   * @memberof UserInformation
+   */
+  Nationality?: string
+  /**
+   *
+   * @type {number}
+   * @memberof UserInformation
+   */
+  DistricID?: number
+}
+/**
+ *
+ * @export
+ * @interface VoteAvailableResponse
+ */
+export interface VoteAvailableResponse {
+  /**
+   *
+   * @type {number}
+   * @memberof VoteAvailableResponse
+   */
+  voteTopicId?: number
+  /**
+   *
+   * @type {string}
+   * @memberof VoteAvailableResponse
+   */
+  voteTopicName?: string
+}
+/**
+ *
+ * @export
+ * @interface VoteNoRequest
+ */
+export interface VoteNoRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof VoteNoRequest
+   */
+  ballotId: string
+  /**
+   *
+   * @type {number}
+   * @memberof VoteNoRequest
+   */
+  voteTopicId: number
+  /**
+   *
+   * @type {number}
+   * @memberof VoteNoRequest
+   */
+  areaId?: number
+}
+/**
+ *
+ * @export
+ * @interface VoteRequest
+ */
+export interface VoteRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof VoteRequest
+   */
+  ballotId: string
+  /**
+   *
+   * @type {number}
+   * @memberof VoteRequest
+   */
+  voteTopicId: number
+  /**
+   *
+   * @type {number}
+   * @memberof VoteRequest
+   */
+  candidateId: number
+  /**
+   *
+   * @type {number}
+   * @memberof VoteRequest
+   */
+  areaId?: number
 }
 
 /**
@@ -621,6 +850,382 @@ export class AuthApi extends BaseAPI {
 }
 
 /**
+ * CandidateApi - axios parameter creator
+ * @export
+ */
+export const CandidateApiAxiosParamCreator = function (
+  configuration?: Configuration,
+) {
+  return {
+    /**
+     *
+     * @summary Get all party members
+     * @param {number} partyId Party ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    candidatePartymemberPartyIdGet: async (
+      partyId: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'partyId' is not null or undefined
+      assertParamExists('candidatePartymemberPartyIdGet', 'partyId', partyId)
+      const localVarPath = `/candidate/partymember/{partyId}`.replace(
+        `{${'partyId'}}`,
+        encodeURIComponent(String(partyId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Get selected candidate of selected topic.
+     * @summary Get selected candidate
+     * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+     * @param {number} candidateId Candidate id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    candidateVoteTopicIdCandidateIdGet: async (
+      voteTopicId: number,
+      candidateId: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'voteTopicId' is not null or undefined
+      assertParamExists(
+        'candidateVoteTopicIdCandidateIdGet',
+        'voteTopicId',
+        voteTopicId,
+      )
+      // verify required parameter 'candidateId' is not null or undefined
+      assertParamExists(
+        'candidateVoteTopicIdCandidateIdGet',
+        'candidateId',
+        candidateId,
+      )
+      const localVarPath = `/candidate/{voteTopicId}/{candidateId}`
+        .replace(`{${'voteTopicId'}}`, encodeURIComponent(String(voteTopicId)))
+        .replace(`{${'candidateId'}}`, encodeURIComponent(String(candidateId)))
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Get all candidates separated by vote topic.
+     * @summary Get All Candidates
+     * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    candidateVoteTopicIdGet: async (
+      voteTopicId: number,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'voteTopicId' is not null or undefined
+      assertParamExists('candidateVoteTopicIdGet', 'voteTopicId', voteTopicId)
+      const localVarPath = `/candidate/{voteTopicId}`.replace(
+        `{${'voteTopicId'}}`,
+        encodeURIComponent(String(voteTopicId)),
+      )
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * CandidateApi - functional programming interface
+ * @export
+ */
+export const CandidateApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = CandidateApiAxiosParamCreator(configuration)
+  return {
+    /**
+     *
+     * @summary Get all party members
+     * @param {number} partyId Party ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async candidatePartymemberPartyIdGet(
+      partyId: number,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<CandidateResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.candidatePartymemberPartyIdGet(
+          partyId,
+          options,
+        )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
+     * Get selected candidate of selected topic.
+     * @summary Get selected candidate
+     * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+     * @param {number} candidateId Candidate id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async candidateVoteTopicIdCandidateIdGet(
+      voteTopicId: number,
+      candidateId: number,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.candidateVoteTopicIdCandidateIdGet(
+          voteTopicId,
+          candidateId,
+          options,
+        )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
+     * Get all candidates separated by vote topic.
+     * @summary Get All Candidates
+     * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async candidateVoteTopicIdGet(
+      voteTopicId: number,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<CandidateResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.candidateVoteTopicIdGet(
+          voteTopicId,
+          options,
+        )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+  }
+}
+
+/**
+ * CandidateApi - factory interface
+ * @export
+ */
+export const CandidateApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = CandidateApiFp(configuration)
+  return {
+    /**
+     *
+     * @summary Get all party members
+     * @param {number} partyId Party ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    candidatePartymemberPartyIdGet(
+      partyId: number,
+      options?: any,
+    ): AxiosPromise<Array<CandidateResponse>> {
+      return localVarFp
+        .candidatePartymemberPartyIdGet(partyId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Get selected candidate of selected topic.
+     * @summary Get selected candidate
+     * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+     * @param {number} candidateId Candidate id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    candidateVoteTopicIdCandidateIdGet(
+      voteTopicId: number,
+      candidateId: number,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .candidateVoteTopicIdCandidateIdGet(voteTopicId, candidateId, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Get all candidates separated by vote topic.
+     * @summary Get All Candidates
+     * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    candidateVoteTopicIdGet(
+      voteTopicId: number,
+      options?: any,
+    ): AxiosPromise<Array<CandidateResponse>> {
+      return localVarFp
+        .candidateVoteTopicIdGet(voteTopicId, options)
+        .then((request) => request(axios, basePath))
+    },
+  }
+}
+
+/**
+ * CandidateApi - object-oriented interface
+ * @export
+ * @class CandidateApi
+ * @extends {BaseAPI}
+ */
+export class CandidateApi extends BaseAPI {
+  /**
+   *
+   * @summary Get all party members
+   * @param {number} partyId Party ID
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CandidateApi
+   */
+  public candidatePartymemberPartyIdGet(
+    partyId: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return CandidateApiFp(this.configuration)
+      .candidatePartymemberPartyIdGet(partyId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * Get selected candidate of selected topic.
+   * @summary Get selected candidate
+   * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+   * @param {number} candidateId Candidate id
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CandidateApi
+   */
+  public candidateVoteTopicIdCandidateIdGet(
+    voteTopicId: number,
+    candidateId: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return CandidateApiFp(this.configuration)
+      .candidateVoteTopicIdCandidateIdGet(voteTopicId, candidateId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * Get all candidates separated by vote topic.
+   * @summary Get All Candidates
+   * @param {number} voteTopicId Vote topic id (1&#x3D;MP, 2&#x3D;Party)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CandidateApi
+   */
+  public candidateVoteTopicIdGet(
+    voteTopicId: number,
+    options?: AxiosRequestConfig,
+  ) {
+    return CandidateApiFp(this.configuration)
+      .candidateVoteTopicIdGet(voteTopicId, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+}
+
+/**
  * HealthcheckApi - axios parameter creator
  * @export
  */
@@ -880,6 +1485,577 @@ export class UserApi extends BaseAPI {
   public usersMeGet(options?: AxiosRequestConfig) {
     return UserApiFp(this.configuration)
       .usersMeGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+}
+
+/**
+ * VoteApi - axios parameter creator
+ * @export
+ */
+export const VoteApiAxiosParamCreator = function (
+  configuration?: Configuration,
+) {
+  return {
+    /**
+     *
+     * @summary Get all ballots
+     * @param {GetAllBallotRequest} getAllBallotRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteAllBallotPost: async (
+      getAllBallotRequest: GetAllBallotRequest,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'getAllBallotRequest' is not null or undefined
+      assertParamExists(
+        'voteAllBallotPost',
+        'getAllBallotRequest',
+        getAllBallotRequest,
+      )
+      const localVarPath = `/vote/all-ballot`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        getAllBallotRequest,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     *
+     * @summary Get MP candidate in user area
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteMpcandidateGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/vote/mpcandidate`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearerAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'Authorization',
+        configuration,
+      )
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Process vote No to topic
+     * @summary Process Vote No
+     * @param {VoteNoRequest} voteNoRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteNoPost: async (
+      voteNoRequest: VoteNoRequest,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'voteNoRequest' is not null or undefined
+      assertParamExists('voteNoPost', 'voteNoRequest', voteNoRequest)
+      const localVarPath = `/vote/no`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearerAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'Authorization',
+        configuration,
+      )
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        voteNoRequest,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Verify right to vote before can access to vote
+     * @summary Verify right to vote
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    votePreVerifyGet: async (
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/vote/pre-verify`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearerAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'Authorization',
+        configuration,
+      )
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+    /**
+     * Process vote to a candidate
+     * @summary Process Vote
+     * @param {VoteRequest} voteRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteSubmitPost: async (
+      voteRequest: VoteRequest,
+      options: AxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'voteRequest' is not null or undefined
+      assertParamExists('voteSubmitPost', 'voteRequest', voteRequest)
+      const localVarPath = `/vote/submit`
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL)
+      let baseOptions
+      if (configuration) {
+        baseOptions = configuration.baseOptions
+      }
+
+      const localVarRequestOptions = {
+        method: 'POST',
+        ...baseOptions,
+        ...options,
+      }
+      const localVarHeaderParameter = {} as any
+      const localVarQueryParameter = {} as any
+
+      // authentication bearerAuth required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'Authorization',
+        configuration,
+      )
+
+      localVarHeaderParameter['Content-Type'] = 'application/json'
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter)
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {}
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      }
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        voteRequest,
+        localVarRequestOptions,
+        configuration,
+      )
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      }
+    },
+  }
+}
+
+/**
+ * VoteApi - functional programming interface
+ * @export
+ */
+export const VoteApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = VoteApiAxiosParamCreator(configuration)
+  return {
+    /**
+     *
+     * @summary Get all ballots
+     * @param {GetAllBallotRequest} getAllBallotRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async voteAllBallotPost(
+      getAllBallotRequest: GetAllBallotRequest,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<GetAllBallotResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.voteAllBallotPost(
+          getAllBallotRequest,
+          options,
+        )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
+     *
+     * @summary Get MP candidate in user area
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async voteMpcandidateGet(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<CandidateResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.voteMpcandidateGet(options)
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
+     * Process vote No to topic
+     * @summary Process Vote No
+     * @param {VoteNoRequest} voteNoRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async voteNoPost(
+      voteNoRequest: VoteNoRequest,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.voteNoPost(
+        voteNoRequest,
+        options,
+      )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
+     * Verify right to vote before can access to vote
+     * @summary Verify right to vote
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async votePreVerifyGet(
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<Array<VoteAvailableResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.votePreVerifyGet(options)
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+    /**
+     * Process vote to a candidate
+     * @summary Process Vote
+     * @param {VoteRequest} voteRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async voteSubmitPost(
+      voteRequest: VoteRequest,
+      options?: AxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.voteSubmitPost(
+        voteRequest,
+        options,
+      )
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      )
+    },
+  }
+}
+
+/**
+ * VoteApi - factory interface
+ * @export
+ */
+export const VoteApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = VoteApiFp(configuration)
+  return {
+    /**
+     *
+     * @summary Get all ballots
+     * @param {GetAllBallotRequest} getAllBallotRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteAllBallotPost(
+      getAllBallotRequest: GetAllBallotRequest,
+      options?: any,
+    ): AxiosPromise<Array<GetAllBallotResponse>> {
+      return localVarFp
+        .voteAllBallotPost(getAllBallotRequest, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     *
+     * @summary Get MP candidate in user area
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteMpcandidateGet(options?: any): AxiosPromise<Array<CandidateResponse>> {
+      return localVarFp
+        .voteMpcandidateGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Process vote No to topic
+     * @summary Process Vote No
+     * @param {VoteNoRequest} voteNoRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteNoPost(
+      voteNoRequest: VoteNoRequest,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .voteNoPost(voteNoRequest, options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Verify right to vote before can access to vote
+     * @summary Verify right to vote
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    votePreVerifyGet(
+      options?: any,
+    ): AxiosPromise<Array<VoteAvailableResponse>> {
+      return localVarFp
+        .votePreVerifyGet(options)
+        .then((request) => request(axios, basePath))
+    },
+    /**
+     * Process vote to a candidate
+     * @summary Process Vote
+     * @param {VoteRequest} voteRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    voteSubmitPost(
+      voteRequest: VoteRequest,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .voteSubmitPost(voteRequest, options)
+        .then((request) => request(axios, basePath))
+    },
+  }
+}
+
+/**
+ * VoteApi - object-oriented interface
+ * @export
+ * @class VoteApi
+ * @extends {BaseAPI}
+ */
+export class VoteApi extends BaseAPI {
+  /**
+   *
+   * @summary Get all ballots
+   * @param {GetAllBallotRequest} getAllBallotRequest
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof VoteApi
+   */
+  public voteAllBallotPost(
+    getAllBallotRequest: GetAllBallotRequest,
+    options?: AxiosRequestConfig,
+  ) {
+    return VoteApiFp(this.configuration)
+      .voteAllBallotPost(getAllBallotRequest, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   *
+   * @summary Get MP candidate in user area
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof VoteApi
+   */
+  public voteMpcandidateGet(options?: AxiosRequestConfig) {
+    return VoteApiFp(this.configuration)
+      .voteMpcandidateGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * Process vote No to topic
+   * @summary Process Vote No
+   * @param {VoteNoRequest} voteNoRequest
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof VoteApi
+   */
+  public voteNoPost(
+    voteNoRequest: VoteNoRequest,
+    options?: AxiosRequestConfig,
+  ) {
+    return VoteApiFp(this.configuration)
+      .voteNoPost(voteNoRequest, options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * Verify right to vote before can access to vote
+   * @summary Verify right to vote
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof VoteApi
+   */
+  public votePreVerifyGet(options?: AxiosRequestConfig) {
+    return VoteApiFp(this.configuration)
+      .votePreVerifyGet(options)
+      .then((request) => request(this.axios, this.basePath))
+  }
+
+  /**
+   * Process vote to a candidate
+   * @summary Process Vote
+   * @param {VoteRequest} voteRequest
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof VoteApi
+   */
+  public voteSubmitPost(
+    voteRequest: VoteRequest,
+    options?: AxiosRequestConfig,
+  ) {
+    return VoteApiFp(this.configuration)
+      .voteSubmitPost(voteRequest, options)
       .then((request) => request(this.axios, this.basePath))
   }
 }

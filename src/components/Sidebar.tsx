@@ -1,10 +1,14 @@
-import React, { useRef } from 'react'
+import React, { Fragment, useRef } from 'react'
 import type { SidebarProps } from '../interfaces/components/sidebar'
 import SidebarLink from './SidebarLink'
 import { IoPersonSharp } from 'react-icons/io5'
 import useOutsideAlerter from '../hooks/useOutsideAlerter'
 import { MENU_LIST } from '../config/menu'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../app/hooks'
+import { isUserAuthenticated } from '../features/user/userSlice'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../app/store'
 
 const Sidebar: React.FC<SidebarProps> = ({
   isOpenSidebar,
@@ -12,6 +16,8 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const wrapperRef = useRef(null)
   useOutsideAlerter(wrapperRef, setIsOpenSidebar)
+  const verifyUserAuthenticated = useAppSelector(isUserAuthenticated)
+  const authUser = useSelector((state: RootState) => state.user.authUser)
 
   return (
     <div
@@ -32,16 +38,33 @@ const Sidebar: React.FC<SidebarProps> = ({
         ))}
       </div>
       <div className='mb-8'>
-        <Link to='/login'>
-          <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
-            <div className='flex items-center mx-8'>
-              <IoPersonSharp className='mr-4 text-lg' />
-              <span className='text-slate-300 text-xl font-medium'>
-                Sign In
-              </span>
-            </div>
+        {verifyUserAuthenticated ? (
+          <div className='flex items-center mx-4'>
+            {authUser && (
+              <Fragment>
+                <div className='w-12 h-12 rounded-full bg-[#ffaeae] flex items-center justify-center shadow-lg'>
+                  <span className='text-xl font-medium select-none'>
+                    {authUser.Name?.charAt(0)}
+                  </span>
+                </div>
+                <span className='ml-4 text-xl'>
+                  {authUser.Name} {authUser.Lastname}
+                </span>
+              </Fragment>
+            )}
           </div>
-        </Link>
+        ) : (
+          <Link to='/login'>
+            <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
+              <div className='flex items-center mx-8'>
+                <IoPersonSharp className='mr-4 text-lg' />
+                <span className='text-slate-300 text-xl font-medium'>
+                  Sign In
+                </span>
+              </div>
+            </div>
+          </Link>
+        )}
         {/* <div className='py-4 hover:border-r-4 hover:border-[#632ce4] hover:bg-[#ffffff26] cursor-pointer'>
           <div className='flex items-center mx-8'>
             <FaSignInAlt className='mr-4 text-lg' />

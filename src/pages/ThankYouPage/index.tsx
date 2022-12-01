@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ThankYouPage: React.FC = () => {
   return (
@@ -13,9 +14,11 @@ const ThankYouPage: React.FC = () => {
         </p>
         <div className='flex flex-row md:mt-[2rem] lg:mt-[2rem]'>
           <i className='fa-solid md:text-[2rem] fa-arrow-left-long mr-[1vh] mt-[0.2rem] text-[1rem]'></i>
-          <button>
-            <p className='text-[1.2rem]  md:text-[2rem]'>Back Home</p>
-          </button>
+          <Link to='/'>
+            <button>
+              <p className='text-[1.2rem]  md:text-[2rem]'>Back Home</p>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
