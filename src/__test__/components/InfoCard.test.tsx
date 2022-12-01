@@ -9,8 +9,8 @@ const mockPropInfoSingleCard = {
   candidate: {
     id: 1,
     name: 'John Doe',
-    pictureUrl: "pictureUrl"
-  }
+    pictureUrl: 'pictureUrl',
+  },
 }
 
 describe('test info card', () => {
