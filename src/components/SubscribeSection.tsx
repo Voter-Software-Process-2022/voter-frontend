@@ -19,6 +19,7 @@ const SubscribeSection = () => {
           <button
             className=' p-2 w-1/3 bg-[#3850ba] rounded-r-lg text-white'
             type='button'
+            data-testid='subscribe-button'
           >
             Subscribe
           </button>

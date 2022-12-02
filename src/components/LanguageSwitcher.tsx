@@ -13,6 +13,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
     <div
       className='relative w-11 h-6 bg-slate-200 rounded-2xl cursor-pointer'
       onClick={onToggleHandler}
+      data-testid='flag'
     >
       {isOpen ? (
         <img

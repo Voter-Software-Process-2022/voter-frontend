@@ -14,10 +14,16 @@ const InfoCard: React.FC<InfoCardProps> = ({ candidate, voteTopicId }) => {
               alt='prayuth'
             />
           </div>
-          <h5 className='mb-1 text-xl font-medium text-gray-900 dark:text-white'>
+          <h5
+            className='mb-1 text-xl font-medium text-gray-900 dark:text-white'
+            data-testid='name-field'
+          >
             {candidate.name}
           </h5>
-          <span className='text-xl text-gray-500 dark:text-gray-400'>
+          <span
+            className='text-xl text-gray-500 dark:text-gray-400'
+            data-testid='id-field'
+          >
             # {candidate.id}
           </span>
           {voteTopicId === 2 && (
