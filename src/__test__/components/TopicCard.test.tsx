@@ -51,8 +51,6 @@ describe('test topic card', () => {
     expect(result).toBeDefined()
 
     fireEvent.click(vote)
-    // wait for vote page implementation
-    // expect(history.location.pathname).toBe('/vote')
   })
 
   test('click on result', () => {

@@ -33,8 +33,6 @@ describe('LowerInfo', () => {
     expect(voteNowButton).toBeDefined()
     const seeDetailsButton = screen.getByTestId('see-details-button')
     expect(seeDetailsButton).toBeDefined()
-
-    // expect(governmentLogo.getAttribute("href")).toBe("https://github.com/Voter-Software-Process-2022")
   })
 
   test('click see details button', () => {
@@ -50,7 +48,5 @@ describe('LowerInfo', () => {
     expect(voteNowButton).toBeDefined()
     const seeDetailsButton = screen.getByTestId('see-details-button')
     expect(seeDetailsButton).toBeDefined()
-
-    // expect(governmentLogo.getAttribute("href")).toBe("https://github.com/Voter-Software-Process-2022")
   })
 })

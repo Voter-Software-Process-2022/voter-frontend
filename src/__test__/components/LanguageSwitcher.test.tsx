@@ -30,7 +30,6 @@ describe('test English language switcher', () => {
     const languageSwitchButton = screen.getByTestId('flag')
 
     expect(languageSwitchButton).toBeDefined()
-    // expect(languageSwitchButton.className).toContain('bg-us-flag')
     expect(languageSwitchButton.innerHTML).toContain(
       'src="/src/assets/images/flag-us.png',
     )
@@ -57,7 +56,6 @@ describe('test English language switcher', () => {
     )
 
     fireEvent.click(languageSwitchButton)
-    // expect(screen.getByTestId('flag').className).toBe(/bg-thai-flag/i)
   })
 })
 
@@ -104,6 +102,5 @@ describe('test Thai language switcher', () => {
     )
 
     fireEvent.click(languageSwitchButton)
-    // expect(screen.getByTestId('flag').className).toBe(/bg-thai-flag/i)
   })
 })

@@ -39,7 +39,6 @@ describe('SubscribeSection', () => {
     expect(subscribeButton).toBeDefined()
 
     fireEvent.click(subscribeButton)
-    // expect please field some email
   })
 
   test('click subscribe button with email', () => {
@@ -58,9 +57,6 @@ describe('SubscribeSection', () => {
     const subscribeButton = screen.getByTestId('subscribe-button')
     expect(subscribeButton).toBeDefined()
 
-    // inputField fireevent.change
-    // enter email
     fireEvent.click(subscribeButton)
-    // expect please field some email
   })
 })

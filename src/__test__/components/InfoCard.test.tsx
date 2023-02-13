@@ -48,11 +48,5 @@ describe('test info card', () => {
     const nameText = screen.getByTestId('name-field')
     expect(nameText).toBeDefined()
     expect(nameText.innerHTML).toContain(mockPropInfoSingleCard.candidate.name)
-
-    // wait development to finish see details pages
-
-    // const seeDetailsLink = screen.getByTestId('see-details-link')
-    // fireEvent.click(seeDetailsLink)
-    // expect()
   })
 })

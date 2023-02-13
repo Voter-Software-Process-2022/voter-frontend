@@ -35,10 +35,6 @@ describe('CookieInformation', () => {
     expect(learnMoreButton).toBeDefined()
 
     fireEvent.click(understoodButton)
-
-    // expect(screen.getByTestId('cookie-information')).not.toBeVisible();
-    // expect(screen.getByText('We uses cookies').innerHTML).toBe('');
-    // expect(screen.getByTag('CookieInformation').isAccepted).toBe(true);
   })
 
   test('click on "Learn more" button', () => {
